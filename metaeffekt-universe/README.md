@@ -46,6 +46,14 @@ The following objectives drive our endeavors:
 * **Understanding Risk** - Based on the {metæffekt} Universe it must be possible to identify and highlight risks induced 
   by the terms and conditions of the covered licenses.
 * **Automated Documentation** - The models in the database must enable to generated automated notices for documentation.
+* **Continuous Improvement** - Enable concepts to detect imprecise matching, new matching candidates and to resolve matching 
+  issues. Based on the {metæffekt} Universe the scanner is able to detect the following issue types:
+  * *Incomplete Match* - There are licenses that only match in parts.
+  * *Indicated Exception* - An exception is matched without being in context of a license.
+  * *Licensing Option* - A license option (dual or multiple licensing statement) was identified, but not resolved.
+  * *Unspecific License* - An unspecific license (e.g. without a license version) was matched.
+  * *ScanCode Mismatch** - No license identified, while ScanCode matches a license with a score greater than 90.0.
+  * *Insufficient Segmentation* | There is more than one license detected in a segment; licenses may mix and not be resolved as individual licenses.
 
 ## Additional Concepts
 
@@ -108,6 +116,10 @@ Many tools derive a default version of the license in such cases.
 To anticipate change the database keeps track of name changes. As we proceed we may learn about further variations
 of licenses and may want to revise names. To enable this a canonical name history is maintained. This way former
 identifications can be mapped precisely.
+
+### Alternative Names
+With a model of a license or exception there is also the possibility to enlist alternative names. A good example
+is the Apache License 2.0. See [Apache License 2.0 YAML](https://github.com/org-metaeffekt/metaeffekt-universe/blob/main/src/main/resources/ae-universe/%5Ba%5D/%5Bap%5D/Apache-License-2.0.yaml).
 
 ## Plans
 As part of the {metæffekt} Kontinuum release we plan to open source a significant part of the {metæffekt} Universe. We 
