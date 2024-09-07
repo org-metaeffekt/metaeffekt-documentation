@@ -14,7 +14,7 @@ Currently, the {metæffekt} Portfolio Manager is provided in three parts:
 * A Maven Plugin for ease of integration in Maven-based build environments
 
 To be able to associate documents with a given software an AssetGroup / Asset concept is used to harmonize different 
-levels of granularity and versioning. See [Asset Identification](#asset-indenticiation) for details
+levels of granularity and versioning. See [Asset Identification](#asset-indenticiation) for details.
 
 ## Roles
 
