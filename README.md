@@ -15,6 +15,6 @@ documents including Software Bill of Materials (SBOMs) and reports: [{metæffekt
 See more details on the
 [{metæffekt} Vulnerability Management here](metaeffekt-vulnerability-management/vulnerability-management.md).
 
-Generated as a result is the
+The known software components are matched against known security vulnerabilities from multiple sources to generate a
 [Vulnerability Assessment Dashboard (HTML)](metaeffekt-vulnerability-assessment-dashboard/README.md)
 and Vulnerability Report (PDF).
