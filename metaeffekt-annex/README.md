@@ -79,7 +79,7 @@ The {metæffekt} Annex differentiates on an technical level immediate and second
 | GNU General Public License 2.0 (or any later version) | GPL-2.0-or-later             | yes/no/yes                     | <ul><li>GNU General Public License 2.0 (or any later version)</li><li>GNU General Public License 2.0</li><li>GNU General Public License 3.0 (or any later version)</li><li>GNU General Public License 3.0</li><li>GNU General Public License >3.0 (or any later version)</li><li>GNU General Public License >3.0</li></ul> |
 | Eclipse Public License 1.0                            | EPL-1.0                      | no/yes/yes                     | <ul><li>Eclipse Public License 1.0</li><li>Eclipse Public License 2.0</li></ul>                                                                                                                                                                                                                                            |
 
-immediate: associated licenses attributio conveys an immediate license option
+immediate: associated licenses attribution conveys an immediate license option
 secondary: associated licenses contain/enable a secondary license option
 atomic: associated license has several parts; in general all the parts are effective until a selected license is concluded. 
 
