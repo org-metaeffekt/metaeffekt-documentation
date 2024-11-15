@@ -93,15 +93,15 @@ The examples show different attributes of the example licenses and conveys the d
 (normally induced from the license attribution) and secondary options (usually induced from the license texts or official 
 annexes/amendments to the license text).
 
-E.g. the EPL-1.0 has a paragraph saying
+The EPL-1.0 specifically has a paragraph saying:
 
 *"In addition, after a new version of the Agreement is published, Contributor may elect to distribute the Program 
 (including its Contributions) under the new version."*
 
 This is understood (also taking into account the EPL definition of a Contributor) as secondary license option. See also 
-the European Public Licenses (EUPLs) or the CeCill licenses for prominent representatives of licenses with secondary 
+the European Public Licenses (EUPLs) or the CeCILL licenses for prominent representatives of licenses with secondary 
 license options.
 
 The annex does not force into a choice, but reports immediate options as these may still have to be concluded. The 
 Annex does explicitly not list secondary licenses options. However, once an effective license is concluded the annex 
-will document this accordingly.
+will represent this accordingly.
