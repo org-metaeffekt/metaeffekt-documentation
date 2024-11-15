@@ -80,12 +80,14 @@ The {metæffekt} Annex differentiates on a technical level immediate and seconda
 | <sub>BSD 3-Clause License + GNU General Public License 2.0</sub><br><sub>`BSD 3-Clause OR GPL-2.0-only`</sub> | <sub>yes</sub>       | <sub>no</sub>        | <sub>no</sub>     | <sub>- BSD 3-Clause License + GNU General Public License 2.0<br>- BSD 3-Clause License<br>- GNU General Public License 2.0</sub>                                                                                                                                                          |
 | <sub>Eclipse Public License 1.0</sub><br><sub>`EPL-1.0`</sub>                                                 | <sub>no</sub>        | <sub>yes</sub>       | <sub>yes</sub>    | <sub>- Eclipse Public License 1.0<br>- Eclipse Public License 2.0</sub>                                                                                                                                                                                                                   |
 
-| Column                     | Description                                                                                                        |
-|----------------------------|--------------------------------------------------------------------------------------------------------------------|
-| Immediate                  | Associated licenses attribution conveys an immediate license option                                                |
-| Secondary                  | Associated licenses contain/enable a secondary license option                                                      |
-| Atomic                     | Associated license has several parts; in general all the parts are effective until a selected license is concluded |
-| License options in italics | License options in italics: licenses do not exist yet, but may exist in the future                                 |
+The example table columns need to be understood as follows:
+
+| <sub>Column</sub>                     | <sub>Description</sub>                                                                                                        |
+|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| <sub>Immediate</sub>                  | <sub>Associated licenses attribution conveys an immediate license option</sub>                                                |
+| <sub>Secondary</sub>                  | <sub>Associated licenses contain/enable a secondary license option</sub>                                                      |
+| <sub>Atomic</sub>                     | <sub>Associated license has several parts; in general all the parts are effective until a selected license is concluded</sub> |
+| <sub>License options in italics</sub> | <sub>License options in italics: licenses do not exist yet, but may exist in the future</sub>                                 |
 
 The examples show different attributes of the example licenses and conveys the difference between immediate options 
 (normally induced from the license attribution) and secondary options (usually induced from the license texts or official 
