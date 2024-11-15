@@ -69,8 +69,8 @@ Remarks:
 
 ### License Options
 
-The description of Effective Licenses covers the general and most prominent cases of license options for a consumer.
-The {metæffekt} Annex differentiates on an technical level immediate and secondary license options:
+The description of effective licenses covers the general and most prominent cases of license options for a consumer.
+The {metæffekt} Annex differentiates on a technical level immediate and secondary license options:
 
 | <sub>Associated Licenses (Canonical Names)<br>SPDX ID / Expression</sub>                                      | <sub>Immediate</sub> | <sub>Secondary</sub> | <sub>Atomic</sub> | <sub>Possible effective Licenses</sub>                                                                                                                                                                                                                                                    |
 |---------------------------------------------------------------------------------------------------------------|----------------------|----------------------|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -80,23 +80,26 @@ The {metæffekt} Annex differentiates on an technical level immediate and second
 | <sub>BSD 3-Clause License + GNU General Public License 2.0</sub><br><sub>`BSD 3-Clause OR GPL-2.0-only`</sub> | <sub>yes</sub>       | <sub>no</sub>        | <sub>no</sub>     | <sub>- BSD 3-Clause License + GNU General Public License 2.0<br>- BSD 3-Clause License<br>- GNU General Public License 2.0</sub>                                                                                                                                                          |
 | <sub>Eclipse Public License 1.0</sub><br><sub>`EPL-1.0`</sub>                                                 | <sub>no</sub>        | <sub>yes</sub>       | <sub>yes</sub>    | <sub>- Eclipse Public License 1.0<br>- Eclipse Public License 2.0</sub>                                                                                                                                                                                                                   |
 
-Immediate: associated licenses attribution conveys an immediate license option
-Secondary: associated licenses contain/enable a secondary license option
-Atomic: associated license has several parts; in general all the parts are effective until a selected license is concluded. 
-License options in italics: licenses do not exist yet, but may exist in the future
+| Column                     | Description                                                                                                        |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------|
+| Immediate                  | Associated licenses attribution conveys an immediate license option                                                |
+| Secondary                  | Associated licenses contain/enable a secondary license option                                                      |
+| Atomic                     | Associated license has several parts; in general all the parts are effective until a selected license is concluded |
+| License options in italics | License options in italics: licenses do not exist yet, but may exist in the future                                 |
 
-These examples show different attributes of the example licenses and conveys the difference between immediate options 
+The examples show different attributes of the example licenses and conveys the difference between immediate options 
 (normally induced from the license attribution) and secondary options (usually induced from the license texts or official 
-annexes or amendments to the license text).
+annexes/amendments to the license text).
 
-Specifically, the EPL-1.0 has a paragraph saying
+E.g. the EPL-1.0 has a paragraph saying
 
 *"In addition, after a new version of the Agreement is published, Contributor may elect to distribute the Program 
 (including its Contributions) under the new version."*
 
-This is understood as secondary license option. See also the European Public Licenses (EUPLs) or the CeCill licenses for
-prominent representatives of licenses with secondary license options.
+This is understood (also taking into account the EPL definition of a Contributor) as secondary license option. See also 
+the European Public Licenses (EUPLs) or the CeCill licenses for prominent representatives of licenses with secondary 
+license options.
 
-The annex does not force into a choice, but reports immediate options (as these may still have to be concluded). The 
-Annex does not list secondary licenses options. However, once an effective license is concluded the annex will document 
-this accordingly.
+The annex does not force into a choice, but reports immediate options as these may still have to be concluded. The 
+Annex does explicitly not list secondary licenses options. However, once an effective license is concluded the annex 
+will document this accordingly.
