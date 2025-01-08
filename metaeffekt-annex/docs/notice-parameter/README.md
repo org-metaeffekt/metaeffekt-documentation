@@ -32,6 +32,13 @@ The definition of a subcomponent uses the same attributes as the component defin
 The additional attribute `unassignedCopyrights` may be used to convey further copyrights that cannot be clearly assigned
 to a license.
 
+# Further Resources
+
+A JSON schema file applicable to notice parameter YAML files can be found here:
+[notice-parameters.json](https://github.com/org-metaeffekt/metaeffekt-artifact-analysis/blob/main/modules/ae-notice-engine/src/main/resources/json-schema/notice-parameters.json).
+
+Examples of notice parameter YAML can be found in the [notice engine test resources](https://github.com/org-metaeffekt/metaeffekt-artifact-analysis/tree/main/modules/ae-notice-engine/src/test/resources/notice-template-tests).
+
 ## Examples
 
 ### Pure Apache License 2.0 licensed component
