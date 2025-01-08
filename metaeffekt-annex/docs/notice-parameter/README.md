@@ -83,19 +83,10 @@ This notice parameter generates the following notice (adjusted for markdown):
 > The herein covered software distribution contains <b>Spring Framework</b> with subcomponents.
 In the present version, Spring Framework and the included subcomponents are restricted to the terms of the Apache 
 License 2.0, and the BSD 3-Clause License (copyright variant).</p><p>The <b>Spring Framework</b> specific parts are 
-licensed under the terms of the Apache License 2.0.
-<br>
-<br>
-> The subcomponent <b>ASM</b> is licensed under the terms of the BSD 3-Clause License (copyright variant).
-<br>
-<br>
-The BSD 3-Clause License (copyright variant) requires to reproduce the component specific copyright:</p>
-Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved.
-<br>
-<br>
-Further, the BSD 3-Clause License (copyright variant) requires to reproduce the license conditions and disclaimer:
-<br>
-<br>
+licensed under the terms of the Apache License 2.0.<br><br>The subcomponent <b>ASM</b> is licensed under the terms of 
+the BSD 3-Clause License (copyright variant).<br><br>The BSD 3-Clause License (copyright variant) requires to reproduce 
+the component specific copyright:</p>Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved.<br><br>
+Further, the BSD 3-Clause License (copyright variant) requires to reproduce the license conditions and disclaimer:<br><br>
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
 following conditions are met: <ol><li>Redistributions of source code must retain the above copyright notice, this list
 of conditions and the following disclaimer.</li><li>Redistributions in binary form must reproduce the above copyright
