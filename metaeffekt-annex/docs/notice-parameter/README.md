@@ -32,21 +32,34 @@ The definition of a subcomponent uses the same attributes as the component defin
 The additional attribute `unassignedCopyrights` may be used to convey further copyrights that cannot be clearly assigned
 to a license.
 
-# Further Resources
+## Further Resources
 
 A JSON schema file applicable to notice parameter YAML files can be found here:
 [notice-parameters.json](https://github.com/org-metaeffekt/metaeffekt-artifact-analysis/blob/main/modules/ae-notice-engine/src/main/resources/json-schema/notice-parameters.json).
 
-Examples of notice parameter YAML can be found in the [notice engine test resources](https://github.com/org-metaeffekt/metaeffekt-artifact-analysis/tree/main/modules/ae-notice-engine/src/test/resources/notice-template-tests).
+Further examples of notice parameter YAMLs can be found in the [notice engine test resources](https://github.com/org-metaeffekt/metaeffekt-artifact-analysis/tree/main/modules/ae-notice-engine/src/test/resources/notice-template-tests).
+
+## Using Notice Parameter in Inventories
+
+The following additional conditions apply to notice parameter provided in inventories.
+
+- The name of the top-level `component` definition can be omitted. This is implicitly derived from the 'Component' column.
+- The associatedLicenses of the overall notice parameter must match the licenses defined in column 'License'. Otherwise,
+  the notice parameter is regarded invalid.
+- It is recommended to quote all value string with double quotes "value".
+- Usually it is not required to determine effectiveLicenses in the notice parameter. The effectiveLicenses will be 
+  computed during the processing of the inventory based on the configured policy for the asset annex. Also, the 
+  concluded effective license may vary in the business case. In case the policy does not support to conclude an 
+  effective license the policy must be extended; potentially by a component-specific mapping.
 
 ## Examples
 
 ### Pure Apache License 2.0 licensed component
 
     component:
-      name: XYZ
+      name: "XYZ"
     associatedLicenses:
-    - Apache License 2.0
+    - "Apache License 2.0"
 
 This is the most minimal notice parameter possible specifying only a name and one associatedLicense.
 
@@ -64,15 +77,15 @@ A notice parameter is a data structure based on the simple concepts conveyed by 
 Spring Framework's `spring-core-5.3.39.jar` java archive.
 
     component:
-      name: Spring Framework
+      name: "Spring Framework"
       associatedLicenses:
-        - Apache License 2.0
+        - "Apache License 2.0"
     subcomponents:
-      - name: ASM
+      - name: "ASM"
         associatedLicenses:
-          - BSD 3-Clause License (copyright variant)
+          - "BSD 3-Clause License (copyright variant)"
         copyrights:
-          - Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved.
+          - "Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved."
         variables:
             variable3rdClause: "the name of the copyright holders nor the names of its contributors"
             copyrightHolderNoWarranty: "THE COPYRIGHT HOLDERS AND CONTRIBUTORS"
@@ -113,13 +126,13 @@ The examples in this section are based on the fact, that a component is distribu
 user / distributor may choose either one of the licenses.
 
     component:
-      name: ABC
+      name: "ABC"
       associatedLicenses:
-      - Apache License 2.0 + BSD 3-Clause License
+      - "Apache License 2.0 + BSD 3-Clause License"
       effectiveLicenses:
-        - Apache License 2.0
+        - "Apache License 2.0"
         copyrights:
-        - Copyright (c) 2019-2025, the original authors. All rights reserved.
+        - "Copyright (c) 2019-2025, the original authors. All rights reserved."
 
 The above notice parameters - with effective licenses determined to Apache License 2.0 - produces:
 
@@ -133,11 +146,11 @@ Using BSD 3-Clause License as effective license:
     component:
       name: ABC
       associatedLicenses:
-      - Apache License 2.0 + BSD 3-Clause License
+      - "Apache License 2.0 + BSD 3-Clause License"
       effectiveLicenses:
-        - BSD 3-Clause License
+        - "BSD 3-Clause License"
         copyrights:
-        - Copyright (c) 2019-2025, the original authors. All rights reserved.
+        - "Copyright (c) 2019-2025, the original authors. All rights reserved."
 
 Produces notice (adjusted for markdown):
 
