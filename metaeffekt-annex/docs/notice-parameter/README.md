@@ -121,14 +121,12 @@ user / distributor may choose either one of the licenses.
         copyrights:
         - Copyright (c) 2019-2025, the original authors. All rights reserved.
 
-The above notice parameters produces:
+The above notice parameters - with effective licenses determined to Apache License 2.0 - produces:
 
 >The herein covered software distribution contains <b>ABC</b>.</p><p>In the present version, ABC is restricted to
 the terms of either the Apache License 2.0 or the BSD 3-Clause License.</p><p>For the parts restricted to either the
 Apache License 2.0 or the BSD 3-Clause License, the Apache License 2.0 has been selected for the software
 distribution.</p><p>Subsequently, the terms and conditions of the Apache License 2.0 apply for <b>ABC</b>.</p>
-
-Here the effectiveLicenses was determined to the Apache License 2.0.
 
 Using BSD 3-Clause License as effective license:
 
