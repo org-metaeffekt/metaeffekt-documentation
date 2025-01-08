@@ -52,9 +52,8 @@ This is the most minimal notice parameter possible specifying only a name and on
 
 The notice generated from it looks as follows (adjusted for markdown):
 
->The herein covered software distribution contains <b>XYZ</b>.
-<br>
-In the present version, XYZ is restricted to the terms of the Apache License 2.0.
+>The herein covered software distribution contains <b>XYZ</b>.<br>In the present version, XYZ is restricted to the 
+terms of the Apache License 2.0.
 
 The Apache License 2.0 does not require to document the copyright on unmodifed distribution. Therefore, the notice is 
 regarded complete.
