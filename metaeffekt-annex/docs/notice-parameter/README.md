@@ -58,8 +58,8 @@ The following additional conditions apply to notice parameter provided in invent
 
     component:
       name: "XYZ"
-    associatedLicenses:
-    - "Apache License 2.0"
+      associatedLicenses:
+      - "Apache License 2.0"
 
 This is the most minimal notice parameter possible specifying only a name and one associatedLicense.
 
