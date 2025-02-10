@@ -82,12 +82,12 @@ The {metæffekt} Annex differentiates on a technical level immediate and seconda
 
 The example table columns need to be understood as follows:
 
-| <sub>Column</sub>                     | <sub>Description</sub>                                                                                                        |
-|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| <sub>Immediate</sub>                  | <sub>Associated licenses attribution conveys an immediate license option</sub>                                                |
-| <sub>Secondary</sub>                  | <sub>Associated licenses contain/enable a secondary license option</sub>                                                      |
-| <sub>Atomic</sub>                     | <sub>Associated license has several parts; in general all the parts are effective until a selected license is concluded</sub> |
-| <sub>License options in italics</sub> | <sub>License options in italics: licenses do not exist yet, but may exist in the future</sub>                                 |
+| <sub>Column</sub>                     | <sub>Description</sub>                                                                                                                     |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| <sub>Immediate</sub>                  | <sub>Associated licenses attribution conveys an immediate license option</sub>                                                             |
+| <sub>Secondary</sub>                  | <sub>Associated licenses contain/enable a secondary license option</sub>                                                                   |
+| <sub>Atomic</sub>                     | <sub>Associated license consists of a license potentially with modifiers; based on the modifiers different licenses may be concluded</sub> |
+| <sub>License options in italics</sub> | <sub>License options in italics: licenses do not exist yet, but may exist in the future</sub>                                              |
 
 The examples show different attributes of the example licenses and conveys the difference between immediate options 
 (normally induced from the license attribution) and secondary options (usually induced from the license texts or official 
