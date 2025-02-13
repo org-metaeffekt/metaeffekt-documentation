@@ -1,4 +1,4 @@
-# CI/CD Integration
+# {metaeffekt} Universe - CI/CD Integration
 
 The {metæffekt} Universe data can be used for integration with existing tools. In particular,
 it is possible to export a set of yaml files that provide details on licenses and supports a simple
