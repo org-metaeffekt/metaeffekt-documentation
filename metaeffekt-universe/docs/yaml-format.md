@@ -536,13 +536,14 @@ The matches support regular expression when in our own bracketing format.
 #### Characters which need to be escaped:
 ```yaml
 single escape:
-  Mapping Key: * \
-  Mapped Value: ( )
+  Mapping Key: * \ "
+  Mapped Value: "
+```
 
-
+```yaml
 double escape:
-  Mapping Key: ( ) { } +
-  Mapped Value:  "
+  Mapping Key: ( ) { } + /
+  Mapped Value:
 ```
 
 ---
