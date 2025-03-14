@@ -85,6 +85,25 @@ setup.
 The Portfolio Manager uses exclusively mutual authenticated SSL connections to protect the communication between the
 CLI and the service endpoint.
 
+## Non-Interactive Mode
+
+The Portfolio Manager may also be run from a non-interactive mode:
+
+    java -jar {pathToJar}/ae-portfolio-manager-cli-HEAD-SNAPSHOT-exec.jar [COMMAND]
+
+Just like the interactive shell the non-interactive mode requires an `application.properties` in the working directory.
+
+The Portfolio Manager will execute the command without starting a blocking shell session.
+
+## Script
+
+Additionally, it is also possible to initiate a shell session with the usage of an external script file.
+
+    java -jar {pathToJar}/ae-portfolio-manager-cli-HEAD-SNAPSHOT-exec.jar @[scriptfile]
+
+The file may contain different commands, written in the same way it is expected as in the shell, seperated by a new
+line. This way the specified commands will be executed during startup.
+
 ## Maven Plugin
 
 The ```ae-portfolio-manager-maven-plugin``` can be used for automatically uploading/downloading files to an already 
