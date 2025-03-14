@@ -15,7 +15,7 @@ Currently, the {metæffekt} Portfolio Manager is provided in three parts:
 * A Maven Plugin for ease of integration in Maven-based build environments
 
 To be able to associate documents with a given software an AssetGroup / Asset concept is used to harmonize different
-levels of granularity and versioning. See [Asset Identification](#asset-indenticiation) for details.
+levels of granularity and versioning. See [Asset Identification](#a-nameasset-indentificationasset-identification) for details.
 
 ## Roles
 
@@ -55,7 +55,7 @@ As such, the auditor is able to see all data, but is not able to modify any data
 
 Auditors are managed by the portfolio manager support.
 
-## <a name="asset-indenticiation"/>Asset Identification
+## <a name="asset-indentification"/>Asset Identification
 
 ### Asset Group Identifier
 
