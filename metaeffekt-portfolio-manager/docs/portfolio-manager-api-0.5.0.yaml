@@ -1,0 +1,277 @@
+openapi: "3.1.0"
+info:
+  title: "metaeffekt Portfolio-Manager API"
+  description: "REST API for interacting with the metaeffekt Portfolio Manager Service."
+  version: "0.5.0"
+paths:
+  /addtoken:
+    post:
+      summary: "POST addtoken"
+      operationId: "addToken"
+      description: "Allows to add additional access tokens to a project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "userName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /clear:
+    delete:
+      summary: "DELETE clear"
+      operationId: "clearProject"
+      description: "Clears all files of a given project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /create:
+    post:
+      summary: "POST create"
+      operationId: "createProject"
+      description: "Allows to create a project. A successful invocation returns the project token as part of the response."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "string"
+  /delete:
+    delete:
+      summary: "DELETE delete"
+      operationId: "deleteProject"
+      description: "Deletes a project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /download:
+    get:
+      summary: "GET download"
+      operationId: "downloadDocument"
+      description: "Downloads a single or set of documents as ZIP archive."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "assetGroupRef"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "assetRef"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "modifier"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "object"
+  /list:
+    get:
+      summary: "GET list"
+      operationId: "list"
+      description: "List all files associated with a project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /listuser:
+    get:
+      summary: "GET listuser"
+      operationId: "listToken"
+      description: "Lists all users and tokens for a given project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /remove:
+    delete:
+      summary: "DELETE remove"
+      operationId: "removeToken"
+      description: "Removes a single document from a given project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "assetGroupRef"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "assetRef"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "modifier"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /removetoken:
+    delete:
+      summary: "DELETE removetoken"
+      operationId: "removeToken"
+      description: "Removes a user token from a given project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /upload:
+    post:
+      summary: "POST upload"
+      operationId: "uploadDocument"
+      description: "Uploads a document to a given project."
+      parameters:
+        - name: "projectName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "modifier"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "file"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+            format: "binary"
+        - name: "header"
+          in: "header"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
