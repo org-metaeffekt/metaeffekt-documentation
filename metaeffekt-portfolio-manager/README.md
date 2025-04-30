@@ -11,16 +11,23 @@ into diverse processing landscapes applying a service-oriented approach.
 Currently, the {metæffekt} Portfolio Manager is provided in three parts:
 
 * Service Endpoint based on Spring-Boot
-* Command-Line Client / Shell based on Spring-Boot and Spring-Shell
-* A Maven Plugin for ease of integration in Maven-based build environments
+* Command-Line Client & Shell based on Spring-Boot and Spring-Shell
+* A Maven plugin for ease of integration in Maven-based build environments
 
 To be able to associate documents with a given software an AssetGroup / Asset concept is used to harmonize different
-levels of granularity and versioning. See [Asset Identification](#a-nameasset-indentificationasset-identification) for details.
+levels of granularity and versioning. See [Asset Identification](#a-nameasset-indentificationasset-identification) for 
+details.
 
-## Roles
+## Security
 
-Apart from the X.509 Certificates based access control the {metæffekt} Portfolio Manager uses tokens to authorize the
-different roles on the managed documents.
+The {metæffekt} Portfolio Manager utilizes X.509 certificate-based mutual authentication. To access the service you or
+the machine you are using requires a set of credentials to establish a connection to the remote service. These 
+credentials are usually supplied by a contact within your organization.
+
+## Tokens
+
+Apart from the X.509 Certificates based access control the {metæffekt} Portfolio Manager uses access tokens to authorize 
+the different users in different roles on the managed documents.
 
 The portfolio manager distinguishes three different roles:
 
@@ -49,11 +56,12 @@ While the authorized actions of the two previous roles are only allowed to work 
 is able to view all projects in the portfolio. An auditor is authorized to:
 
 - view the project structure
-- download and remove files
+- download files
 
 As such, the auditor is able to see all data, but is not able to modify any data.
 
 Auditors are managed by the portfolio manager support.
+
 
 ## <a name="asset-indentification"/>Asset Identification
 
@@ -94,7 +102,7 @@ CLI and the service endpoint.
 
 The Portfolio Manager may also be run from a non-interactive mode:
 
-    java -jar {pathToJar}/ae-portfolio-manager-cli-HEAD-SNAPSHOT-exec.jar [COMMAND]
+    java -jar {pathToJar}/ae-portfolio-manager-cli-<VERSION>-exec.jar [COMMAND]
 
 Just like the interactive shell the non-interactive mode requires an `application.properties` in the working directory.
 
@@ -104,7 +112,7 @@ The Portfolio Manager will execute the command without starting a blocking shell
 
 Additionally, it is also possible to initiate a shell session with the usage of an external script file.
 
-    java -jar {pathToJar}/ae-portfolio-manager-cli-HEAD-SNAPSHOT-exec.jar @[scriptfile]
+    java -jar {pathToJar}/ae-portfolio-manager-cli-<VERSION>-exec.jar @[scriptfile]
 
 The file may contain different commands, written in the same way it is expected as in the shell, seperated by a new
 line. This way the specified commands will be executed during startup.
@@ -207,3 +215,8 @@ The following complements an example configuration for pull (download):
             </execution>
         </executions>
     </plugin>
+
+# OpenAPI Spec
+
+Please find the current OpenAPI Spec [here](docs/portfolio-manager-api-0.5.0.yaml). The spec currently only contains
+a subset of the service endpoints.
