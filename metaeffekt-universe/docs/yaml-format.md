@@ -277,7 +277,9 @@ One exclude is enough to not match.
 
 Usually (if possible) at least 3 matches (or grants; see below) should be provided in case a license text is available - the more specific and unique the better.
 
-Generally we match fragments and no full sentences. E.g. '.' at the end of a match should be omitted. When a match spans multiple sentences the match should be split.
+Generally we match fragments and no full sentences. E.g. '.' at the end of a match should be omitted.
+
+When a match spans multiple sentences the match should be split. There is an exception to this rule though if the sentence is really vague or short and lacks context (like: Any warranty excluded.). In this case 2 sentences may be combined to give better context and avoid partial matches.
 
 While `evidence` matches require all listed items to be matched, the `oneOf` 
 matches enable to build groups of matches. In a group all need to match;
@@ -545,6 +547,7 @@ double escape:
   Mapping Key: ( ) { } + /
   Mapped Value:
 ```
+The following characters *DO NOT HAVE TO BE ESCAPED*: @ 
 
 ---
 
