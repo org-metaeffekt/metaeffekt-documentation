@@ -18,3 +18,8 @@ See more details on the
 The known software components are matched against known security vulnerabilities from multiple sources to generate a
 [Vulnerability Assessment Dashboard (HTML)](metaeffekt-vulnerability-assessment-dashboard/README.md)
 and Vulnerability Report (PDF).
+
+## {metæffekt} Asset Descriptor
+
+See more details on the
+[{metæffekt} Asset Descriptor here](metaeffekt-asset-descriptor/README.md).
