@@ -8,7 +8,7 @@ such a configuration asset-descriptor-centric plugins can evaluate and process t
 
 ### Inventories
 
-The primary citizens of an asset-descriptors are inventories. Many processes are inventory-centric. The current 
+The primary citizens of an asset-descriptors are inventories. Many processes are inventory-centric. The current
 implementation of the asset descriptor is using inventories as input only. Conversion steps from SBOMs formats such as
 SPDX and CycloneDX have to be preprocessed to be ingested by the descriptor.
 
@@ -19,17 +19,89 @@ further merged, combined or otherwise transformed inventories.
 
 To use, enable or combine transformations an asset descriptor supports different transformations:
 
-### Inline Kotlin Scripts
+### Kotlin Scripts
 
-The asset descriptor may include compact inline kotlin scripts.
+Use Kotlin scripts to implement custom transformations. These scripts are prefixed with `filter.kts`.
 
-### External Kotlin Scripts
+#### Common features
 
-The asset descriptor may reference external kotlin script files.
+##### Default Imports
+
+The environment imports some packages by default. These must not be declared in a Kotlin script.
+Use the following classes without an import:
+
+```
+        "org.metaeffekt.core.inventory.processor.model.Artifact",
+        "org.metaeffekt.core.inventory.processor.model.Inventory",
+        "org.metaeffekt.core.inventory.processor.reader.InventoryReader",
+        "org.metaeffekt.core.inventory.processor.model.Constants.*",
+        "com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.InventoryUtilsKt.*",
+        "java.io.File",
+        // allow extension methods on Predicates and Transformations
+        "com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Predicates",
+        "com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Transformations"
+```
+
+##### Transformations
+
+Transformations manipulate rows of inventories, respectively `Artifacts`, according to a rule. I.e.
+there are transformations to harmonize architecture names or to clean up component strings.
+
+##### Predicates
+
+Predicates help to filter specific artifacts out of an inventory. Use them in combination
+with [collection filtering](https://kotlinlang.org/docs/collection-filtering.html).
+Access predicates via the `predicates` field.
+
+#### Inline Kotlin Scripts
+
+The asset descriptor may include compact inline kotlin scripts. These are declared in the top
+level section `scripts`. You should use inline script for shorter transformations.
+
+##### Example
+
+```yaml
+scripts:
+  "anyway": |
+    import org.metaeffekt.core.inventory.processor.model.Inventory  
+
+    val reference: Inventory = loadInventory("input.inventories.reference")  
+    reference.artifacts = reference.artifacts.filter { !predicates.removeMatches(it, Regex("quarkus-run.jar"), "Id") }  
+    if (params["parameter_one"] != "value_one") {  
+        throw IllegalStateException("Parameter 'parameter_one' has not been passed into params map. Please check the corresponding asset-descriptor.yaml file.")  
+    }  
+    writeInventory(reference, "computed.inventories.filtered-inline", createParents=true)  
+    println(">>> Inline script has been executed.")
+```
+
+#### External Kotlin Scripts
+
+The asset descriptor may reference external kotlin script files. You can place Kotlin script files everywhere in your
+workspace. Their file name must end on `filter.kts`.
+
+#### IDE Integration
+
+Kotlin scripts with a file name ending on `filter.kts` are recognized by Intellij.
+As a result it provides code completion, also features provided by our own
+kotlin scripting configuration.
+
+##### Enable Integration
+
+To enable scripting support Intellij requires `ae-kotlin-scripting-host` to be on the classpath.
+
+1. Open `Settings | Languages & Frameworks | Kotlin | Kotlin Scripting`
+2. Press `Scan Classpath`. If `ae-kotlin-scripting-host` is on the classpath an entry in the list
+   of script definitions will show up.
+3. Close settings.
+   Intellij should now recognize your script as a kotlin script.
 
 ### Maven Execution
 
-The asset descriptor may invoke a maven-based processing step. This enables to include extended infrastructure. 
+The asset descriptor may invoke a maven-based processing step. This enables to include extended infrastructure.
+
+#### Referencing Inventories
+
+#### Variable Substitution in Parameters
 
 ## Documents
 
