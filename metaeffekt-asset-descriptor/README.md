@@ -36,8 +36,8 @@ Use the following classes without an import:
 * `org.metaeffekt.core.inventory.processor.model.Constants.*`
 * `com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.InventoryUtilsKt.*`
 * `java.io.File`
-* `"com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Predicates`
-* `"com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Transformations`
+* `com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Predicates`
+* `com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Transformations`
 
 ##### Transformations
 
