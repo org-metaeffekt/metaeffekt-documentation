@@ -887,7 +887,8 @@ Use this for constructs that enable license clustering.
 
 For Example:
 
-GNU General Public License 2.0 (with exceptions) is not an actual license but enables clustering all GPL 2.0 with exceptions. This construct uses baseTerms to point to the GPL 2.0 (required for Notice Engine)
+GNU General Public License 2.0 (with exceptions) is not an actual license but enables clustering all GPL 2.0 with 
+exceptions. This construct uses baseTerms to point to the GPL 2.0 (required for Notice Engine)
 
 ---
 
