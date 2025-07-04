@@ -23,24 +23,21 @@ To use, enable or combine transformations an asset descriptor supports different
 
 Use Kotlin scripts to implement custom transformations. These scripts are prefixed with `filter.kts`.
 
-#### Common features
+#### Common Features
 
 ##### Default Imports
 
-The environment imports some packages by default. These must not be declared in a Kotlin script.
+The environment imports selected packages by default. These must not be declared in a Kotlin script.
 Use the following classes without an import:
 
-```
-        "org.metaeffekt.core.inventory.processor.model.Artifact",
-        "org.metaeffekt.core.inventory.processor.model.Inventory",
-        "org.metaeffekt.core.inventory.processor.reader.InventoryReader",
-        "org.metaeffekt.core.inventory.processor.model.Constants.*",
-        "com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.InventoryUtilsKt.*",
-        "java.io.File",
-        // allow extension methods on Predicates and Transformations
-        "com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Predicates",
-        "com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Transformations"
-```
+* `org.metaeffekt.core.inventory.processor.model.Artifact`
+* `org.metaeffekt.core.inventory.processor.model.Inventory`
+* `org.metaeffekt.core.inventory.processor.reader.InventoryReader`
+* `org.metaeffekt.core.inventory.processor.model.Constants.*`
+* `com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.InventoryUtilsKt.*`
+* `java.io.File`
+* `com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Predicates`
+* `com.metaeffekt.artifact.analysis.scripting.kotlin.config.inventory.Transformations`
 
 ##### Transformations
 
@@ -142,8 +139,6 @@ documents:
         type: ANNEX
         inventories:
           - inventoryRef: "asset"
-            assetName: "${asset.name}"
-            assetVersion: "${asset.version}"
 ```
 
 ### Asset Descriptor for a Single-Asset Vulnerability Report
@@ -167,17 +162,12 @@ documents:
         type: VULNERABILITY_STATISTICS_REPORT
         inventories:
           - inventoryRef: "asset"
-            assetVersion: "${asset.version}"
-            assetName: "${asset.name}"
         params:
           securityPolicyFile: "${policy.basedir}/statistics-security-policy.json"
       "report":
         type: VULNERABILITY_REPORT
         inventories:
           - inventoryRef: "asset"
-            assetVersion: "${asset.version}"
-            assetName: "${asset.name}"
         params:
           securityPolicyFile: "${policy.basedir}/report-security-policy.json"
 ```
-
