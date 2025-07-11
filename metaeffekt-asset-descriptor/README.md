@@ -1,6 +1,6 @@
 # Asset Descriptors
 
-Asset descriptors is a way to parameterize more complex processing steps or the generation of documents.
+Asset descriptors are a way to parameterize more complex processing steps or the generation of documents.
 An asset descriptor is a .yaml file, which defined the inputs and adds additional metadata to these inputs. Based on
 such a configuration asset-descriptor-centric plugins can evaluate and process the information.
 
@@ -9,7 +9,7 @@ such a configuration asset-descriptor-centric plugins can evaluate and process t
 ### Inventories
 
 The primary citizens of an asset-descriptors are inventories. Many processes are inventory-centric. The current
-implementation of the asset descriptor is using inventories as input only. Conversion steps from SBOMs formats such as
+implementation of the asset descriptor only uses inventories as input. Conversion steps from SBOMs formats such as
 SPDX and CycloneDX have to be preprocessed to be ingested by the descriptor.
 
 ## Transformations

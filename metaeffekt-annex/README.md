@@ -5,10 +5,10 @@
 {metæffekt} Annex - to its full extent - is an archive consisting of:
 * a PDF document explaining the `subject` of interest
 * an aggregation of the effective terms and licenses the `subject` is provided under
-* an aggregation of specific occurrences of terms and licenses on component/part level
+* an aggregation of specific occurrences of terms and licenses on the component/part level
 * an aggregation of source archives that is provided with the `subject`
 
-The primary purpose of the {metæffekt} Annex is to address license obligation within a single archive. At least, as far
+The primary purpose of the {metæffekt} Annex is to address license obligations within a single archive. At least, as far
 as possible, when no additional services or other option making sources available have been selected.
 
 The `subject` of interest can be:
@@ -46,7 +46,7 @@ derivation of the effective licenses is limited by the terms of the associated l
 
 Remarks:
 - within SPDX - for example of package element level - the declared license maps the associated license here.
-- please note, that is the supply chain it is regarded advisable to differentiate declared and associated licenses.
+- please note, that in the supply chain it is regarded as advisable to differentiate declared and associated licenses.
 - declared (by the creator of the package) an associated (by the consumer of the package) are regarded different concepts.
 
 ### Effective Licenses
@@ -64,7 +64,7 @@ The effective licenses are the selected licenses relevant for the software use o
 
 Remarks:
 - within SPDX - for example of package element level - the concluded license maps the effective license here.
-- concluded and effective licenses are regarded equivalent; we currently stick to the different terminology until 
+- concluded and effective licenses are regarded as equivalent; we currently stick to the different terminology until 
   further notice.
 
 ### License Options
@@ -89,7 +89,7 @@ The example table columns need to be understood as follows:
 | <sub>Atomic</sub>                     | <sub>Associated license consists of a license potentially with modifiers; based on the modifiers different licenses may be concluded</sub> |
 | <sub>License options in italics</sub> | <sub>License options in italics: licenses do not exist yet, but may exist in the future</sub>                                              |
 
-The examples show different attributes of the example licenses and conveys the difference between immediate options 
+The examples show different attributes of the example licenses and convey the difference between immediate options 
 (normally induced from the license attribution) and secondary options (usually induced from the license texts or official 
 annexes/amendments to the license text).
 
@@ -102,6 +102,6 @@ This is understood (also taking into account the EPL definition of a Contributor
 the European Public Licenses (EUPLs) or the CeCILL licenses for prominent representatives of licenses with secondary 
 license options.
 
-The annex does not force into a choice, but reports immediate options as these may still have to be concluded. The 
-Annex does explicitly not list secondary licenses options. However, once an effective license is concluded the annex 
+The annex does not force a choice, but reports immediate options as these may still have to be concluded. The 
+Annex does explicitly not list secondary license options. However, once an effective license is concluded the annex 
 will represent this accordingly.
