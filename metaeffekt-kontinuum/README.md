@@ -1,6 +1,9 @@
 # {metæffekt} Kontinuum
 
-The {metæffekt} Kontinuum is a set of functional modules and content to enable an automation of license compliance management and vulnerability monitoring tasks. 
+The {metæffekt} Kontinuum combines {metæffekt} software and content into a set of modules that enable automation of license compliance management and vulnerability monitoring.
+It features precise scanning, a comprehensive license database, and vulnerability assessment tools.
+
+The following sections provide detailed information on key features and characteristics of the Kontinuum.
 
 ## Key Concepts & Characteristics
 | Concept / Characteristic        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
