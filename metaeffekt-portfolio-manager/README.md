@@ -2,8 +2,8 @@
 
 ## Introduction
 
-The {metæffekt} Portfolio Manager allows to provide a simple and easy way to manage and organize software related
-documents including Software Bill of Materials (SBOMs) and reports.
+The {metæffekt} Portfolio Manager allows to provide a simple and easy way to manage and organize software-related
+documents, including Software Bill of Materials (SBOMs) and reports.
 
 The {metæffekt} Portfolio Manager is a building block in a primary process and api-driven setup and allows integration
 into diverse processing landscapes applying a service-oriented approach.
@@ -12,7 +12,7 @@ Currently, the {metæffekt} Portfolio Manager is provided in three parts:
 
 * Service Endpoint based on Spring-Boot
 * Command-Line Client & Shell based on Spring-Boot and Spring-Shell
-* A Maven plugin for ease of integration in Maven-based build environments
+* A Maven plugin for easy integration into Maven-based build environments
 
 To be able to associate documents with a given software an AssetGroup / Asset concept is used to harmonize different
 levels of granularity and versioning. See [Asset Identification](#a-nameasset-indentificationasset-identification) for 

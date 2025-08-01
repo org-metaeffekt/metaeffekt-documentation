@@ -2,7 +2,7 @@
 
 For the generation of user-centric software documentation component-centric license notices are generated. These license
 notices convey the associated licenses, the effective licenses and - in case required or supportive - partially the 
-structure of a component. Based on past practices writing license notices manually in the past a generator for the 
+structure of a component. Based on past practices of writing license notices manually in the past a generator for the 
 license notices has been developed. This generator however demands structured input and concluded knowledge on component
 level. This structure input for the generation of component-centric license notices are the *Notice Parameters*.
 
@@ -18,7 +18,7 @@ top-level or primary constituent. Each component definition may include the foll
 - `note`: additional remarks to include in the license notice.
 - `missingCopyrights`: boolean indicating with ´true´ that no copyright is conveyed; defaults to `false`.
 - `incompatibleWithSecondaryLicenses`: boolean indicator to convey whether secondary licenses have been disallowed by 
-  the supplier. Some licenses allow secondary licenses to be used. In some cases this options can be limited by the 
+  the supplier. Some licenses allow secondary licenses to be used. In some cases this option can be limited by the 
   supplier.
 - `componentStatus`: will not be included in the generated notice. Allows to document the maturity of the component
   description or may indicate issues when notice parameter was automatically derived.
