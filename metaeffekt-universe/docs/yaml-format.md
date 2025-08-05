@@ -1034,3 +1034,97 @@ In the case of exceptions often `ignoreMatches` are used. This is not problemati
 by a `combinedWith` configuration. Otherwise, `references` would be the best choice for exceptions.
 
 Use the test `ScannerIntegrationTest` to verify the integrity of the `expectedMatches` *(Test can be found in: "src/test/java/org/metaeffekt/terms/metadata/scanner/ScannerIntegrationTest.java")*. After performing changes to fix mismatches, delete the affected files from "/target/scanner/analysis". This will make the test reevaluate those yamls and they shouldn't be shown in the test anymore, if the fixes work correctly.
+
+
+### `secondaryLicenses`
+
+#### Semantics
+
+Provide a list of secondary licenses under which a combined work can be alternatively distributed without license 
+conflicts. Effectively, the primary license can be replaced by one (or more) of the secondary licenses.
+
+#### Example
+
+    secondaryLicenses:
+      - "GNU General Public License 2.0"
+      - "GNU General Public License 3.0"
+      - "GNU Affero General Public License 3.0"
+      - "Open Software License 2.1"
+      - "Open Software License 3.0"
+      - "Eclipse Public License 1.0"
+      - "CeCILL Free Software License Agreement 2.0"
+      - "CeCILL Free Software License Agreement 2.1"
+      - "Mozilla Public Licence 2.0"
+      - "GNU Lesser General Public License 2.1"
+      - "GNU Lesser General Public License 3.0"
+      - "Creative Commons BY-SA 3.0"
+      - "European Union Public License 1.1"
+      - "LiLiQ R License 1.1"
+      - "LiLiQ R+ License 1.1"
+
+#### Hints
+
+* listing the primary license as secondary license is not recommended (even if the license text makes an explicit statement)
+* Only provide the immediate secondary licenses. Do not include any transitive information.
+* You may complete and extend the list of secondary licenses with translated variants of the original secondary licenses
+* Include 'or any later version' to model the secondary licenses precisely.
+
+### `subcategories`
+
+#### Semantics
+
+Categories allow to validate the coverage of a undefined license version. E.g. 
+
+    Apache License (undefined), Apache License 2.0 
+  
+resolves to
+
+    Apache License 2.0
+
+A group licenses may require several categories to differentiate concepts of the licenses. To yet facilitate appropriate 
+resolving, subcategories allow to model relationships between equivalent groups.
+
+    Creative Commons (undefined), Creative Commons BY-SA 3.0
+
+resolves to
+
+    Creative Commons BY-SA 3.0
+
+but 
+
+    Creative Commons BY-SA (undefined), Creative Commons BY 3.0
+
+remains intact, since the characteristics of the reference groups are different.
+
+#### Example
+
+Creative Commons (undefined) is defined as
+
+    canonicalName: "Creative Commons (undefined)"
+    category: CC
+
+    unspecific: true
+    
+    subcategories:
+      - CC-BY
+      - CC-BY-SA
+      - CC-BY-NC
+      - CC-BY-NC-ND
+      - CC-BY-NC-SA
+      - CC-BY-ND
+      - CC-NC
+      - CC-ND
+      - CC-SA
+
+while Creative Commons BY (undefined) defines
+
+    canonicalName: Creative Commons BY (undefined)
+    category: CC-BY
+    shortName: CC-BY-?
+    
+    unspecific: true
+
+#### Hints
+
+* Regularly review your categories with respect to consistent grouping of licenses.
+* Add subcategories to differentiate different groups of licenses (e.g. CC-BY-SA) in an overall category (e.g. CC)
