@@ -31,6 +31,7 @@ inventories:
 ```
 
 #### Folder based inventories
+
 Instead of a file name there is also the option to reference a complete folder as an inventory.
 This can be helpful in case of i.e. merging multiple files.
 
@@ -94,12 +95,59 @@ Use the following classes without an import:
 
 Transformations manipulate rows of inventories, respectively `Artifacts`, according to a rule. I.e.
 there are transformations to harmonize architecture names or to clean up component strings.
+Access transformations via the `transformations` field.
+
+###### Examples
+
+```kotlin
+val transformed = artifacts.map { transformations.deriveArchitectureFromId(it) }
+
+val transformed = artifacts.map { transformations.stripArchitecture(it) }
+
+val transformed = artifacts.map { transformations.stripHashes(it) }
+
+val transformed = artifacts.map { transformations.stripMatchingVersion(it) }
+```
 
 ##### Predicates
 
 Predicates help to filter specific artifacts out of an inventory. Use them in combination
 with [collection filtering](https://kotlinlang.org/docs/collection-filtering.html).
 Access predicates via the `predicates` field.
+
+###### Examples
+
+```kotlin
+val filtered = artifact.filter { predicates.typeNotEmpty(it) }
+
+val filtered = artifacts.filter { predicates.removeVolumes(it) }
+
+val filtered = artifacts.filter { predicates.removeWithoutVersion(it) }
+
+val filtered = artifacts.filter { predicates.removeMatches(it, Regex(pattern), column) }
+
+val filtered = artifacts.filter { !predicates.isHardwareOfType(it) }
+```
+
+##### Utilities
+There is also a bunch of utilities available. These are implemented as extension functions on
+`Iterable<Artifact>` and `String`. 
+
+##### Examples
+
+```kotlin
+// remove artifacts with duplicate ids
+val withoutDuplicates = artifacts.removeDuplicatesBy { listOf(it.id) }
+
+// same with component string, too
+val withoutDuplicates = artifacts.removeDuplicatesBy { listOf(it.id, it.component) }
+
+// reduce blanks to single blank
+"A string with more  than   one blank.".reduceBlanks()
+
+// remove a msi artifact if another artifact with same version specifier exists
+artifacts.removeMsiWithMatchingVersion()
+```
 
 #### Inline Kotlin Scripts
 
