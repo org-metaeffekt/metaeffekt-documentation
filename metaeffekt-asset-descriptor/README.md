@@ -1,7 +1,7 @@
 # Asset Descriptors
 
 Asset descriptors are a way to parameterize more complex processing steps or the generation of documents.
-An asset descriptor is a `.yaml` file, which defined the inputs and adds additional metadata to these inputs. Based on
+An asset descriptor is a .yaml file, which defines the inputs and adds additional metadata to these inputs. Based on
 such a configuration asset-descriptor-centric plugins can evaluate and process the information.
 
 ## Basic Concepts
