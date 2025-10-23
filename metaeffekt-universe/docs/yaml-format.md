@@ -26,9 +26,26 @@ Currently, the following special characters are not allowed:
 * , (is reserved for expressions)
 * mutated vowel (these will be supported in the future)
 
-Variants of a license include (<modifier>) in the canonical name. Example:
+Variants of a license include (<modifier>) in the canonical name:
 
     canonicalName: BSD 3-Clause License (copyright holder variant)
+
+If a license variant does not mention a specific name it will be named generically:
+
+    canonicalName: BSD 3-Clause License (variant 001)
+
+If a license variant does contain a specific company's name that should be mentioned in brackets:
+    
+    BSD 3-Clause License (Open MPI)
+
+The canonicalName can contain multiple attributes like the variant, a special condition or the company name. 2 or more attributes are separated by a "**;**" in the canonicalName :
+
+    canonicalName: BSD 3-Clause License (Lawrence Berkeley National Labs; copyright holder variant)
+    
+    canonicalName: BSD 3-Clause License (without binary clause; variant 002)
+    
+    canonicalName: Linking Exception (GPL; variant 002)
+    
 
 #### Examples
 
@@ -39,6 +56,14 @@ INTERBASE PUBLIC LICENSE Version 1.0:
 #### Hints
 
 Normal case. Keyword 'version'  or abbreviations like v1.0 are omitted.
+
+Some license names might be very long. If there is an official abbreviation, consider using that as canonicalName. 
+
+When adding yamls make sure to use abbreviations for the following terms:
+
+    End User License Agreement --> EULA
+    Terms of Service --> TOS
+    ...
 
 Furthermore, the canonical name should not include the following keywords / expressions:
 * license (use License with capital case)
@@ -1182,3 +1207,16 @@ while Creative Commons BY (undefined) defines
 
 * Regularly review your categories with respect to consistent grouping of licenses.
 * Add subcategories to differentiate different groups of licenses (e.g. CC-BY-SA) in an overall category (e.g. CC)
+
+## Other Conventions
+* If a license variant matches the template (base license) we do not add a separate yaml for it, but rather add the license text into the "variants" folder of the template (base license)
+  * exception: if the license variant contains a unique spdx or scancode ID, a separate yaml should be created in our database, so that the unique ID of the variant can be matched separately.
+#### Example   
+    "BSD 3-Clause License (Protobuf)"
+    
+    matches base "BSD 3-Clause License"
+    but contains unique ID: 
+    otherIds:
+      - "scancode:bsd-3-clause-open-mpi"
+
+---
