@@ -26,9 +26,26 @@ Currently, the following special characters are not allowed:
 * , (is reserved for expressions)
 * mutated vowel (these will be supported in the future)
 
-Variants of a license include (<modifier>) in the canonical name. Example:
+Variants of a license include (<modifier>) in the canonical name:
 
     canonicalName: BSD 3-Clause License (copyright holder variant)
+
+If a license variant does not mention a specific name it will be named generically:
+
+    canonicalName: BSD 3-Clause License (variant 001)
+
+If a license variant does contain a specific company's name that should be mentioned in brackets:
+    
+    BSD 3-Clause License (Open MPI)
+
+The canonicalName can contain multiple attributes like the variant, a special condition or the company name. 2 or more attributes are separated by a "**;**" in the canonicalName :
+
+    canonicalName: BSD 3-Clause License (Lawrence Berkeley National Labs; copyright holder variant)
+    
+    canonicalName: BSD 3-Clause License (without binary clause; variant 002)
+    
+    canonicalName: Linking Exception (GPL; variant 002)
+    
 
 #### Examples
 
@@ -40,9 +57,18 @@ INTERBASE PUBLIC LICENSE Version 1.0:
 
 Normal case. Keyword 'version'  or abbreviations like v1.0 are omitted.
 
+Some license names might be very long. If there is an official abbreviation, consider using that as canonicalName. 
+
+When adding yamls make sure to use abbreviations for the following terms:
+
+    End User License Agreement --> EULA
+    Terms of Service --> TOS
+    ...
+
 Furthermore, the canonical name should not include the following keywords / expressions:
 * license (use License with capital case)
 * exception (use Exception with capital case)
+* modifier (use Modifier with capital case)
 * conditions (use Conditions with capital case)
 * plus (often used in other schemes to express or any later version; use (or any later version) instead)
 
@@ -55,6 +81,23 @@ An "and" in the title of the license should be replaced with a "&".
 
 shortName:
 * use "-OR-" between licenses
+
+
+#### Exceptions / Modifier - naming conventions
+* canonicalName: if the Exception or Modifier refers to a specific license or license group mention that license's shortName in brackets
+
+* shortName: add the shortName of the license that the Exception or Modifier refers to at the end
+
+#### Example
+
+    canonicalName: Dify Modifier (Apache-2.0)
+    category: Dify Modifier
+    shortName: Dify-Modifier-Apache-2.0
+or
+
+    canonicalName: Akka Exception (BSL-1.1)
+    category: Akka Exception
+    shortName: Akka-Exception-BSL-1.1
 
 ___
 
@@ -128,6 +171,7 @@ Nevertheless, the shortName must compensate notation issues we see with the SPDX
 * '-only' is omitted; such cases require a shortName
 * '-or-later'; requires a shortName extended by '+'
 * '... exception'; requires a shortName with capital Exception
+* * '... modifier'; requires a shortName with capital Modifier
 
 ---
 
@@ -273,7 +317,7 @@ Matches may include wildcards marked with '\*' or '\*{ regEx }*'
 
 To match a license all evidence matches must match (except for `oneOf` matches: see below).
 
-One exclude is enough to not match.
+One exclude is enough to not match. *Do not use copyrights as excludes*
 
 Usually (if possible) at least 3 matches (or grants; see below) should be provided in case a license text is available - the more specific and unique the better.
 
@@ -371,6 +415,7 @@ resolved license would be the "GNU General Public License 3.0 (with Linking exce
 #### Conventions
 - Combiners are always defined with the exception or expression. In the license text no combiners should be used to 
   combine with other licenses in an expression or exceptions. Exceptions to this rule exist, but need to be defined.
+- Use combinedWiths in combination with multi-licenses (an expression) in cases where a "standalone license" is not legally relevant and only a notice that lists or reproduces other licenses. (see XZ Utils Notice / XZ Utils License)
 
 ---
 
@@ -966,7 +1011,7 @@ Requires only one string or string group to be matched to completely match a mar
 #### Hints
 
 - Evidences are grouped after each "matches:"
-- Mainly used for markers, can be used for exceptions
+- Mainly used for markers, can be used for exceptions or modifiers
 - (At least in the debugging interface) only the first match is shown
 #FIXME-CONCEPT: in the debugging interface only the first match of the evidence is shown; terrible for debugging, every match should be shown
 
@@ -1029,11 +1074,45 @@ Per default the terms itself is the only expected match. This default can be ove
 
 #### Hints
 
-Please use only in consideration of `ignoreMatches` and `references`. The three instruments must be used appropriately.
+Please use only in consideration of `ignoreMatches` and `references` or multi-license expressions. The instruments must be used appropriately.
 In the case of exceptions often `ignoreMatches` are used. This is not problematic, since the match is then compensated 
 by a `combinedWith` configuration. Otherwise, `references` would be the best choice for exceptions.
+Consider expectedMatches in cases where a separate multi-license (as expression) is not sensible. Use expectedMatches in cases where a license that could be standalone consists of legally relevant clauses and also lists or reproduces other licenses too.
+
 
 Use the test `ScannerIntegrationTest` to verify the integrity of the `expectedMatches` *(Test can be found in: "src/test/java/org/metaeffekt/terms/metadata/scanner/ScannerIntegrationTest.java")*. After performing changes to fix mismatches, delete the affected files from "/target/scanner/analysis". This will make the test reevaluate those yamls and they shouldn't be shown in the test anymore, if the fixes work correctly.
+
+---
+
+### `modifiers` (WORK IN PROGRESS)
+
+#### Semantics
+
+Instead of exceptions that grant additional rights to an already existing license, modifiers may add more restrictions to the existing license or modify existing terms. 
+One could say that exceptions are a type of modifier. We differentiate different modifier types:
+
+* exceptions (specific modification)
+* restrictions
+* addon permissions
+* not further specified / determined modifiers
+
+#### Example
+
+    canonicalName: AC3Filter Modifier
+    category: AC3Filter Modifier
+    shortName: AC3Filter
+
+    type: modifier
+
+
+#### Hints
+
+* modifiers should include "Modifier" in their canonicalName, shortName and category. 
+* modifiers should be categorised be using `type:modifier` or further specified subcategories.
+* make sure to be familiar with the terms of the base license that the modifier refers to, to be able to differentiate between it being an exception or modifier
+
+
+---
 
 
 ### `secondaryLicenses`
@@ -1128,3 +1207,16 @@ while Creative Commons BY (undefined) defines
 
 * Regularly review your categories with respect to consistent grouping of licenses.
 * Add subcategories to differentiate different groups of licenses (e.g. CC-BY-SA) in an overall category (e.g. CC)
+
+## Other Conventions
+* If a license variant matches the template (base license) we do not add a separate yaml for it, but rather add the license text into the "variants" folder of the template (base license)
+  * exception: if the license variant contains a unique spdx or scancode ID, a separate yaml should be created in our database, so that the unique ID of the variant can be matched separately.
+#### Example   
+    "BSD 3-Clause License (Protobuf)"
+    
+    matches base "BSD 3-Clause License"
+    but contains unique ID: 
+    otherIds:
+      - "scancode:bsd-3-clause-open-mpi"
+
+---
