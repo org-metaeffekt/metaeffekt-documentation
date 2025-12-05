@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://www.metaeffekt.com/schema/artifact-analysis/latest/asset-descriptor_schema.json",
+  "title": "Asset Descriptor",
+  "description": "Schema for validating asset descriptor YAML files",
+  "type": "object",
+  "properties": {
+    "inventories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "folder": {"type": "string" },
+            "file": { "type": "string" },
+            "type": { "type": "string", "enum": ["INPUT", "COMPUTED"] },
+            "licensePath": {"type":  "string" },
+            "componentPath": {"type":  "string" }
+          },
+          "required": ["type"],
+          "oneOf": [
+            { "required": ["folder"], "not": { "required": ["file"] } },
+            { "required": ["file"],   "not": { "required": ["folder"] } }
+          ]
+        }
+      }
+    },
+    "documents": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "ANNEX",
+              "INITIAL_LICENSE_DOCUMENTATION",
+              "LICENSE_DOCUMENTATION",
+              "PERIODIC_VULNERABILITY_REPORT",
+              "VULNERABILITY_REPORT",
+              "VULNERABILITY_STATISTICS_REPORT",
+              "VULNERABILITY_SUMMARY_REPORT"
+            ]
+          },
+          "language": {
+            "type": "string",
+            "enum": ["en", "de"]
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "targetLicensesDir": { "type": "string" },
+              "targetComponentDir": { "type": "string" },
+              "securityPolicyFile": { "type": "string" },
+              "securityPolicyActiveIds": {"type": "string"},
+              "includeInofficialOsiStatus": {
+                "type": "string",
+                "enum": ["true", "false"]
+              },
+              "filterAdvisorySummary": {
+                "type": "string",
+                "enum": ["true", "false"]
+              },
+              "hidePriorityInformation": {
+                "type": "string",
+                "enum": ["true", "false"]
+              },
+              "filterVulnerabilitiesNotCoveredByArtifacts": {
+                "type": "string",
+                "enum": ["true", "false"]
+              },
+              "excludeAssetsFromImprint": {
+                "type": "string",
+                "enum": ["true", "false"]
+              }
+            },
+            "additionalProperties": false
+          },
+          "parts": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "ANNEX",
+                    "INITIAL_LICENSE_DOCUMENTATION",
+                    "LICENSE_DOCUMENTATION",
+                    "VULNERABILITY_REPORT",
+                    "VULNERABILITY_SUMMARY_PART",
+                    "VULNERABILITY_STATISTICS_REPORT"
+                  ]
+                },
+                "inventories": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "inventoryRef": { "type": "string" },
+                      "assetName": { "type": "string" },
+                      "assetVersion": { "type": "string" },
+                      "referenceInventory": { "type": "string" }
+                    },
+                    "required": [
+                      "inventoryRef"
+                    ]
+                  }
+                },
+                "params": {
+                  "type": "object",
+                  "properties": {
+                    "targetLicensesDir": { "type": "string" },
+                    "targetComponentDir": { "type": "string" },
+                    "securityPolicyFile": { "type": "string" },
+                    "securityPolicyActiveIds": {"type": "string"},
+                    "includeInofficialOsiStatus": {
+                      "type": "string",
+                      "enum": ["true", "false"]
+                    },
+                    "filterAdvisorySummary": {
+                      "type": "string",
+                      "enum": ["true", "false"]
+                    },
+                    "hidePriorityInformation": {
+                      "type": "string",
+                      "enum": ["true", "false"]
+                    },
+                    "filterVulnerabilitiesNotCoveredByArtifacts": {
+                      "type": "string",
+                      "enum": ["true", "false"]
+                    },
+                    "excludeAssetsFromImprint": {
+                      "type": "string",
+                      "enum": ["true", "false"]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": ["type", "inventories"]
+            }
+          }
+        },
+        "required": ["type", "language", "parts"]
+      }
+    }
+  },
+  "required": ["inventories", "documents"]
+}

@@ -257,32 +257,94 @@ a variable substitution mechanism. This mechanism allows the users to access the
 
 ## Documents
 
-An asset descriptor can describe one or more documents that are to be produced based on the asset descriptor. Each
-document is defined by parts.
+An asset descriptor can include documents. These are defined through parts and corresponding inventories. Define a document in the asset descriptor as follows:
+
+```yaml
+documents:
+  "test-document":
+    language: "en"
+    type: ANNEX
+    params:
+      securityPolicyFile: "security-policy.json"
+      securityPolicyActiveIds: "base-configuration"
+    parts:
+      "test-part":
+        type: ANNEX
+        inventories:
+          - inventoryRef: "inventory"
+```
+
+Please refer to the [JSON schema](asset-descriptor.json) for documents to validate your asset descriptor.
+
+Each document is defined by setting a new (e.g. `test-document`) and the required fields language (e.g. `en`), type (e.g. `ANNEX`) and parts.
+The name of a document is mainly for documentation purpose within the asset descriptor and does not affect the document itself. 
+As of now, only German `de` and English `en` documents are supported. 
+The document types currently available are:
+
+| Type                            | 
+|---------------------------------|
+| ANNEX                           |
+| LICENSE_DOCUMENTATION           |
+| INITIAL_LICENSE_DOCUMENTATION   |
+| VULNERABILITY_REPORT            |
+| VULNERABILITY_SUMMARY_REPORT    |
+| VULNERABILITY_STATISTICS_REPORT |
+
+For further information about document parts, refer to the [Document Parts](#document-parts) section. 
+A document accepts an optional list of parameters to 
+further control document creation. The optional parameters currently available are:
+
+| Parameter                                  | Description                                                                                                                                                                              |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| targetLicensesDir                          |                                                                                                                                                                                          |
+| targetComponentDir                         |                                                                                                                                                                                          |
+| securityPolicyFile                         | The security policy file used for document generation.                                                                                                                                   |
+| securityPolicyActiveIds                    | The list of active Ids for security policy configurations.                                                                                                                               |
+| includeInofficialOsiStatus                 |                                                                                                                                                                                          |
+| filterAdvisorySummary                      |                                                                                                                                                                                          |
+| hidePriorityInformation                    |                                                                                                                                                                                          |
+| filterVulnerabilitiesNotCoveredByArtifacts |                                                                                                                                                                                          |
+| excludeAssetsFromImprint                   | Each asset will be listed in the imprint section of a document. By setting this parameter to `true`, the assets will be excluded from the imprint. The default value for this is `false` |
+
+While these parameters can be defined on document level, each part can overwrite them for itself. For example, a 
+document may define a `securityPolicyFile` that all parts of said document are using but a part can also define a 
+`securityPolicyFile` for itself instead of using the one defined on document level.
 
 ### Document Parts
+
+While a document is the outer shell of each report, document parts are the building blocks that a document is made up 
+of. The order in which document parts are listed will be reflected in the finished document. Just like the document, a 
+document part has the required fields name and type and must reference an [inventory](#inventories). Each entry in the 
+list of inventories for a part has an `inventoryRef` which is a direct reference to one inventory containing its name as 
+listed in the inventories section of the asset descriptor, an exception will be thrown if the name given in `inventoryRef`
+does not correspond to a defined inventory. Furthermore, an `assetName` and `assetVersion` can be provided to overwrite 
+the asset information from the inventory. An optional `referenceInventory` can be provided for the inventory context as 
+well. These inventory contexts are reflected in the generated output of the document. A part can 
+list multiple inventory contexts while the order in which they are listed is reflected in the final document.
 
 Currently, the following parts are supported:
 
 | Part                            | Description                                                                                   |
 |---------------------------------|-----------------------------------------------------------------------------------------------|
 | ANNEX                           | Produces bill of materials for inclusion in a software annex.                                 |
+| LICENSE_DOCUMENTATION           |                                                                                               |
+| INITIAL_LICENSE_DOCUMENTATION   |                                                                                               |
 | VULNERABILITY_REPORT            | Produces a detailed vulnerability report content covering the identified vulnerabilities.     |
-| VULNERABILITY_SUMMARY_REPORT    | Produces a detailed vulnerability summary content covering the identified vulnerabilities.    |
+| VULNERABILITY_SUMMARY_PART      | Produces a detailed vulnerability summary content covering the identified vulnerabilities.    |
 | VULNERABILITY_STATISTICS_REPORT | Produces a detailed vulnerability statistics content covering the identified vulnerabilities. |
 
-The content that is produces can be integrated into document templates to produce end-user documentation.
+The resulting content can be integrated into document templates to produce end-user documentation.
 
-## Examples
+### Examples
 
-### Asset Descriptor for a Single-Asset Annex
+#### Annex
 
-Since this is a general asset descriptor it uses variables for the minimal external settings.
+This asset descriptor defines a simple annex document containing a single annex part with one inventory as input:
 
-```
+```yaml
 inventories:
-  - "asset":
-      file: "${asset.inventory.path}"
+  - "inventory":
+      file: "inventory.xlsx"
       type: INPUT
  
 documents:
@@ -293,10 +355,55 @@ documents:
       "annex":
         type: ANNEX
         inventories:
-          - inventoryRef: "asset"
+          - inventoryRef: "inventory"
 ```
 
-### Asset Descriptor for a Single-Asset Vulnerability Report
+#### Annex with folder input
+
+This asset descriptor defines a simple annex with folder input. All the inventory files contained in the provided directory will be merged to one inventory:
+
+```yaml
+inventories:
+  - "inventory":
+      folder: "inventories/inventory"
+      type: INPUT
+ 
+documents:
+  "annex":
+    type: ANNEX
+    language: "en"
+    parts:
+      "annex":
+        type: ANNEX
+        inventories:
+          - inventoryRef: "inventory"
+```
+
+#### Annex with asset overwrite
+
+This asset descriptor defines a simple annex with overwrites for `assetName` and `assetVersion`. Regardless of the information provided in the referenced inventory, `assetName` and `assetVersion` will be overwritten for each artifact:
+
+```yaml
+inventories:
+  - "inventory":
+      file: "inventories/inventory"
+      type: INPUT
+ 
+documents:
+  "annex":
+    type: ANNEX
+    language: "en"
+    parts:
+      "annex":
+        type: ANNEX
+        inventories:
+          - inventoryRef: "inventory"
+            assetName: "test-asset"
+            assetVersion: "test-version"
+```
+
+
+#### Asset Descriptor for a Single-Asset Vulnerability Report
 
 Since this is a general asset descriptor it uses variables for the minimal external settings.
 
