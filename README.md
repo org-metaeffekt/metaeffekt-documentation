@@ -15,7 +15,7 @@ See for more details: [{metæffekt} Kontinuum](metaeffekt-kontinuum/README.md)
 
 ### {metæffekt} Portfolio Manager
 
-The [{metæffekt} Portfolio Manager](metaeffekt-portfolio-manager/README.md) provides a simple and structured way to manage software-related documents—such as SBOMs and reports—while serving as a core component in an API-driven, service-oriented architecture for integration into diverse processing environments.
+The [{metæffekt} Portfolio Manager](metaeffekt-portfolio-manager/README.md) provides a simple and structured way to manage software-related documents such as SBOMs and reports while serving as a core component in an API-driven, service-oriented architecture for integration into diverse processing environments.
 
 ### {metæffekt} Vulnerability Management
 
