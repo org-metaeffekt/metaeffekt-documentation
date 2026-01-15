@@ -10,13 +10,17 @@ If possible, name directly derived from the license text.
 
 If not possible, try to find official name by searching for original website (or github, etc.) of the project/license
 
-##### *IMPORTANT:* After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
+### *IMPORTANT:* 
+- ##### After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
 
-##### *IMPORTANT:* After changing a canonicalName make sure that everything dependent on that name is adjusted as well:
-- spdxExpression
-- expectedMatches
-- expectedSpdxMatches
-- (...)
+- ##### If you are choosing to delete a yaml and it has been already pushed to a repository before, make sure to add the canonicalName of the deleted item to the excluded canonical names list located at "src/main/resources/ae-terms-metadata/_external/history" and additionally give reasoning for the deletion in the dedicated documentation file
+  - this is not required if the yaml is only ignored
+
+- ##### After changing a canonicalName make sure that everything dependent on that name is adjusted as well:
+  - spdxExpression
+  - expectedMatches
+  - expectedSpdxMatches
+  - (...)
 
 
 #### Basic Conventions
@@ -171,7 +175,10 @@ Nevertheless, the shortName must compensate notation issues we see with the SPDX
 * '-only' is omitted; such cases require a shortName
 * '-or-later'; requires a shortName extended by '+'
 * '... exception'; requires a shortName with capital Exception
-* * '... modifier'; requires a shortName with capital Modifier
+* '... modifier'; requires a shortName with capital Modifier
+
+#### Other Conventions
+* Markers should include a capital "-Marker" in the shortName
 
 ---
 
@@ -1108,7 +1115,7 @@ One could say that exceptions are a type of modifier. We differentiate different
 #### Hints
 
 * modifiers should include "Modifier" in their canonicalName, shortName and category. 
-* modifiers should be categorised be using `type:modifier` or further specified subcategories.
+* modifiers should be categorised by using `type:modifier` or further specified subcategories.
 * make sure to be familiar with the terms of the base license that the modifier refers to, to be able to differentiate between it being an exception or modifier
 
 
@@ -1144,7 +1151,7 @@ conflicts. Effectively, the primary license can be replaced by one (or more) of 
 #### Hints
 
 * listing the primary license as secondary license is not recommended (even if the license text makes an explicit statement)
-* Only provide the immediate secondary licenses. Do not include any transitive information.
+* Only provide the immediate secondary licenses (NOT FUTURE LICENSES). Do not include any transitive information.
 * You may complete and extend the list of secondary licenses with translated variants of the original secondary licenses
 * Include 'or any later version' to model the secondary licenses precisely.
 
