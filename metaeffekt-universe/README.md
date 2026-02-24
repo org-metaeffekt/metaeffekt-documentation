@@ -7,19 +7,19 @@ strategies and objectives. The underlying concept is to provide a terms database
 deterministically identify licenses and license exceptions in binary and source artifacts.
 
 Initialized in 2016 the database has been growing in coverage and depth over the past 8 years.
-Since beginning of 2023 the {metæffekt} Universe is an official product of {metæffekt}.
+Since the beginning of 2023 the {metæffekt} Universe has been an official product of {metæffekt}.
 
 ## Objectives
 
 The following objectives drive our endeavors:
 
 * **Integrity** - When a license or exception is added to the {metæffekt} Universe it must be uniquely
-  matched. That means that the {metæffekt} License Scanner using the universe uniquely identifies 
-  the license or exception. Similar license must explicitly be differentiated within the database.
+  matched. This means that the {metæffekt} License Scanner uses the universe to uniquely identify
+  the license or exception. Similar licenses must be explicitly be differentiated within the database.
 * **Consistency** - While embracing change the {metæffekt} Universe applies a variety of rules and conventions 
   on different aspects. Included but not limited to:
   * Naming and identification - The main identifier for a license or exception is its canonical name; the name is
-    intended to be expressive and follows conventions to ensure a harmonized the naming and identification scheme over 
+    intended to be expressive and follows conventions to ensure a harmonized naming and identification scheme over 
     the database.
   * Mapping to other systems - Mapping to other license / exception systems (such as SPDX License / Exception List or 
     ScanCode) is based on semantic equivalence. In case the counterpart license / exception deviates different 
@@ -27,7 +27,7 @@ The following objectives drive our endeavors:
 * **Coverage of SPDX Licenses and Exceptions** - The SPDX Licenses and Exceptions List are continuously synchronized
   into the {metæffekt} Universe. We actively participate in the SPDX-Legal Call adding information and insights to the
   different SPDX issues. See [SPDX License List Issues](https://github.com/spdx/license-list-XML/issues?page=1&q=is%3Aissue+is%3Aopen).
-  Please also check the [{metæffekt} Universe Github Repository](https://github.com/org-metaeffekt/metaeffekt-universe) 
+  Please also check the [{metæffekt} Universe GitHub Repository](https://github.com/org-metaeffekt/metaeffekt-universe) 
   for details and current mapping / coverage.
 * **Coverage of ScanCode** - The licenses and rules of ScanCode are regularly synchronized with the universe. We attempt
   to cover all licenses in ScanCode, as long as these align with the universe paradigms and objectives. Coverage of 
@@ -37,18 +37,18 @@ The following objectives drive our endeavors:
   * we try to understand deviations and ambiguities within the mapping / missing mappings.
 * **Coverage of OSI Licenses** - We cover approved OSI licenses as well as licenses with unofficial OSI status that we 
   collected from different OSI-centric materials such as wiki content of mailing lists. 
-  Compare [{metæffekt} Universe Github Repository - Further Information](https://github.com/org-metaeffekt/metaeffekt-universe#further-information).
+  Compare [{metæffekt} Universe GitHub Repository - Further Information](https://github.com/org-metaeffekt/metaeffekt-universe#further-information).
 * **Coverage of Licenses / Exceptions found in the Wild** - Any public available license or exception that is identified 
   in customer projects is isolated and added to the {metæffekt} Universe. Proprietary and confidential licenses are 
   added to the universe as customer-local extensions.
 * **Control Deviations & Inconsistencies with external Systems** - Everywhere where inconsistencies are detected with 
-  mappings to external system these inconsistencies are collected and regularly reviewed.
+  mappings to external systems these inconsistencies are collected and regularly reviewed.
 * **Understanding Risk** - Based on the {metæffekt} Universe it must be possible to identify and highlight risks induced 
   by the terms and conditions of the covered licenses.
-* **Automated Documentation** - The models in the database must enable to generated automated notices for documentation.
+* **Automated Documentation** - The models in the database must be enabled to generate automated notices for documentation.
 * **Continuous Improvement** - Enable concepts to detect imprecise matching, new matching candidates and to resolve matching 
   issues. Based on the {metæffekt} Universe the scanner is able to detect the following issue types:
-  * *Incomplete Match* - There are licenses that only match in parts.
+  * *Incomplete Match* - There are licenses that only partially match.
   * *Indicated Exception* - An exception is matched without being in context of a license.
   * *Licensing Option* - A license option (dual or multiple licensing statement) was identified, but not resolved.
   * *Unspecific License* - An unspecific license (e.g. without a license version) was matched.
@@ -95,7 +95,7 @@ grouping features different processing rules apply.
 
 ### Variables
 
-Terms may use placeholder or variables. Based on the identification the variables may be extracted and 
+Terms may use placeholders or variables. Based on the identification the variables may be extracted and 
 used to replicate the exact match.
 
 ### Notice Generation

@@ -10,13 +10,16 @@ If possible, name directly derived from the license text.
 
 If not possible, try to find official name by searching for original website (or github, etc.) of the project/license
 
-##### *IMPORTANT:* After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
+### *IMPORTANT:* 
+-  After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
+- If you are choosing to delete a yaml and it has been already pushed to a repository before, make sure to add the canonicalName of the deleted item to the excluded canonical names list located at "src/main/resources/ae-terms-metadata/_external/history" and additionally give reasoning for the deletion in the dedicated documentation file
+  - this is not required if the yaml is only ignored
 
-##### *IMPORTANT:* After changing a canonicalName make sure that everything dependent on that name is adjusted as well:
-- spdxExpression
-- expectedMatches
-- expectedSpdxMatches
-- (...)
+- ##### After changing a canonicalName make sure that everything dependent on that name is adjusted as well:
+  - spdxExpression
+  - expectedMatches
+  - expectedSpdxMatches
+  - (...)
 
 
 #### Basic Conventions
@@ -26,9 +29,32 @@ Currently, the following special characters are not allowed:
 * , (is reserved for expressions)
 * mutated vowel (these will be supported in the future)
 
-Variants of a license include (<modifier>) in the canonical name. Example:
+Dates with year and month (and optionally with day) should be handled in the date and time notation of the USA, in brackets (YEAR-MONTH-DAY):
+    
+    Info-ZIP License (1997-10-05)
+    Info-ZIP License (2001-01-27)
+    
+
+Variants of a license include (<modifier>) in the canonical name:
 
     canonicalName: BSD 3-Clause License (copyright holder variant)
+
+If a license variant does not mention a specific name it will be named generically:
+
+    canonicalName: BSD 3-Clause License (variant 001)
+
+If a license variant does contain a specific company's name that should be mentioned in brackets:
+    
+    BSD 3-Clause License (Open MPI)
+
+The canonicalName can contain multiple attributes like the variant, a special condition or the company name. 2 or more attributes are separated by a "**;**" in the canonicalName :
+
+    canonicalName: BSD 3-Clause License (Lawrence Berkeley National Labs; copyright holder variant)
+    
+    canonicalName: BSD 3-Clause License (without binary clause; variant 002)
+    
+    canonicalName: Linking Exception (GPL; variant 002)
+    
 
 #### Examples
 
@@ -40,9 +66,18 @@ INTERBASE PUBLIC LICENSE Version 1.0:
 
 Normal case. Keyword 'version'  or abbreviations like v1.0 are omitted.
 
+Some license names might be very long. If there is an official abbreviation, consider using that as canonicalName. 
+
+When adding yamls make sure to use abbreviations for the following terms:
+
+    End User License Agreement --> EULA
+    Terms of Service --> TOS
+    ...
+
 Furthermore, the canonical name should not include the following keywords / expressions:
 * license (use License with capital case)
 * exception (use Exception with capital case)
+* modifier (use Modifier with capital case)
 * conditions (use Conditions with capital case)
 * plus (often used in other schemes to express or any later version; use (or any later version) instead)
 
@@ -55,6 +90,23 @@ An "and" in the title of the license should be replaced with a "&".
 
 shortName:
 * use "-OR-" between licenses
+
+
+#### Exceptions / Modifier - naming conventions
+* canonicalName: if the Exception or Modifier refers to a specific license or license group mention that license's shortName in brackets
+
+* shortName: add the shortName of the license that the Exception or Modifier refers to at the end
+
+#### Example
+
+    canonicalName: Dify Modifier (Apache-2.0)
+    category: Dify Modifier
+    shortName: Dify-Modifier-Apache-2.0
+or
+
+    canonicalName: Akka Exception (BSL-1.1)
+    category: Akka Exception
+    shortName: Akka-Exception-BSL-1.1
 
 ___
 
@@ -128,6 +180,10 @@ Nevertheless, the shortName must compensate notation issues we see with the SPDX
 * '-only' is omitted; such cases require a shortName
 * '-or-later'; requires a shortName extended by '+'
 * '... exception'; requires a shortName with capital Exception
+* '... modifier'; requires a shortName with capital Modifier
+
+#### Other Conventions
+* Markers should include a capital "-Marker" in the shortName
 
 ---
 
@@ -273,11 +329,13 @@ Matches may include wildcards marked with '\*' or '\*{ regEx }*'
 
 To match a license all evidence matches must match (except for `oneOf` matches: see below).
 
-One exclude is enough to not match.
+One exclude is enough to not match. *Do not use copyrights as excludes*
 
 Usually (if possible) at least 3 matches (or grants; see below) should be provided in case a license text is available - the more specific and unique the better.
 
-Generally we match fragments and no full sentences. E.g. '.' at the end of a match should be omitted. When a match spans multiple sentences the match should be split.
+Generally we match fragments and no full sentences. E.g. '.' at the end of a match should be omitted.
+
+When a match spans multiple sentences the match should be split. There is an exception to this rule though if the sentence is really vague or short and lacks context (like: Any warranty excluded.). In this case 2 sentences may be combined to give better context and avoid partial matches.
 
 While `evidence` matches require all listed items to be matched, the `oneOf` 
 matches enable to build groups of matches. In a group all need to match;
@@ -369,6 +427,7 @@ resolved license would be the "GNU General Public License 3.0 (with Linking exce
 #### Conventions
 - Combiners are always defined with the exception or expression. In the license text no combiners should be used to 
   combine with other licenses in an expression or exceptions. Exceptions to this rule exist, but need to be defined.
+- Use combinedWiths in combination with multi-licenses (an expression) in cases where a "standalone license" is not legally relevant and only a notice that lists or reproduces other licenses. (see XZ Utils Notice / XZ Utils License)
 
 ---
 
@@ -536,14 +595,16 @@ The matches support regular expression when in our own bracketing format.
 #### Characters which need to be escaped:
 ```yaml
 single escape:
-  Mapping Key: * \
-  Mapped Value: ( )
-
-
-double escape:
-  Mapping Key: ( ) { } +
-  Mapped Value:  "
+  Mapping Key: * \ "
+  Mapped Value: "
 ```
+
+```yaml
+double escape:
+  Mapping Key: ( ) { } + /
+  Mapped Value:
+```
+The following characters *DO NOT HAVE TO BE ESCAPED*: @ 
 
 ---
 
@@ -883,7 +944,8 @@ Use this for constructs that enable license clustering.
 
 For Example:
 
-GNU General Public License 2.0 (with exceptions) is not an actual license but enables clustering all GPL 2.0 with exceptions. This construct uses baseTerms to point to the GPL 2.0 (required for Notice Engine)
+GNU General Public License 2.0 (with exceptions) is not an actual license but enables clustering all GPL 2.0 with 
+exceptions. This construct uses baseTerms to point to the GPL 2.0 (required for Notice Engine)
 
 ---
 
@@ -961,7 +1023,7 @@ Requires only one string or string group to be matched to completely match a mar
 #### Hints
 
 - Evidences are grouped after each "matches:"
-- Mainly used for markers, can be used for exceptions
+- Mainly used for markers, can be used for exceptions or modifiers
 - (At least in the debugging interface) only the first match is shown
 #FIXME-CONCEPT: in the debugging interface only the first match of the evidence is shown; terrible for debugging, every match should be shown
 
@@ -1024,8 +1086,149 @@ Per default the terms itself is the only expected match. This default can be ove
 
 #### Hints
 
-Please use only in consideration of `ignoreMatches` and `references`. The three instruments must be used appropriately.
+Please use only in consideration of `ignoreMatches` and `references` or multi-license expressions. The instruments must be used appropriately.
 In the case of exceptions often `ignoreMatches` are used. This is not problematic, since the match is then compensated 
 by a `combinedWith` configuration. Otherwise, `references` would be the best choice for exceptions.
+Consider expectedMatches in cases where a separate multi-license (as expression) is not sensible. Use expectedMatches in cases where a license that could be standalone consists of legally relevant clauses and also lists or reproduces other licenses too.
+
 
 Use the test `ScannerIntegrationTest` to verify the integrity of the `expectedMatches` *(Test can be found in: "src/test/java/org/metaeffekt/terms/metadata/scanner/ScannerIntegrationTest.java")*. After performing changes to fix mismatches, delete the affected files from "/target/scanner/analysis". This will make the test reevaluate those yamls and they shouldn't be shown in the test anymore, if the fixes work correctly.
+
+---
+
+### `modifiers` (WORK IN PROGRESS)
+
+#### Semantics
+
+Instead of exceptions that grant additional rights to an already existing license, modifiers may add more restrictions to the existing license or modify existing terms. 
+One could say that exceptions are a type of modifier. We differentiate different modifier types:
+
+* exceptions (specific modification)
+* restrictions
+* addon permissions
+* not further specified / determined modifiers
+
+#### Example
+
+    canonicalName: AC3Filter Modifier
+    category: AC3Filter Modifier
+    shortName: AC3Filter
+
+    type: modifier
+
+
+#### Hints
+
+* modifiers should include "Modifier" in their canonicalName, shortName and category. 
+* modifiers should be categorised by using `type:modifier` or further specified subcategories.
+* make sure to be familiar with the terms of the base license that the modifier refers to, to be able to differentiate between it being an exception or modifier
+
+
+---
+
+
+### `secondaryLicenses`
+
+#### Semantics
+
+Provide a list of secondary licenses under which a combined work can be alternatively distributed without license 
+conflicts. Effectively, the primary license can be replaced by one (or more) of the secondary licenses.
+
+#### Example
+
+    secondaryLicenses:
+      - "GNU General Public License 2.0"
+      - "GNU General Public License 3.0"
+      - "GNU Affero General Public License 3.0"
+      - "Open Software License 2.1"
+      - "Open Software License 3.0"
+      - "Eclipse Public License 1.0"
+      - "CeCILL Free Software License Agreement 2.0"
+      - "CeCILL Free Software License Agreement 2.1"
+      - "Mozilla Public Licence 2.0"
+      - "GNU Lesser General Public License 2.1"
+      - "GNU Lesser General Public License 3.0"
+      - "Creative Commons BY-SA 3.0"
+      - "European Union Public License 1.1"
+      - "LiLiQ R License 1.1"
+      - "LiLiQ R+ License 1.1"
+
+#### Hints
+
+* listing the primary license as secondary license is not recommended (even if the license text makes an explicit statement)
+* Only provide the immediate secondary licenses (NOT FUTURE LICENSES). Do not include any transitive information.
+* You may complete and extend the list of secondary licenses with translated variants of the original secondary licenses
+* Include 'or any later version' to model the secondary licenses precisely.
+
+### `subcategories`
+
+#### Semantics
+
+Categories allow to validate the coverage of a undefined license version. E.g. 
+
+    Apache License (undefined), Apache License 2.0 
+  
+resolves to
+
+    Apache License 2.0
+
+A group licenses may require several categories to differentiate concepts of the licenses. To yet facilitate appropriate 
+resolving, subcategories allow to model relationships between equivalent groups.
+
+    Creative Commons (undefined), Creative Commons BY-SA 3.0
+
+resolves to
+
+    Creative Commons BY-SA 3.0
+
+but 
+
+    Creative Commons BY-SA (undefined), Creative Commons BY 3.0
+
+remains intact, since the characteristics of the reference groups are different.
+
+#### Example
+
+Creative Commons (undefined) is defined as
+
+    canonicalName: "Creative Commons (undefined)"
+    category: CC
+
+    unspecific: true
+    
+    subcategories:
+      - CC-BY
+      - CC-BY-SA
+      - CC-BY-NC
+      - CC-BY-NC-ND
+      - CC-BY-NC-SA
+      - CC-BY-ND
+      - CC-NC
+      - CC-ND
+      - CC-SA
+
+while Creative Commons BY (undefined) defines
+
+    canonicalName: Creative Commons BY (undefined)
+    category: CC-BY
+    shortName: CC-BY-?
+    
+    unspecific: true
+
+#### Hints
+
+* Regularly review your categories with respect to consistent grouping of licenses.
+* Add subcategories to differentiate different groups of licenses (e.g. CC-BY-SA) in an overall category (e.g. CC)
+
+## Other Conventions
+* If a license variant matches the template (base license) we do not add a separate yaml for it, but rather add the license text into the "variants" folder of the template (base license)
+  * exception: if the license variant contains a unique spdx or scancode ID, a separate yaml should be created in our database, so that the unique ID of the variant can be matched separately.
+#### Example   
+    "BSD 3-Clause License (Protobuf)"
+    
+    matches base "BSD 3-Clause License"
+    but contains unique ID: 
+    otherIds:
+      - "scancode:bsd-3-clause-open-mpi"
+
+---
