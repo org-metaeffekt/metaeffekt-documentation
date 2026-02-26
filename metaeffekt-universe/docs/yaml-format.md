@@ -11,9 +11,8 @@ If possible, name directly derived from the license text.
 If not possible, try to find official name by searching for original website (or github, etc.) of the project/license
 
 ### *IMPORTANT:* 
-- ##### After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
-
-- ##### If you are choosing to delete a yaml and it has been already pushed to a repository before, make sure to add the canonicalName of the deleted item to the excluded canonical names list located at "src/main/resources/ae-terms-metadata/_external/history" and additionally give reasoning for the deletion in the dedicated documentation file
+-  After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
+- If you are choosing to delete a yaml and it has been already pushed to a repository before, make sure to add the canonicalName of the deleted item to the excluded canonical names list located at "src/main/resources/ae-terms-metadata/_external/history" and additionally give reasoning for the deletion in the dedicated documentation file
   - this is not required if the yaml is only ignored
 
 - ##### After changing a canonicalName make sure that everything dependent on that name is adjusted as well:
@@ -29,6 +28,12 @@ Currently, the following special characters are not allowed:
 * \+ (is reserved for expressions)
 * , (is reserved for expressions)
 * mutated vowel (these will be supported in the future)
+
+Dates with year and month (and optionally with day) should be handled in the date and time notation of the USA, in brackets (YEAR-MONTH-DAY):
+    
+    Info-ZIP License (1997-10-05)
+    Info-ZIP License (2001-01-27)
+    
 
 Variants of a license include (<modifier>) in the canonical name:
 
