@@ -23,10 +23,10 @@ The known software components are matched against known security vulnerabilities
 [Vulnerability Assessment Dashboard (HTML)](metaeffekt-vulnerability-assessment-dashboard/README.md) and Vulnerability Report (PDF).
 
 This process involves three key phases:
-The [Vulnerability Data Mirror](metaeffekt-vulnerability-management/data-mirror/vulnerability-data-mirror.md), the [Inventory Enrichment Pipeline](metaeffekt-vulnerability-management/inventory-enrichment/inventory-enrichment-pipeline.md) 
+The [Vulnerability Data Mirror](metaeffekt-vulnerability-management/data-mirror/README), the [Inventory Enrichment Pipeline](metaeffekt-vulnerability-management/inventory-enrichment/README) 
 and the Dashboard & Report generation
 
-Find more details on [{metæffekt} Vulnerability Management](metaeffekt-vulnerability-management/vulnerability-management.md).
+Find more details on [{metæffekt} Vulnerability Management](metaeffekt-vulnerability-management/README).
 
 
 ### {metæffekt} Asset Descriptor
