@@ -1,0 +1,208 @@
+.
+├── metaeffekt-annex
+│   ├── docs
+│   │   └── notice-parameter
+│   │       └── README.md
+│   └── README.md
+├── metaeffekt-asset-descriptor
+│   ├── asset-descriptor.json
+│   └── README.md
+├── metaeffekt-kontinuum
+│   └── README.md
+├── metaeffekt-portfolio-manager
+│   ├── docs
+│   │   └── portfolio-manager-api-0.5.0.yaml
+│   └── README.md
+├── metaeffekt-universe
+│   ├── docs
+│   │   ├── ci-integration.md
+│   │   └── yaml-format.md
+│   └── README.md
+├── metaeffekt-vulnerability-assessment-dashboard
+│   ├── diagrams
+│   │   ├── assessment-level-application.png
+│   │   └── assessment-type-level-application.png
+│   ├── README.md
+│   └── vulnerability-assessment-application.md
+├── metaeffekt-vulnerability-management
+│   ├── changelog
+│   │   └── 0.110.0-0.117.0.md
+│   ├── component-vulnerability-advisory.svg
+│   ├── data-mirror
+│   │   ├── csaf
+│   │   │   ├── csafLog4JcpeOccurences.png
+│   │   │   ├── missinglog4j.md
+│   │   │   ├── nvdLog4jCpes.png
+│   │   │   └── README.md
+│   │   ├── download-process.svg
+│   │   ├── download.md
+│   │   ├── eol
+│   │   │   ├── eol-data-specific-cycles.md
+│   │   │   └── understanding-data.md
+│   │   ├── fixed-software-versions-example-dashboard-openssl.png
+│   │   ├── fixed-software-versions.md
+│   │   ├── index-examples.md
+│   │   ├── index.md
+│   │   ├── msrc
+│   │   │   ├── finding-microsoft-product-ids.md
+│   │   │   ├── kb-chain-example-1.png
+│   │   │   ├── kb-chain-example-2-supersedence.png
+│   │   │   ├── kb-chain-example-3-fixing-vulnerability.png
+│   │   │   ├── kb-chain-example-4-fixing-vulnerability.png
+│   │   │   ├── kb-chain-example-5-vuln-in-product.png
+│   │   │   ├── kb-chain-thumb.png
+│   │   │   ├── msrc-kb-chain-with-cve.svg
+│   │   │   ├── msrc-kb-chain.svg
+│   │   │   ├── msrc-product-kbs.md
+│   │   │   └── understanding-data.md
+│   │   ├── osv
+│   │   │   ├── AE-1477.md
+│   │   │   └── osv.md
+│   │   ├── template
+│   │   │   ├── download.md
+│   │   │   ├── eol-data-specific-cycles.md
+│   │   │   ├── index-examples.md
+│   │   │   ├── index.md
+│   │   │   └── msrc-product-kbs.md
+│   │   └── vulnerability-data-mirror.md
+│   ├── diagrams
+│   │   ├── individual-detail-overview-diagram-html
+│   │   │   ├── individual-detail-overview-diagram-CapecIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CertEuAdvisorIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CertFrAdvisorIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CertSeiAdvisorIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CpeDictionaryIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CpeDictionaryVendorProductIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CsafAdvisoryIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CsafVulnerabilityMatchingIndex.html
+│   │   │   ├── individual-detail-overview-diagram-CweIndex.html
+│   │   │   ├── individual-detail-overview-diagram-EolIndex.html
+│   │   │   ├── individual-detail-overview-diagram-EpssIndex.html
+│   │   │   ├── individual-detail-overview-diagram-KevIndex.html
+│   │   │   ├── individual-detail-overview-diagram-MsrcAdvisorIndex.html
+│   │   │   ├── individual-detail-overview-diagram-MsrcKbChainIndex.html
+│   │   │   ├── individual-detail-overview-diagram-MsrcProductIndex.html
+│   │   │   ├── individual-detail-overview-diagram-NvdCpeApiIndex.html
+│   │   │   ├── individual-detail-overview-diagram-NvdCpeApiVendorProductIndex.html
+│   │   │   ├── individual-detail-overview-diagram-NvdCveApiIndex.html
+│   │   │   ├── individual-detail-overview-diagram-NvdVulnerabilityIndex.html
+│   │   │   └── individual-detail-overview-diagram-OsvAdvisorIndex.html
+│   │   ├── individual-detail-overview-diagram-rendered
+│   │   │   ├── individual-detail-overview-diagram-CapecIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CertEuAdvisorIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CertFrAdvisorIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CertSeiAdvisorIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CpeDictionaryIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CpeDictionaryVendorProductIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CsafAdvisoryIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CsafVulnerabilityMatchingIndex.png
+│   │   │   ├── individual-detail-overview-diagram-CweIndex.png
+│   │   │   ├── individual-detail-overview-diagram-EolIndex.png
+│   │   │   ├── individual-detail-overview-diagram-EpssIndex.png
+│   │   │   ├── individual-detail-overview-diagram-KevIndex.png
+│   │   │   ├── individual-detail-overview-diagram-MsrcAdvisorIndex.png
+│   │   │   ├── individual-detail-overview-diagram-MsrcKbChainIndex.png
+│   │   │   ├── individual-detail-overview-diagram-MsrcProductIndex.png
+│   │   │   ├── individual-detail-overview-diagram-NvdCpeApiIndex.png
+│   │   │   ├── individual-detail-overview-diagram-NvdCpeApiVendorProductIndex.png
+│   │   │   ├── individual-detail-overview-diagram-NvdCveApiIndex.png
+│   │   │   ├── individual-detail-overview-diagram-NvdVulnerabilityIndex.png
+│   │   │   └── individual-detail-overview-diagram-OsvAdvisorIndex.png
+│   │   ├── individual-index-diagrams.md
+│   │   └── render-diagrams.sh
+│   ├── documentation-generator
+│   │   ├── how-to-doc.md
+│   │   ├── pom.xml
+│   │   └── src
+│   │       └── main
+│   │           ├── java
+│   │           │   └── com
+│   │           │       └── metaeffekt
+│   │           │           └── documentation
+│   │           │               ├── DocumentationGenerator.java
+│   │           │               ├── example
+│   │           │               │   └── MsDataAccess.java
+│   │           │               ├── generator
+│   │           │               │   ├── ContentIdentifiersDocumentationGenerator.java
+│   │           │               │   ├── CspDocumentationGenerator.java
+│   │           │               │   ├── CvssCnaInfoDocumentationGenerator.java
+│   │           │               │   ├── DataSourceExampleDocumentationGenerator.java
+│   │           │               │   ├── EolDataDocumentationGenerator.java
+│   │           │               │   ├── InventoryEnrichmentStepsDocumentationGenerator.java
+│   │           │               │   ├── MirrorDocumentationGenerator.java
+│   │           │               │   ├── MsrcKbChainForProducts.java
+│   │           │               │   ├── OverviewChartVulnerabilityManagementGenerator.java
+│   │           │               │   └── OverviewChartVulnerabilityManagementIndividualGenerator.java
+│   │           │               ├── IDocumentationGenerator.java
+│   │           │               └── util
+│   │           │                   ├── DocumentationProperties.java
+│   │           │                   ├── ImageUtils.java
+│   │           │                   └── MarkdownDocUtils.java
+│   │           └── resources
+│   │               ├── documentation-generator.properties
+│   │               ├── enrichment
+│   │               │   └── enrichment-order.txt
+│   │               └── mirror
+│   │                   ├── download-order.txt
+│   │                   └── index-order.txt
+│   ├── inventory-enrichment
+│   │   ├── advisor-periodic-data-flow.drawio.svg
+│   │   ├── assessment-dashboard.md
+│   │   ├── central-security-policy-loader.md
+│   │   ├── central-security-policy.md
+│   │   ├── content-identifiers.md
+│   │   ├── img
+│   │   │   ├── dashboard-demo-assessment-editor.png
+│   │   │   └── dashboard-demo-vulnerabilities-page.png
+│   │   ├── inventory-enrichment-overview.svg
+│   │   ├── inventory-enrichment-pipeline.md
+│   │   ├── inventory-enrichment-steps.md
+│   │   ├── purl
+│   │   │   ├── purl-derivation.md
+│   │   │   └── purl.md
+│   │   └── template
+│   │       ├── central-security-policy.md
+│   │       ├── content-identifiers.md
+│   │       └── inventory-enrichment-steps.md
+│   ├── inventory-enrichment-overview.svg
+│   ├── inventory-overview-report
+│   │   ├── display-settings.png
+│   │   ├── inventory-overview-report.md
+│   │   └── inventory-overview.png
+│   ├── large-overview-diagram.html
+│   ├── large-overview-diagram.png
+│   ├── large-overview-diagram.svg
+│   ├── other-topics
+│   │   ├── assessment
+│   │   │   ├── assessment-4x-format.svg
+│   │   │   ├── assessment-4x-process.svg
+│   │   │   ├── vulnerability-assessment-file-gen-3.md
+│   │   │   ├── vulnerability-assessment-file-gen-4-2.0.md
+│   │   │   ├── vulnerability-assessment-file-gen-4-2.1.md
+│   │   │   ├── vulnerability-assessment-file-gen-4.md
+│   │   │   └── vulnerability-assessment.md
+│   │   ├── correlation-transformer.md
+│   │   ├── inventory-merger.md
+│   │   ├── parsing-effective-cpe.md
+│   │   ├── security
+│   │   │   ├── cvss-4.0-calculation.md
+│   │   │   ├── cvss-cna-network.html
+│   │   │   └── updating-cvss-entities.md
+│   │   ├── vad-detail-levels.md
+│   │   ├── version-comparator.md
+│   │   ├── vulnerability-filter-format.md
+│   │   ├── vulnerability-keywords.md
+│   │   └── vulnerability-status-differ.md
+│   ├── priority-score
+│   │   ├── epss-priority-score.png
+│   │   └── priority-score-system.md
+│   ├── template
+│   │   ├── individual-index-diagrams.md
+│   │   └── large-overview-diagram.html
+│   ├── vulnerability-data-sources.md
+│   └── vulnerability-management.md
+├── pom.xml
+├── README.md
+└── tree.txt
+
+46 directories, 160 files
