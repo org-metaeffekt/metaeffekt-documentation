@@ -688,6 +688,51 @@ If the license text states, that any text is required to be reproduced, included
 
 ---
 
+### `standardVariableSet`
+
+#### Semantics
+
+Needs to be specified if `requiresLicenseText=true` and placeholders are used in the license template
+
+#### Example
+
+    requiresCopyright: true
+    requiresLicenseText: true
+    
+    [...]
+    
+    standardVariableSet:
+      copyrightHolderNoLiability: "THE COPYRIGHT HOLDER OR CONTRIBUTORS"
+      variable3rdClause: "the name of the copyright holder nor the names of its contributors"
+    
+    licenseTemplate: "<lq>Redistribution and use in source and binary forms, with or without
+                      modification, are permitted provided that the following conditions are met:
+                      <ol><li>Redistribution of source code must retain the above copyright notice, this
+                      list of conditions and the following disclaimer.</li>
+                      <li>Redistribution in binary form must reproduce the above copyright notice,
+                      this list of conditions and the following disclaimer in the documentation
+                      and/or other materials provided with the distribution.</li>
+                      <li>Neither {{variable3rdClause}} may
+                      be used to endorse or promote products derived from this software without
+                      specific prior written permission.</li></ol>
+                      <codeph>This software is provided \"AS IS,\" without a warranty of any kind. ALL
+                       EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING
+                       ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+                       OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. {{copyrightHolderNoLiability}} SHALL
+                       NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE
+                       AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+                       DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST
+                       REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL,
+                       INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY
+                       OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE,
+                       EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</codeph></lq>"
+
+#### Hints
+
+The placeholders are always in double brackets such as `{{variable3rdClause}}` or `{{copyrightHolderNoWarranty}}`.
+
+---
+
 ### `requiresNote`
 
 #### Semantics
@@ -776,8 +821,8 @@ HTML Tags need to be added:
 
 The licenseTemplate may contain variables. The variables must be filled in noticeParameter.
 
-VariableSyntax:
-licenseTemplate: "CONTENT {{variableName}} CONTENT"
+VariableSyntax: 
+`licenseTemplate: "CONTENT {{variableName}} CONTENT"`
 
 ---
 
