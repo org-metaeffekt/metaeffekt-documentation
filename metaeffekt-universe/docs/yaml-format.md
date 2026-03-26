@@ -93,7 +93,11 @@ shortName:
 
 
 #### Exceptions / Modifier - naming conventions
-* canonicalName: if the Exception or Modifier refers to a specific license or license group mention that license's shortName in brackets
+* canonicalName: if the Exception or Modifier refers to a specific license or license group mention that license's 
+  shortName in brackets. The license short name should be as precise as possible. Exceptions referring to the GPL must
+  be distinguished from exceptions being combined with a specific license version (only) or any later version.
+  This supports precise license / exception identification and allows more precise expression conclusion and the 
+  identification of combinatoric issues.
 
 * shortName: add the shortName of the license that the Exception or Modifier refers to at the end
 
@@ -612,7 +616,8 @@ The following characters *DO NOT HAVE TO BE ESCAPED*: @
 
 #### Semantics
 
-Indicates whether the license requires copyrights in the notice
+Indicates whether the license requires copyrights in the notice. In case the property is not set, the value is handled
+as implicit false.
 
 #### Example
 
@@ -622,7 +627,8 @@ Indicates whether the license requires copyrights in the notice
 
 DEFAULT: false
 
-If the license text states, that the copyright notice is required to be reproduced, included or published in the documentation, this should be set to true and if not to false.
+If the license text states, that the copyright notice is required to be reproduced, included or published in the 
+documentation, this should be set to true and if not to false.
 
 ---
 
