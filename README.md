@@ -11,7 +11,7 @@ The underlying concept is to provide a terms database that enables a scanner to 
 The {metæffekt} Kontinuum combines {metæffekt} software and content into a set of modules that enable automation of license compliance management and vulnerability monitoring.
 It features precise scanning, a comprehensive license database, and vulnerability assessment tools.
 
-See for more details: [{metæffekt} Kontinuum](metaeffekt-kontinuum/README.md)
+See for more details: [{metæffekt} Kontinuum](metaeffekt-kontinuum/README.md).
 
 ### {metæffekt} Portfolio Manager
 
@@ -26,7 +26,7 @@ This process involves three key phases:
 The [Vulnerability Data Mirror](metaeffekt-vulnerability-management/data-mirror/README), the [Inventory Enrichment Pipeline](metaeffekt-vulnerability-management/inventory-enrichment/README) 
 and the Dashboard & Report generation
 
-Find more details on [{metæffekt} Vulnerability Management](metaeffekt-vulnerability-management/README).
+Find more details on [{metæffekt} Vulnerability Management](metaeffekt-vulnerability-management/README.md).
 
 
 ### {metæffekt} Asset Descriptor
@@ -43,4 +43,4 @@ Read more on [{metæffekt} Asset Descriptor](metaeffekt-asset-descriptor/README.
 The {metæffekt} Annex is a structured archive that documents and manages licensing obligations for software, including license terms, 
 usage conditions, and source archives to support compliance, distribution, and operational use.
 
-More information you can find on [{metæffekt} Annex](metaeffekt-annex/README.md)
+More information you can find on [{metæffekt} Annex](metaeffekt-annex/README.md).
