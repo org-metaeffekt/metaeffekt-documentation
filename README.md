@@ -8,8 +8,8 @@ The underlying concept is to provide a terms database that enables a scanner to 
 
 ## {metæffekt} Kontinuum
 
-The {metæffekt} Kontinuum combines {metæffekt} software and content into a set of modules that enable automation of license compliance management and vulnerability monitoring.
-It features precise scanning, a comprehensive license database, and vulnerability assessment tools.
+~~The {metæffekt} Kontinuum combines {metæffekt} software and content into a set of modules that enable automation of license compliance management and vulnerability monitoring.
+It features precise scanning, a comprehensive license database, and vulnerability assessment tools.~~
 
 See for more details: [{metæffekt} Kontinuum](metaeffekt-kontinuum/README.md)
 
@@ -44,3 +44,8 @@ The {metæffekt} Annex is a structured archive that documents and manages licens
 usage conditions, and source archives to support compliance, distribution, and operational use.
 
 More information you can find on [{metæffekt} Annex](metaeffekt-annex/README.md)
+
+## Important Links
+
+Links to a series of projects and resources containing additional information can be found under
+[IMPORTANT_LINKS.md](IMPORTANT_LINKS.md).
