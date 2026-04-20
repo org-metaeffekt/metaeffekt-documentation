@@ -45,6 +45,12 @@ usage conditions, and source archives to support compliance, distribution, and o
 
 More information you can find on [{metæffekt} Annex](metaeffekt-annex/README.md)
 
+### {metæffekt} Inventory Index
+
+The {metæffekt} Inventory Index is an indexer application for persisting inventories into a database and querying the data.
+
+For detailed information you can visit: [{metæffekt} Inventory Index](metaeffekt-inventory-index/README.md)
+
 ## Important Links
 
 Links to a series of projects and resources containing additional information can be found under
