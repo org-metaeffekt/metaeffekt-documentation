@@ -7,12 +7,14 @@ querying their data through API requests. It consists of four modules that all h
 such as the import of inventories, the definition of the query language and more.
 
 ## Concept and Focus
-The main focus for the {metæffekt} Inventory Index is to store inventory data in a database efficiently and prevent having redundant data as much as possible.
+The main focus for the {metæffekt} Inventory Index is to efficiently store inventory data into a database and prevent having redundant data as much as possible to enable fast database querying.
 
 
-### Redundant-free storing data
-To ensure redundant-free persistence of data, we used hashes. Each entity has got its own hash value calculated and persisted with them. As a result no duplicates are persisted.
-Now if two entities have the same hash, their field values are compared one by one and the right entity is then derived.
+### Redundant-free persistence
+To ensure redundant-free persistence of data, calculated hashes are used. Each redundant-free entity has got its own hash value calculated and persisted with it to prevent duplicates. 
+Two redundant-free approaches are distinguished between the persistence of inventories and entities. 
+
+Further details are provided in the [Index Readme](ae-inventory-index/README.md)
 
 ## Prerequirements and initial setup
 [Installation Readme](installation/README.md)
@@ -23,8 +25,10 @@ Now if two entities have the same hash, their field values are compared one by o
 [Importer Service Readme](ae-inventory-importer-service/README.md)
 
 ### ae-inventory-index
+[Index Readme](ae-inventory-index/README.md)
 
 ### ae-inventory-query-language
+[Query Language Readme](ae-inventory-query-language/README.md)
 
 ### ae-inventory-query-service
 [Query Service Readme](ae-inventory-query-service/README.md)

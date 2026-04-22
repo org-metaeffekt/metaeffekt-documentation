@@ -4,22 +4,22 @@
 
 ### Endpoints
 
-Currently, the query service exports one endpoint which is the query endpoint.
+Currently, the query service exports one endpoint which is the `query endpoint.
 This endpoint allows the client to query for vulnerabilities and their relating artifacts, assessments and assets and also for CPE's and their
 relating vulnerabilities and artifacts.
 
 ### Request Schema
 
-The request is sent by the client via the UI as a JSON object.
+The request is sent by the client via a UI as a JSON object.
 It has the following fields:
 
 | Field                | Type          | Description                                                               |
 |:---------------------|:--------------|:--------------------------------------------------------------------------|
 | **filterExpression** | String        | defines the expression that then filteres the result set                  | 
-| **page**             | int           | shows which page is currently shown                                       |
+| **page**             | int           | describes which page is currently shown                                   |
 | **pageSize**         | int           | shows the currently defined page size                                     |
 | **sorting**          | List<Sorting> | a list of field names to be sorted by and their direction (`ASC`, `DESC`) |
-| **viewId**           | String        | the name of the requested view data                                       |
+| **viewId**           | String        | the name of the requested view                                            |
 
 #### Token
 
@@ -33,135 +33,170 @@ The client has to provide a JWT token that includes claims. Those claims are a s
 
 Those claims are then evaluated by the backend and only the filtered data depending on the claims is returned as a result to the client.
 
+#### Request example
+
+The following JSON object represents an example request:
+
+```json
+{
+  "filterExpression": "vulnerabilityCve~\"CVE-2026\"",
+  "page": 1,
+  "pageSize": 10,
+  "viewId": "vulnerability"
+}
+```
+
+Note: The `""` get escaped when converted from user input to JSON object to correctly parse the filterExpression in the backend.
+
 ### Response Schema
-As a response of a clients request the server returns a queryResponseDTO object that includes the actual result object with data and additional properties for paging purposes.
+
+As a response of a clients request the server returns a JSON response object that includes the actual result object with the inventory data and
+additional properties for paging purposes.
 The schema for the response object is as follows.
 
-| Field                | Type             | Description                                                                                                                                                                                   |
-|:---------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **queryResponseDTO** | QueryResponseDTO | represents the resulting data object, composed from a list with the resulting rows themselfes (`queryResult`) and a `details` object that contains additional detail information for each row | 
-| **size**             | long             | shows how many elements the resulting page has                                                                                                                                                | 
-| **page**             | int              | shows which resulting page is currently shown                                                                                                                                                 |
-| **pageSize**         | int              | shows the currently defined page size                                                                                                                                                         |
-| **pageCount**        | int              | shows how many total pages the result has depending on the defined page size                                                                                                                  |
+| Field                | Type             | Description                                                                                                                                                                                                           |
+|:---------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **queryResponseDTO** | QueryResponseDTO | represents the resulting data object, composed of a list containing the resulting rows themselfes (`queryResult`) and a `details` object that contains additional detail information about some entities for each row | 
+| **size**             | long             | shows how many total elements the result has                                                                                                                                                                          | 
+| **page**             | int              | shows which resulting page is currently shown                                                                                                                                                                         |
+| **pageSize**         | int              | shows the currently defined page size                                                                                                                                                                                 |
+| **pageCount**        | int              | shows how many total pages the result has depending on the defined page size                                                                                                                                          |
 
 #### queryResponseDTO
 
-The queryResponseDTO object consists of two parts: queryResult and details.
-The queryResult is a list with the resulting row data from the requested view represented by an object (`ResultDTO`).
-The details object contains additional data for each row. All details have a unique identifier that is used to reference them in
-the queryResult list objects.
+The `queryResponseDTO` object consists of two parts: `queryResult` and `details`.
+The `queryResult` is a list with the resulting row data from the requested view (`ResultDTO`).
+The `details` object contains maps for each entity for which additional data is needed. Every map in the `details` object has a unique identifier for
+its keys that is used to reference the details in the `detailRefs` object in `queryResult`.
 
 ###### queryResult
 
-The queryResult list stores elements of type `ResultDTO`. Depending on the selected view, this `ResultDTO` object is dynamically extended with additional
-fields.
-For example the `ResultDTO` for the`asset-vulnerable-component` view contains all fields from the `asset-vulnerability-assessment` view `ResultDTO` but
-also includes additional fields for CPE data, like `cpeProduct`, `cpeVendor` and so on.
+The queryResult list stores elements of type `ResultDTO`. Depending on the selected view, this `ResultDTO` object is dynamically extended with
+additional fields.
+For example the `ResultDTO` for the `asset-vulnerable-component` view contains all fields from the `asset-vulnerability-assessment` view `ResultDTO`
+and additionally includes fields for the CPE context, like `cpeProduct`, `cpeVendor` and more.
 
 Aside from those view dependant fields, every `ResultDTO` object contains a `detailsRefs` object.
-This object includes four lists, that store the details id references for this resulting row object.
-Those four lists are:
-* `artifactDetailRef`
-* `vulnerabilityDetailRef`
-* `assetDetailRef`
-* `assessmentDetailRef`
+This object includes four lists, that store the `details` id references for the resulting row.
 
-This reference tracking is needed to prevent redundant saving of details in every `ResultDTO` and large JSON objects.
+Those four lists are:
+
+| Field                      | Example id | 
+|:---------------------------|:-----------|
+| **artifactDetailRef**      | A001       |
+| **vulnerabilityDetailRef** | V001       |
+| **assetDetailRef**         | ASE001     |
+| **assessmentDetailRef**    | ASM001     |
+
+This reference tracking is needed to prevent redundant saving of a whole details object in every `ResultDTO` that would lead to a large JSON object.
+Instead, only the id reference are tracked in the list and the real detail object exists only once in the corresponding map in the `details` object.
 
 ###### details
 
-Currently, there are four detail objects. Those are:
+Currently, there are four detail objects which are represented by maps. Those are:
 
 * `artifactDetails`
 * `vulnerabilityDetails`
 * `assetDetails`
 * `assessmentDetails`
 
-For each of those detail objects separate unique ids are stored to prevent redundancy.
+As mentioned before, for each of those maps separate unique ids are stored as their key and also referenced by the lists in `detailRefs` to prevent
+redundancy.
 
 ##### Examples
-...
+
+One example of a response object is as follows:
+
+```json
+{
+  "queryResponseDTO": {
+    "queryResult": [
+      {
+        "artifactName": "artifact-x",
+        "assessmentContextCvssOverallScore": 3.3,
+        "assessmentContextCvssSeverity": "Medium",
+        "assessmentInitialCvssOverallScore": 6.3,
+        "assessmentInitialCvssSeverity": "Medium",
+        "assessmentPriorityLabel": "none",
+        "assessmentPriorityScore": 4.1,
+        "assessmentStatus": "insignificant",
+        "assetAudience": null,
+        "assetName": "ArtifactX",
+        "assetPath": null,
+        "assetSupplier": null,
+        "assetVersion": "1.3.1",
+        "detailsRefs": {
+          "artifactDetailRef": [
+            "A001"
+          ],
+          "vulnerabilityDetailRef": [
+            "V003"
+          ],
+          "assetDetailRef": [
+            "ASE001"
+          ],
+          "assessmentDetailRef": [
+            "ASM001"
+          ]
+        },
+        "labelMarkerName": null,
+        "project": null,
+        "projectVersion": "Project Version",
+        "vulnerability": "CVE-2026-22796"
+      }
+    ],
+    "details": {
+      "artifactDetails": {
+        "A001": {
+          "name": "artifact-x",
+          "component": "Artifact-X",
+          "groupId": null,
+          "version": "1.3.1",
+          "license": null,
+          "url": null
+        }
+      },
+      "vulnerabilityDetails": {
+        "V003": {
+          "providerName": "CVE",
+          "providerImplementation": "CVE",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22796"
+        }
+      },
+      "assetDetails": {
+        "ASE001": {
+          "externalAssetId": "External Asset Id",
+          "externalProjectId": "External Project Id",
+          "type": null,
+          "assessment": null,
+          "architecture": "Architecture",
+          "url": null,
+          "comment": "Comment"
+        }
+      },
+      "assessmentDetails": {
+        "ASM001": {
+          "type": "project",
+          "initialCvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+          "contextCvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/MPR:L",
+          "assessmentRationale": "Vulnerability severity score is below insignificant threshold of 7.0.",
+          "assessmentRisk": null,
+          "assessmentMeasures": null,
+          "assessmentBaseStatus": null
+        }
+      }
+    }
+  },
+  "size": 2,
+  "page": 1,
+  "pageSize": 10,
+  "pageCount": 1
+}
+```
 
 ### IQL
 
-The IQL (Inventory Query Language) is a custom language that uses expressions and operators to allow querying the inventory data.
+The `IQL` (Inventory Query Language) is a custom language that allows querying the inventory data using expressions and operators.
 It is case-insensitive and whitespaces are skipped.
 
-#### Valid Expression
-
-Valid expressions can be built by:
-
-* Any valid `clause`
-* Any expression concatenated by a `NOT`, `AND` or `OR`
-* Any expression wrapped in braces `(`, `)`
-
-##### Clause
-
-A `clause` can be build in three ways.
-
-1. Using a comparison operator that has a field name on its left side and a single value on its right side to enable comparing the field value with
-   the given value:
-
-   field _comparison_operator_ value.
-2. Using a set operator that has a field name on its left side and a set on its right side to check if a field value is contained in the defined set:
-   
-   field _set_operator_ set.
-3. Using an emptiness operator that only has a field name on its left side to check whether a field value is null or empty: 
-
-   field _emptiness_operator_.
-
-The `field` is currently Written in camel case.
-The operators are described further in the next section.
-
-#### Valid Operators
-
-There are three types of valid operators. Those are `comparison operators`, `set operators` and `emptiness operators`.
-
-###### Comparison operators
-
-As mentioned above, a comparison operator is used to compose a clause that compares if a field value with a provided value by the user.
-Currently, these comparison operators are supported:
-
-* `=` (equals): checks whether the field is equal to the value on the right hand side of the operator
-* `!=` (not equals): checks whether the field is not equal to the value
-* `<` (less than): checks whether the field is less than the value
-* `<=` (less than equal): checks whether the field is less than or equal to the value
-* `>` (greater than): checks whether the field is greater than the value
-* `>=` (greater than equal): checks whether the field is greater than or equal to the value
-* `~` (like): checks whether the field includes any substring defined by the value
-* `!~` (not like): checks whether the field does not include any substring defined by the value
-
-###### Set operators
-
-A set operator is used to compose a clause that checks if a field value is contained in the set of values provided by the user.
-Currently, these set operators are supported:
-
-* `IN` (include): checks whether a field value is contained in the right hand set
-* `NOT IN` or `! in` (not include): check whether a field value is not contained in the right hand set
-
-###### Emptiness operators
-
-An emptiness operator is used to compose a clause that checks if a field value is empty or null.
-Currently, these emptiness operators are supported:
-
-* `IS EMPTY` (empty): check whether a field is empty (empty list, empty set, ...)
-* `IS NOT EMPTY` (not empty): check whether a field is not empty
-* `IS NULL_TOKEN` (null): check whether a field is null
-* `IS NOT NULL_TOKEN` (not null): check whether a field is not null
-
-#### Examples:
-
-Here are some examples for both view types that you can experiment with:
-
-#### asset-vulnerability-assessment:
-
-* `vulnerabilityCve="CVE-2024-10039"`
-* `artifactName ~ log4 and assessmentStatus = "insignificant"`
-* `assessmentPriorityScore >= 5`
-
-#### asset-vulnerable-component
-
-* `cpe="cpe:2.3:a:redhat:keycloak:*:*:*:*:*:*:*:*"`
-* `cpeVendor="keycloak" and cpeProduct="*";`
-* `cpePart="*"`
+For more details on how to define a query visit the [Query Language Readme](../ae-inventory-query-language/README.md)
