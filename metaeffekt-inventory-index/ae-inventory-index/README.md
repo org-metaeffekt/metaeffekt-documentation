@@ -1,23 +1,20 @@
-# Index
+# Inventory Index Persistence
 
 ## Introduction
 
 The ae inventory index is primarily responsible for importing and persisting the inventories and creating the views for the request.
 
-The index focuses on some key features which are:
+The index focuses on central key features which are:
 
-- redundant-free persistence
+- redundancy-free persistence
 - linking tables for flexible entity relation management
 - views to aggregate data from tables and satisfy the request
 - use of indexes on UID's and hashes to increase query performance
 
-## Redundant-free persistence
+## Redundancy-free Persistence
 
-To ensure fast and efficient database performance, the inventory index focuses on redundant-free persistence of entities. The idea is that each entity
-has its own UID and hash value. The hash value is used to identify identical entities and not persist them multiple times. The UID on the other hand
-is
-used to reference an entity when it is needed, f.e. in linking tabless.
-The inventory index distinguishes between two approaches when it comes to redundant-free persistence: persisting inventories and persisting entities.
+To ensure fast and efficient database queries, the inventory index uses a redundancy-free persistence of entities. The same data set
+is only stored once in the database.
 
 ### Inventory
 

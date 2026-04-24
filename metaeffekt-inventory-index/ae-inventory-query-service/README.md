@@ -1,8 +1,8 @@
-# Query Service
+# Inventory Query Service
 
 ## Introduction
 
-The ae inventory query service is responsible for exporting the endpoints from the backend and enabling a secure client server interaction so that the
+The ae inventory query service is responsible for exporting the endpoints from the backend and enabling a secure-client server interaction so that the
 client can send requests to the according endpoints and query the data from the database.
 
 ## Interfaces
@@ -10,13 +10,12 @@ client can send requests to the according endpoints and query the data from the 
 ### Endpoints
 
 Currently, the query service exports one endpoint which is the `query` endpoint.
-This endpoint allows the client to query for vulnerabilities and their relating artifacts, assessments and assets and also for CPE's and their
-relating vulnerabilities and artifacts.
+This endpoint allows the client to query for vulnerabilities and their related artifacts, assessments and assets and also for CPE's and their
+associated vulnerabilities and artifacts.
 
 ### Request Schema
 
-The request is sent by the client simply via a UI as a JSON object.
-It has the following fields:
+The request is sent by the client as a JSON object. It has the following fields:
 
 | Field                | Type          | Description                                                               |
 |:---------------------|:--------------|:--------------------------------------------------------------------------|
@@ -28,18 +27,18 @@ It has the following fields:
 
 #### Token
 
-The client has to provide a JWT token that includes claims. These ensure a secure and authorized access to the database data.
+The client has to provide a JSON Web Token (JWT) that includes authorization claims. These ensure a secure and authorized access to the database.
 Those claims are a set of:
 
 * tenants
 * audiences
 * projects
-* labels
 * components
+* labels
 
-Those claims are then evaluated by the backend and only the filtered data depending on the claims is returned as a result to the client.
+Those claims are then evaluated by the service. Only the authorization-filtered data depending on the claims is returned as a result to the client.
 
-#### Request example
+#### Request Example
 
 The following JSON object represents an example request:
 
@@ -53,20 +52,19 @@ The following JSON object represents an example request:
 ```
 
 In this example `"vulnerabilityCve"` is the field name of the view that holds the data for this particular request. In near future, the field names
-will be
-adjusted to simplify the request for the user and prevent too technical field names.
+will be adjusted to simplify the request for the user and prevent too technical field names.
 
-Note: The `""` get escaped when converted from user input to JSON object to correctly parse the filterExpression in the backend.
+Note: The `""` gets escaped when converted from user input to JSON object to correctly parse the filterExpression in the service.
 
 ### Response Schema
 
-As a response of a clients request the server returns a JSON response object that includes the actual result object with the inventory data and
+As a response of a clients request the server returns a JSON response object that includes the actual result with the inventory data and
 additional properties for paging purposes.
 The schema for the response object is as follows.
 
 | Field                | Type             | Description                                                                                                                                                                                                           |
 |:---------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **queryResponseDTO** | QueryResponseDTO | represents the resulting data object, composed of a list containing the resulting rows themselfes (`queryResult`) and a `details` object that contains additional detail information about some entities for each row | 
+| **queryResponseDTO** | QueryResponseDTO | represents the resulting data object, composed of a list containing the resulting rows themselves (`queryResult`) and a `details` object that contains additional detail information about some entities for each row | 
 | **size**             | long             | shows how many total elements the result has                                                                                                                                                                          | 
 | **page**             | int              | shows which resulting page is currently shown                                                                                                                                                                         |
 | **pageSize**         | int              | shows the currently defined page size                                                                                                                                                                                 |
@@ -101,7 +99,7 @@ Those four lists are:
 This reference tracking is needed to prevent redundant saving of a whole details object in every `ResultDTO` that would lead to a large JSON object.
 Instead, only the id reference are tracked in the list and the real detail object exists only once in the corresponding map in the `details` object.
 
-###### details
+###### Details
 
 Currently, there are four detail objects which are represented by maps. Those are:
 
@@ -204,10 +202,9 @@ One example of a response object is as follows:
 }
 ```
 
-### IQL
+### Inventory Query Language (IQL)
 
-The `IQL` (Inventory Query Language) is a custom language that uses structured text and allows querying the inventory data using expressions and
-operators. 
-It allows the user to query the database with simplified textual queries rather than complicated SQL queries.
+The IQL is a structured language allowing to query the inventory data using expressions and operators. 
+It enables  the user to query the database with simplified textual queries rather than using technical constructs.
 
 For more details on how to define a query visit the [Query Language Readme](../ae-inventory-query-language/README.md)

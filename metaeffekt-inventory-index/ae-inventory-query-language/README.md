@@ -2,26 +2,17 @@
 
 ## Introduction
 
-The IQL (ae inventory query language) is a custom querying language for the {metæffekt} Inventory Index. It allows the user to simply query the
-database
-by building custom **filter expressions**. It supports various text inputs to facilitate a query that is easy to understand by humans.
+The Inventory Query Language (IQL) is a custom querying language for the {metæffekt} Inventory Index. It allows the user to query the
+database by building custom **filter expressions**. It supports various text inputs to facilitate a query that is easy to understand by humans.
 
-## Antlr4
-
-To make possible creating a custom query language ANTLR4 is used.
-ANTLR4 is a parser for structured text.
-To simplify: It uses a grammar file with keywords, lexers and parser rules to generate a parser that can build and walk parse trees (more details
-on: https://github.com/antlr/antlr4).
-
-## Defining a query
+## Defining a Query
 
 To query the database first a **filter expression** has to be defined by the user. After the request is sent including the **filter expression** the
-requested data will be filtered and retrieved from the database. A grammar file with lexer and parser rules is used to declare how an
-expression has to be structured. An expression is case-insensitive and whitespaces are skipped.
+requested data will be filtered and retrieved from the database. An expression is case-insensitive and whitespaces are skipped.
 
 ### Valid Expression
 
-A **filter expression** can be build using expressions. How a valid expression is build is defined in a grammar file.
+A **filter expression** can be build using expressions.
 
 To summarize, a valid expressions can be built by:
 
@@ -54,10 +45,10 @@ The operators are described further in the next section.
 
 There are three types of valid operators. Those are `comparison operators`, `set operators` and `emptiness operators`.
 
-#### Comparison operators
+#### Comparison Operators
 
 As mentioned above, a comparison operator is used to compose a clause that compares a field value with another value.
-Currently, these comparison operators are supported:
+Currently, the following comparison operators are supported:
 
 * `=` (equals): the field is equal to the value on the right hand side of the operator
 * `!=` (not equals): the field is not equal to the value
@@ -68,7 +59,7 @@ Currently, these comparison operators are supported:
 * `~` (like): the field includes any substring defined by the value
 * `!~` (not like): the field does not include any substring defined by the value
 
-#### Set operators
+#### Set Operators
 
 A set operator is used to compose a clause that checks if a field value is contained in a set of values.
 Currently, these set operators are supported:
@@ -76,10 +67,10 @@ Currently, these set operators are supported:
 * `IN` (include): a field value is contained in the set
 * `NOT IN` or `! in` (not include): a field value is not contained in the right hand set
 
-#### Emptiness operators
+#### Emptiness Operators
 
-An emptiness operator is used to compose a clause that checks if a field value is empty or null.
-Currently, these emptiness operators are supported:
+An emptiness operator is used to compose a clause that checks if a field value is empty or not available.
+Currently, the following emptiness operators are supported:
 
 * `IS EMPTY` (empty): a field is empty (empty list, empty set, ...)
 * `IS NOT EMPTY` (not empty): a field is not empty
@@ -88,7 +79,7 @@ Currently, these emptiness operators are supported:
 
 ### Value
 
-A `value` can have by of different types. The most used ones are:
+A `value` can have by of different types. The most common value types are:
 
 | Value          | Explaination                                                                                                                     | Example                                                     |
 |:---------------|:---------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|
@@ -98,9 +89,9 @@ A `value` can have by of different types. The most used ones are:
 | **IDENTIFIER** | An identifier that starts with a lowercase letter or _, followed by lowercase letters, digits, _, -, or .                        | abc_test, var1, my-variable, config.value, a_b-c.d          |
 | **DURATION**   | An integer with an optional minus sign, followed by exactly one time unit (y, w, d, h, m, or s).                                 | 10d, 5h, -3w, 30s                                           |
 
-### Examples:
+### Examples
 
-Here are some examples for both view types:
+Some examples for both view types:
 
 #### asset-vulnerability-assessment:
 
@@ -113,4 +104,3 @@ Here are some examples for both view types:
 * `cpe="cpe:2.3:a:redhat:keycloak:*:*:*:*:*:*:*:*"`
 * `cpeVendor="keycloak" and cpeProduct="*";`
 * `cpePart="*"`
-

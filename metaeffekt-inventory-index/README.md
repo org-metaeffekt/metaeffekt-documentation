@@ -2,37 +2,40 @@
 
 ## Introduction
 
-{metæffekt} Inventory Index is an application that allows importing inventories into a database and
-querying their data through API requests. It consists of four modules that all have a dedicated focus and logic,
-such as the import of inventories, the definition of the query language and more.
+{metæffekt} Inventory Index is an application that allows importing inventories into a database and to 
+query the data using a dedicated API. It consists of four modules having a dedicated focus:
+* inventory persistence,
+* scheduled import of inventories, 
+* the definition of the inventory query language, and
+* the query service REST endpoints.
 
 ## Concept and Focus
 
-The main focus for the {metæffekt} Inventory Index is to efficiently store inventory data into a database and prevent having redundant data as much as
-possible. This should allow the user to be able to query the database fast. To allow the user to query the database, the {metæffekt} Inventory Index
-exports endpoints that can receive requests via an api and evaluate them.
+The main focus for the {metæffekt} Inventory Index is to efficiently store inventory data into a database and prevent data redundancy. 
+This allows the user to query the database efficiently. The {metæffekt} Inventory Index enable the user to query the database and display the
+structured responses.
 
-### Redundant-free persistence
+### Efficient Storage of Time-Series
 
-To ensure redundant-free persistence of data, calculated hashes are used. Each redundant-free entity has got its own hash value calculated and
-persisted with it to prevent duplicates.
-Two redundant-free approaches are distinguished between the persistence of inventories and entities.
+- Inventories at different points in time contain a significant amount of redundant data
+- The persistence is optimized to store the data efficiently
 
-Further details are provided in the [Index Readme](ae-inventory-index/README.md)
+Further details are provided in the [Inventory Index Persistence](ae-inventory-index/README.md).
 
-## Prerequirements and initial setup
+## Prerequisites and initial setup
 
-To use the {metæffekt} Inventory Index some requirements have to be fulfilled first. After these the installation process can be started. Details
-steps are described in the [Installation Readme](installation/README.md).
+To use the {metæffekt} Inventory Index some prerequisites have to be fulfilled first. With these in place, the installation process can be started. 
+
+Detailed steps are described in the [Installation Guide](installation/README.md).
 
 ## Modules
 
 The {metæffekt} Inventory Index has four modules that focus on dedicated aspects of the application.
 
-### ae-inventory-importer-service
+### Inventory Importer Service (ae-inventory-importer-service)
 
-The ae inventory importer service is primarily responsible for finding new inventories and persisting these. Further details are provided in
-the [Importer Service Readme](ae-inventory-importer-service/README.md).
+The Inventory Importer Service is primarily responsible for loading new inventories and persisting these. Further details are provided in
+the [Inventory Importer Service](ae-inventory-importer-service/README.md).
 
 ### ae-inventory-index
 
