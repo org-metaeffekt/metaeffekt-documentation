@@ -2,21 +2,28 @@
 
 ## Introduction
 
-The IQL (inventory query language) is a custom querying language for the {metæffekt} Inventory Index. It allows the user to simply query the database
-by building custom filter expressions.
+The IQL (ae inventory query language) is a custom querying language for the {metæffekt} Inventory Index. It allows the user to simply query the
+database
+by building custom **filter expressions**. It supports various text inputs to facilitate a query that is easy to understand by humans.
 
 ## Antlr4
 
-To make possible creating a custom query language antlr4 is used.
-Antlr4 is a parser for structured text.
+To make possible creating a custom query language ANTLR4 is used.
+ANTLR4 is a parser for structured text.
 To simplify: It uses a grammar file with keywords, lexers and parser rules to generate a parser that can build and walk parse trees (more details
 on: https://github.com/antlr/antlr4).
 
 ## Defining a query
 
+To query the database first a **filter expression** has to be defined by the user. After the request is sent including the **filter expression** the
+requested data will be filtered and retrieved from the database. A grammar file with lexer and parser rules is used to declare how an
+expression has to be structured. An expression is case-insensitive and whitespaces are skipped.
+
 ### Valid Expression
 
-Valid expressions can be built by:
+A **filter expression** can be build using expressions. How a valid expression is build is defined in a grammar file.
+
+To summarize, a valid expressions can be built by:
 
 * Any valid `clause`
 * Any expression build by a `NOT`, `AND` or `OR`
@@ -32,7 +39,7 @@ Valid expressions can be built by:
 
 ### Clause
 
-A `clause` can be build in three ways at the moment.
+A `clause` can be build in three ways:
 
 | Clause                                  | Explaination                                   |
 |:----------------------------------------|:-----------------------------------------------|

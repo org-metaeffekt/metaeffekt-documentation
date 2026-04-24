@@ -1,16 +1,21 @@
 # Query Service
 
+## Introduction
+
+The ae inventory query service is responsible for exporting the endpoints from the backend and enabling a secure client server interaction so that the
+client can send requests to the according endpoints and query the data from the database.
+
 ## Interfaces
 
 ### Endpoints
 
-Currently, the query service exports one endpoint which is the `query endpoint.
+Currently, the query service exports one endpoint which is the `query` endpoint.
 This endpoint allows the client to query for vulnerabilities and their relating artifacts, assessments and assets and also for CPE's and their
 relating vulnerabilities and artifacts.
 
 ### Request Schema
 
-The request is sent by the client via a UI as a JSON object.
+The request is sent by the client simply via a UI as a JSON object.
 It has the following fields:
 
 | Field                | Type          | Description                                                               |
@@ -23,7 +28,8 @@ It has the following fields:
 
 #### Token
 
-The client has to provide a JWT token that includes claims. Those claims are a set of:
+The client has to provide a JWT token that includes claims. These ensure a secure and authorized access to the database data.
+Those claims are a set of:
 
 * tenants
 * audiences
@@ -45,6 +51,10 @@ The following JSON object represents an example request:
   "viewId": "vulnerability"
 }
 ```
+
+In this example `"vulnerabilityCve"` is the field name of the view that holds the data for this particular request. In near future, the field names
+will be
+adjusted to simplify the request for the user and prevent too technical field names.
 
 Note: The `""` get escaped when converted from user input to JSON object to correctly parse the filterExpression in the backend.
 
@@ -196,7 +206,8 @@ One example of a response object is as follows:
 
 ### IQL
 
-The `IQL` (Inventory Query Language) is a custom language that allows querying the inventory data using expressions and operators.
-It is case-insensitive and whitespaces are skipped.
+The `IQL` (Inventory Query Language) is a custom language that uses structured text and allows querying the inventory data using expressions and
+operators. 
+It allows the user to query the database with simplified textual queries rather than complicated SQL queries.
 
 For more details on how to define a query visit the [Query Language Readme](../ae-inventory-query-language/README.md)
