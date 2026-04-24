@@ -20,10 +20,10 @@ The [{metæffekt} Portfolio Manager](metaeffekt-portfolio-manager/README.md) pro
 ### {metæffekt} Vulnerability Management
 
 The known software components are matched against known security vulnerabilities from multiple sources to generate a
-[Vulnerability Assessment Dashboard (HTML)](metaeffekt-vulnerability-assessment-dashboard/README.md) and Vulnerability Report (PDF).
+[Vulnerability Assessment Dashboard (HTML)](metaeffekt-vulnerability-management/reports/vulnerability-assessment-dashboard/README.md) and Vulnerability Report (PDF).
 
 This process involves three key phases:
-The [Vulnerability Data Mirror](metaeffekt-vulnerability-management/data-mirror/README), the [Inventory Enrichment Pipeline](metaeffekt-vulnerability-management/inventory-enrichment/README) 
+The [Vulnerability Data Mirror](metaeffekt-vulnerability-management/data-mirror/README.md), the [Inventory Enrichment Pipeline](metaeffekt-vulnerability-management/inventory-enrichment/README.md)
 and the Dashboard & Report generation
 
 Find more details on [{metæffekt} Vulnerability Management](metaeffekt-vulnerability-management/README.md).
