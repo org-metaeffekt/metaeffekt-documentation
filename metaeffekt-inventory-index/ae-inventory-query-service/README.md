@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The ae inventory query service is responsible for exporting the endpoints from the backend and enabling a secure-client server interaction so that the
+The Inventory Query Service is responsible for exporting the endpoints from the backend and enabling a secure-client server interaction so that the
 client can send requests to the according endpoints and query the data from the database.
 
 ## Interfaces
@@ -64,7 +64,7 @@ The schema for the response object is as follows.
 
 | Field                | Type             | Description                                                                                                                                                                                                           |
 |:---------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **queryResponseDTO** | QueryResponseDTO | represents the resulting data object, composed of a list containing the resulting rows themselves (`queryResult`) and a `details` object that contains additional detail information about some entities for each row | 
+| **queryResponseDTO** | QueryResponseDTO | represents the resulting data object, composed of a list containing the resulting rows themselves (`queryResult`) and a `details` object that contains additional detail information about some datasets for each row | 
 | **size**             | long             | shows how many total elements the result has                                                                                                                                                                          | 
 | **page**             | int              | shows which resulting page is currently shown                                                                                                                                                                         |
 | **pageSize**         | int              | shows the currently defined page size                                                                                                                                                                                 |
@@ -74,7 +74,7 @@ The schema for the response object is as follows.
 
 The `queryResponseDTO` object consists of two parts: `queryResult` and `details`.
 The `queryResult` is a list with the resulting row data from the requested view (`ResultDTO`).
-The `details` object contains maps for each entity for which additional data is needed. Every map in the `details` object has a unique identifier for
+The `details` object contains maps for each dataset for which additional data is needed. Every map in the `details` object has a unique identifier for
 its keys that is used to reference the details in the `detailRefs` object in `queryResult`.
 
 ###### queryResult
@@ -207,4 +207,4 @@ One example of a response object is as follows:
 The IQL is a structured language allowing to query the inventory data using expressions and operators. 
 It enables  the user to query the database with simplified textual queries rather than using technical constructs.
 
-For more details on how to define a query visit the [Query Language Readme](../ae-inventory-query-language/README.md)
+For more details on how to define a query visit the [Inventory Query Language](../ae-inventory-query-language/README.md).

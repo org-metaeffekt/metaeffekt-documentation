@@ -11,7 +11,7 @@ To use the application and its services, first the following prerequirements hav
 | **Maven**    | The application is build with Maven 3.9.11 to simplify the process of setting up the initial database schema, roles and permissions. |
 
 The instructions for setup and use of the deployed application are listed
-here: [Deployment Readme](https://github.com/org-metaeffekt/metaeffekt-inventory-index/blob/main/deployment/README.md)
+here: [Deployment](https://github.com/org-metaeffekt/metaeffekt-inventory-index/blob/main/deployment/README.md)
 
 ### Postgres
 

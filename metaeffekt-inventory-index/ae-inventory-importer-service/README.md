@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The ae inventory importer service module implements a scheduler that is responsible for scanning the "input-inventories"
+The Inventory Importer Service module implements a scheduler that is responsible for scanning the "input-inventories"
 directory that holds the inventories to be persisted. If an inventory is already imported, it will be skipped and not persisted in the database again.
 The folder may also have child folders f.e. to group the inventories (f.e. keycloak, openssl, ...).
 
