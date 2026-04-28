@@ -54,7 +54,31 @@ Modification operations always operate on a Selection object.
 | `setVersion(String version)`      | Sets the `Version` attribute of all artifacts in the selection to the specified `version` string.    |    
 | `setComponent(String componente)` | Sets the `Component` attribute of all artifacts in the selection to the specified `component` string. |
 
+## Example
+
+    // select unversioned artifacts without any license or copyright information
+    var artifactsWithoutContextSelection = ISL.selectArtifacts().noLicense().noCopyright().noVersion();
+
+    // filter based on 'Path in Asset' and remove the artifacts from inventory
+    artifactsWithoutContextSelection.pathInAssetMatches(".*/etc/.*").remove();
+    artifactsWithoutContextSelection.pathInAssetContains("/usr/lib/locale/C.utf8/LC_").remove();
+
+    // remove artifact without license and suffix .conf
+    ISL.selectArtifacts().noLicense().idEndsWith(".conf").remove();
+
+    // remove container metadata captured as artifacts
+    ISL.selectArtifacts().pathInAssetEndsWith(".tar]/repositories").remove();
+    ISL.selectArtifacts().pathInAssetEndsWith(".tar]/oci-layout").remove();
+    ISL.selectArtifacts().pathInAssetEndsWith(".tar]/index.json").remove();
+    ISL.selectArtifacts().pathInAssetEndsWith(".tar]/config.json").remove();
+    ISL.selectArtifacts().pathInAssetEndsWith(".tar]/manifest.json").remove();
+
+    // correct the version and component of jar files, without proper version detection
+    ISL.selectArtifacts().idEquals("xyz-2.0.4-data.jar").setComponent("XYZ").setVersion("2.0.4");
+
 ## Script Log
 
 Dependent on the used integration a log of the operations applied by the script is provided.
 The log can be used to validate the script was applied as expected.
+
+In case of an error in the script, the script log contains the according error message. 
