@@ -46,7 +46,7 @@ to be retained in the selection.
 
 Modification operations always operate on a Selection object.
 
-## Artifact Selection Modifications
+### Artifact Selection Modifications
 
 | Operation                         | Effect                                                                                            |
 |-----------------------------------|---------------------------------------------------------------------------------------------------|
@@ -54,7 +54,7 @@ Modification operations always operate on a Selection object.
 | `setVersion(String version)`      | Sets the `Version` attribute of all artifacts in the selection to the specified `version` string.    |    
 | `setComponent(String componente)` | Sets the `Component` attribute of all artifacts in the selection to the specified `component` string. |
 
-# Script Log
+## Script Log
 
 Dependent on the used integration a log of the operations applied by the script is provided.
 The log can be used to validate the script was applied as expected.
