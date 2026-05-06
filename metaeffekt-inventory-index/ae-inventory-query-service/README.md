@@ -46,14 +46,14 @@ The following JSON object represents an example request:
 
 ```json
 {
-  "filterExpression": "vulnerabilityCve~\"CVE-2026\"",
+  "filterExpression": "vulnerabilityId~\"CVE-2026\"",
   "page": 1,
   "pageSize": 10,
   "viewId": "vulnerability"
 }
 ```
 
-In this example `"vulnerabilityCve"` is the field name of the view that holds the data for this particular request. In near future, the field names
+In this example `"vulnerabilityId"` is the field name of the view that holds the data for this particular request. In near future, the field names
 will be adjusted to simplify the request for the user and prevent too technical field names.
 
 Note: The `""` gets escaped when converted from user input to JSON object to correctly parse the filterExpression in the service.

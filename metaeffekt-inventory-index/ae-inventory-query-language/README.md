@@ -95,7 +95,7 @@ Some examples for both view types:
 
 #### asset-vulnerability-assessment:
 
-* `vulnerabilityCve="CVE-2024-10039"`
+* `vulnerabilityId="CVE-2024-10039"`
 * `artifactName ~ log4 and assessmentStatus = "insignificant"`
 * `assessmentPriorityScore >= 5`
 
