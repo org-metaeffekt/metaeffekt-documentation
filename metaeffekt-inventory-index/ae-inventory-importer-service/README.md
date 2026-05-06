@@ -31,6 +31,13 @@ The batch size defines, how many inventories will be imported simultaneously and
 It can be configured by setting the `II_SCHEDULER_BATCH_SIZE` property in the env.rc file.
 After each inventory batch is persisted, the materialized views are refreshed to ensure data consistency.
 
+#### Tenant ID
+
+The tenant ID property describes who the tenant of the inventories is.
+It can be configured by setting the `II_SCHEDULER_TENANT_ID` property in the env.rc file.
+With this same inventories can be imported if they have different tenants.
+
+
 #### Path
 
 The Path property describes where the inventories that have to be persisted are located.

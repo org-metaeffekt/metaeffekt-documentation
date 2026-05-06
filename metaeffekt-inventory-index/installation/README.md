@@ -78,6 +78,7 @@ The properties are:
 | **II_SSL_KEYSTORE_PASSWORD**            | Defines the keystore password bcause the Inventory Query Service is configured to use SSL.                        |
 | **II_SCHEDULER_BATCH_SIZE**             | Defines the inventory batch size for persisting inventories.                                                      |
 | **II_SCHEDULER_INPUT_DIR**              | Defines the directory where the inventories to be persisted are located.                                          |
+| **II_SCHEDULER_TENANT_ID**              | Defines the tenant of the inventories.                                                                            |
 | **II_SCHEDULER_CRON**                   | Defines on which time periods the scheduler runs.                                                                 |
 
 ### Importer Service
@@ -93,6 +94,7 @@ The importer service uses these properties which can be configured before runnin
 * II_DATABASE_USER_PASSWORD
 * II_SCHEDULER_BATCH_SIZE
 * II_SCHEDULER_INPUT_DIR
+* II_SCHEDULER_TENANT_ID
 * II_SCHEDULER_CRON
 
 ### Query Service

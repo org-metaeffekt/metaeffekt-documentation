@@ -30,10 +30,12 @@ The request is sent by the client as a JSON object. It has the following fields:
 The client has to provide a JSON Web Token (JWT) that includes authorization claims. These ensure a secure and authorized access to the database.
 Those claims are a set of:
 
-* tenants
+* tenantIds
+* supplierIds
 * audiences
-* projects
-* components
+* projectIds
+* assets
+* assetGroups
 * labels
 
 Those claims are then evaluated by the service. Only the authorization-filtered data depending on the claims is returned as a result to the client.
@@ -62,17 +64,17 @@ As a response of a clients request the server returns a JSON response object tha
 additional properties for paging purposes.
 The schema for the response object is as follows.
 
-| Field                | Type             | Description                                                                                                                                                                                                           |
-|:---------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **queryResponseDTO** | QueryResponseDTO | represents the resulting data object, composed of a list containing the resulting rows themselves (`queryResult`) and a `details` object that contains additional detail information about some datasets for each row | 
-| **size**             | long             | shows how many total elements the result has                                                                                                                                                                          | 
-| **page**             | int              | shows which resulting page is currently shown                                                                                                                                                                         |
-| **pageSize**         | int              | shows the currently defined page size                                                                                                                                                                                 |
-| **pageCount**        | int              | shows how many total pages the result has depending on the defined page size                                                                                                                                          |
+| Field             | Type             | Description                                                                                                                                                                                                           |
+|:------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **queryResponse** | QueryResponseDTO | represents the resulting data object, composed of a list containing the resulting rows themselves (`queryResult`) and a `details` object that contains additional detail information about some datasets for each row | 
+| **size**          | long             | shows how many total elements the result has                                                                                                                                                                          | 
+| **page**          | int              | shows which resulting page is currently shown                                                                                                                                                                         |
+| **pageSize**      | int              | shows the currently defined page size                                                                                                                                                                                 |
+| **pageCount**     | int              | shows how many total pages the result has depending on the defined page size                                                                                                                                          |
 
-#### queryResponseDTO
+#### queryResponse
 
-The `queryResponseDTO` object consists of two parts: `queryResult` and `details`.
+The `queryResponse` object consists of two parts: `queryResult` and `details`.
 The `queryResult` is a list with the resulting row data from the requested view (`ResultDTO`).
 The `details` object contains maps for each dataset for which additional data is needed. Every map in the `details` object has a unique identifier for
 its keys that is used to reference the details in the `detailRefs` object in `queryResult`.
@@ -117,28 +119,32 @@ One example of a response object is as follows:
 
 ```json
 {
-  "queryResponseDTO": {
+  "queryResponse": {
     "queryResult": [
       {
-        "artifactName": "artifact-x",
-        "assessmentContextCvssOverallScore": 3.3,
+        "artifactName": "openssl",
+        "assessmentContextCvssOverallScore": 4.3,
         "assessmentContextCvssSeverity": "Medium",
-        "assessmentInitialCvssOverallScore": 6.3,
+        "assessmentInitialCvssOverallScore": 5.3,
         "assessmentInitialCvssSeverity": "Medium",
         "assessmentPriorityLabel": "none",
         "assessmentPriorityScore": 4.1,
         "assessmentStatus": "insignificant",
         "assetAudience": null,
-        "assetName": "ArtifactX",
-        "assetPath": null,
-        "assetSupplier": null,
-        "assetVersion": "1.3.1",
+        "assetGroupName": "Asset Group Name",
+        "assetGroupVersion": "Asset Group Version",
+        "assetName": "OpenSSL",
+        "assetPathInGroup": null,
+        "assetSupplierId": null,
+        "assetTenantId": "tenant1",
+        "assetVersion": "3.0.1",
         "detailsRefs": {
           "artifactDetailRef": [
-            "A001"
+            "A001",
+            "A002"
           ],
           "vulnerabilityDetailRef": [
-            "V003"
+            "V001"
           ],
           "assetDetailRef": [
             "ASE001"
@@ -148,24 +154,32 @@ One example of a response object is as follows:
           ]
         },
         "labelMarkerName": null,
-        "project": null,
-        "projectVersion": "Project Version",
-        "vulnerability": "CVE-2026-22796"
+        "vulnerabilityId": "CVE-2026-22796"
       }
     ],
     "details": {
       "artifactDetails": {
         "A001": {
-          "name": "artifact-x",
-          "component": "Artifact-X",
-          "groupId": null,
-          "version": "1.3.1",
+          "qualifier": "openssl-3.0.1",
+          "name": "openssl",
+          "component": "OpenSSL",
+          "version": "3.0.1",
           "license": null,
-          "url": null
+          "url": null,
+          "namespace": null
+        },
+        "A002": {
+          "qualifier": "openssl-3.0.1",
+          "name": "openssl",
+          "component": "OpenSSL",
+          "version": "3.0.1",
+          "license": null,
+          "url": null,
+          "namespace": null
         }
       },
       "vulnerabilityDetails": {
-        "V003": {
+        "V001": {
           "providerName": "CVE",
           "providerImplementation": "CVE",
           "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22796"
@@ -174,20 +188,19 @@ One example of a response object is as follows:
       "assetDetails": {
         "ASE001": {
           "externalAssetId": "External Asset Id",
-          "externalProjectId": "External Project Id",
           "type": null,
-          "assessment": null,
           "architecture": "Architecture",
           "url": null,
-          "comment": "Comment"
+          "comment": "Comment",
+          "externalViewId": "External View ID"
         }
       },
       "assessmentDetails": {
         "ASM001": {
-          "type": "project",
+          "type": null,
           "initialCvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
           "contextCvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L/MPR:L",
-          "assessmentRationale": "Vulnerability severity score is below insignificant threshold of 7.0.",
+          "assessmentRationale": "Vulnerability severity score is below insignificant threshold of 5.0.",
           "assessmentRisk": null,
           "assessmentMeasures": null,
           "assessmentBaseStatus": null
@@ -195,7 +208,7 @@ One example of a response object is as follows:
       }
     }
   },
-  "size": 2,
+  "size": 1,
   "page": 1,
   "pageSize": 10,
   "pageCount": 1
