@@ -49,7 +49,7 @@ The following JSON object represents an example request:
   "filterExpression": "vulnerabilityId~\"CVE-2026\"",
   "page": 1,
   "pageSize": 10,
-  "viewId": "vulnerability"
+  "viewId": "asset-vulnerability-assessment"
 }
 ```
 
