@@ -17,13 +17,13 @@ associated vulnerabilities and artifacts.
 
 The request is sent by the client as a JSON object. It has the following fields:
 
-| Field                | Type          | Description                                                               |
-|:---------------------|:--------------|:--------------------------------------------------------------------------|
-| **filterExpression** | String        | defines the expression that then filteres the result set                  | 
-| **page**             | int           | describes which page is currently shown                                   |
-| **pageSize**         | int           | shows the currently defined page size                                     |
-| **sorting**          | List<Sorting> | a list of field names to be sorted by and their direction (`ASC`, `DESC`) |
-| **viewId**           | String        | the name of the requested view                                            |
+| Field                | Type          | Description                                                                                                                                                                          |
+|:---------------------|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **filterExpression** | String        | defines the expression that then filteres the result set (for more on how to define a filterExpression visit: [Inventory Query Language](../ae-inventory-query-language/README.md).) | 
+| **page**             | int           | describes which page is currently shown                                                                                                                                              |
+| **pageSize**         | int           | shows the currently defined page size                                                                                                                                                |
+| **sorting**          | List<Sorting> | a list of field names to be sorted by and their direction (`ASC`, `DESC`)                                                                                                            |
+| **viewId**           | String        | the name of the requested view                                                                                                                                                       |
 
 #### Token
 
@@ -57,6 +57,46 @@ In this example `"vulnerabilityId"` is the field name of the view that holds the
 will be adjusted to simplify the request for the user and prevent too technical field names.
 
 Note: The `""` gets escaped when converted from user input to JSON object to correctly parse the filterExpression in the service.
+
+#### Valid Fields To Filter By
+
+By creating a filter expression the database entities can be filtered. The fields to by filtered by are different, depending on which view id is used.
+Currently, these fields can be filtered by:
+
+`For the view id 'asset-vulnerability-assessment'`:
+
+* assetPathInGroup;
+* assetName
+* assetVersion
+* assetGroupName
+* assetGroupVersion
+* assetAudience;
+* assetSupplierId
+* assetTenantId
+* vulnerabilityId
+* artifactName
+* assessmentInitialCvssOverallScore
+* assessmentInitialCvssSeverity
+* assessmentContextCvssOverallScore
+* assessmentContextCvssSeverity
+* assessmentPriorityScore
+* assessmentPriorityLabel
+* assessmentStatus;
+* labelMarkerName
+
+`For the view id 'asset-vulnerable-component'`:
+Same as for the view id 'asset-vulnerability-assessment' and additionally:
+
+* cpePart
+* cpeVendor
+* cpeProduct
+* cpeVersion
+* cpeUpdate
+* cpeEdition
+* cpeLanguage
+* cpeTargetSw
+* cpeTargetHw
+* cpeOther
 
 ### Response Schema
 
@@ -217,7 +257,7 @@ One example of a response object is as follows:
 
 ### Inventory Query Language (IQL)
 
-The IQL is a structured language allowing to query the inventory data using expressions and operators. 
-It enables  the user to query the database with simplified textual queries rather than using technical constructs.
+The IQL is a structured language allowing to query the inventory data using expressions and operators.
+It enables the user to query the database with simplified textual queries rather than using technical constructs.
 
 For more details on how to define a query visit the [Inventory Query Language](../ae-inventory-query-language/README.md).
