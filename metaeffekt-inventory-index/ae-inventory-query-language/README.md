@@ -63,21 +63,26 @@ Currently, the following comparison operators are supported:
 
 #### Set Operators
 
-A set operator is used to compose a clause that checks if a field value is contained in a set of values.
-Currently, these set operators are supported:
+A set operator is used to compose a clause that checks if a field value is contained in a set of values:
 
 * `IN` (include): a field value is contained in the set
 * `NOT IN` or `! in` (not include): a field value is not contained in the right hand set
 
+`Note`: The `NOT IN` and `! IN` operators are currently not working properly.
+For example an expression like: `vulnerabilityId~"CVE-2026" AND assessmentStatus NOT IN ("insignificant")`
+needs to be rewritten to: `vulnerabilityId~"CVE-2026" AND not (assessmentStatus in ("insignificant"))` to be parsed properly. This will be fixed in
+future versions
+
 #### Emptiness Operators
 
-An emptiness operator is used to compose a clause that checks if a field value is empty or not available.
-Currently, the following emptiness operators are supported:
+An emptiness operator is used to compose a clause that checks if a field value is empty or not available:
 
 * `IS EMPTY` (empty): a field is empty (empty list, empty set, ...)
 * `IS NOT EMPTY` (not empty): a field is not empty
 * `IS NULL_TOKEN` (null): a field is null
 * `IS NOT NULL_TOKEN` (not null): a field is not null
+
+`Note`: These operators are currently not working properly. This will be fixed in future versions.
 
 ### Value
 
