@@ -8,7 +8,9 @@ database by building custom **filter expressions**. It supports various text inp
 ## Defining a Query
 
 To query the database first a **filter expression** has to be defined by the user. After the request is sent including the **filter expression** the
-requested data will be filtered and retrieved from the database. An expression is case-insensitive and whitespaces are skipped.
+requested data will be filtered and retrieved from the database.
+
+**An expression is case-insensitive and whitespaces are skipped**.
 
 ### Valid Expression
 
@@ -32,11 +34,11 @@ To summarize, a valid expressions can be built by:
 
 A `clause` can be build in three ways:
 
-| Clause                                  | Explaination                                   |
-|:----------------------------------------|:-----------------------------------------------|
-| **field `_comparison_operator_` value** | comparing a field value to a given value       |
-| **field `_set_operator_` set**          | the field value is contained in the set or not |
-| **field `_emptiness_operator_`**        | the field value is empty or null               |
+| Clause                                  | Explaination                                           |
+|:----------------------------------------|:-------------------------------------------------------|
+| **field `_comparison_operator_` value** | comparing a field value to a given [value](#Value)     |
+| **field `_set_operator_` set**          | the field value is contained in the [set](#Set) or not |
+| **field `_emptiness_operator_`**        | the field value is empty or null                       |
 
 The `field` name is currently written in camel case.
 The operators are described further in the next section.
@@ -89,6 +91,20 @@ A `value` can have by of different types. The most common value types are:
 | **IDENTIFIER** | An identifier that starts with a lowercase letter or _, followed by lowercase letters, digits, _, -, or .                        | abc_test, var1, my-variable, config.value, a_b-c.d          |
 | **DURATION**   | An integer with an optional minus sign, followed by exactly one time unit (y, w, d, h, m, or s).                                 | 10d, 5h, -3w, 30s                                           |
 
+`Note:` Duration is not fully supported at the moment but will be in future versions.
+
+### Set
+
+A `set` if defined as follows: `'(' ( value ( ',' value )* )? ')'` and allows creating a set of items of type [value](#Value) separated by comma (or
+an empty set).
+
+Examples:
+
+* ()
+* (field1)
+* (1, 2)
+* ("item1","item2","item3")
+
 ### Examples
 
 Some examples for both view types:
@@ -97,6 +113,7 @@ Some examples for both view types:
 
 * `vulnerabilityId="CVE-2024-10039"`
 * `artifactName ~ log4 and assessmentStatus = "insignificant"`
+* `vulnerabilityId~"CVE-2026" and assessmentStatus in ("in review", "insignificant")`
 * `assessmentPriorityScore >= 5`
 
 #### asset-vulnerable-component
