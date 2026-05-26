@@ -27,16 +27,55 @@ The request is sent by the client as a JSON object. It has the following fields:
 
 #### Token
 
-The client has to provide a JSON Web Token (JWT) that includes authorization claims. These ensure a secure and authorized access to the database.
-Those claims are a set of:
+The client has to provide a **JSON Web Token (JWT)** that includes authorization claims. They are needed to ensure a secure and authorized access to the
+inventory data.
+Each claim is a list of strings. Those claims are:
 
-* tenantIds
-* supplierIds
-* audiences
-* projectIds
-* assets
-* assetGroups
-* labels
+| Claim           | Possible Values                                                                                                           |
+|:----------------|:--------------------------------------------------------------------------------------------------------------------------|
+| **tenantIds**   | Non empty string (no "*" allowed)                                                                                         | 
+| **supplierIds** | Non empty string (also "*" allowed)                                                                                       |
+| **audiences**   | Non empty string (also "*" allowed)                                                                                       |
+| **projectIds**  | Non empty string (also "*" allowed)                                                                                       |
+| **assets**      | Object containing the attributes "name", "version" and "externalId" which has to be a non empty string (also "*" allowed) |
+| **assetGroups** | Object containing the attributes "name", "version" and "path" which has to be a non empty string (also "*" allowed)       |
+| **labels**      | Non empty string (also "*" allowed)                                                                                       |
+
+A valid token could look like this:
+
+```json
+{
+  "tenantIds": [
+    "tenant1"
+  ],
+  "supplierIds": [
+    "*"
+  ],
+  "audiences": [
+    "*"
+  ],
+  "projectIds": [
+    "*"
+  ],
+  "assets": [
+    {
+      "name": "*",
+      "version": "*",
+      "externalId": "*"
+    }
+  ],
+  "assetGroups": [
+    {
+      "name": "*",
+      "version": "*",
+      "path": "*"
+    }
+  ],
+  "labels": [
+    "*"
+  ]
+}
+```
 
 Those claims are then evaluated by the service. Only the authorization-filtered data depending on the claims is returned as a result to the client.
 
