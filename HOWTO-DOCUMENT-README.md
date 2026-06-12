@@ -10,7 +10,7 @@ It serves as a central starting point that provides access to further documentat
    - Content 
    - Purpose
 3. **Linking** </br> All files in the folder should be linked in the README file. They can either be presented as a bullet-point list or included in the text.
-4. **Images** </br> If available, images can be included to better visualize the content.
+4. **Visuals** </br> If available, add visuals for example images to give a better understanding of what is said
 
 ## Levels
 It is important to know for which of the levels a README is written because the structure can slightly differ and each level addresses different kinds of readers: 
@@ -149,11 +149,16 @@ Tasks
 - Reporting problems 
 - Providing feedback on the project
 
-Need from the Documentation 
+Needs from the Documentation 
 - Easy to understand explanations
 - Step-by-step instructions 
 - Examples and Screenshots 
 - Troubleshooting guides
+
+**Level 1**: Used for orientation and navigation <br/> 
+**Level 2**: often used for explanations and examples <br/>
+**Level 3**: Sometimes used for more information <br/>
+**Level 4**: Rarely / not used <br/> 
 
 
 ## Dos and Don'ts
@@ -163,14 +168,19 @@ Need from the Documentation
 - Add spacing between sections so it is not a block of text
 - Use simple and understandable language
 - Start with a short overview of the topic 
+- Keep a clear structure 
 
 **Don'ts**
 - Don't put too much information into the README, keep it relevant
 - Avoid personal tone (e.g. you, I)
-- It is not a documentation, it is an overview of a project/ topic
+- It is not a documentation, it is an overview of a project / topic
 - Do not overload the README file with to many technical details 
+- Avoid writing a block of text without paragraphs / spacing 
 
 
 ## FAQ
 
-Where can I find more information about a questin
+
+
+
+
