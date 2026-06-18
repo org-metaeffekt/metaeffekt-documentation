@@ -107,6 +107,7 @@ Currently, these fields can be filtered by:
 * assetPathInGroup;
 * assetName
 * assetVersion
+* assetExternalId
 * assetGroupName
 * assetGroupVersion
 * assetAudience;
@@ -217,6 +218,7 @@ One example of a response object is as follows:
         "assetSupplierId": null,
         "assetTenantId": "tenant1",
         "assetVersion": "3.0.1",
+        "assetExternalId": "abc-123-xyz",
         "detailsRefs": {
           "artifactDetailRef": [
             "A001",
