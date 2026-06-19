@@ -48,8 +48,8 @@ Needs from the Documentation
 
 Documentation levels used
 
-**Level 1**: an overview of the documentation <br/>
-**Level 2**: To understand how the different parts of the project work together.  <br/>
+**Level 1**: often used an overview of the documentation <br/>
+**Level 2**: often used to understand how the different parts of the project work together.  <br/>
 **Level 3**: rarely used but can be helpful to look at detailed explanations and examples for specific features.  <br/>
 **Level 4**: is not being used 
 
@@ -63,7 +63,7 @@ Technical Knowledge: Advanced programming and system architecture knowledge
 Tasks
  - Coordinate development teams
  - Keep the project on schedule
- - Support communication between developers and stakeholders
+ - Coordinating communication between teams and clients
  - Planning project timelines
  - Managing technical requirements
  - Reviewing development progress
@@ -140,7 +140,7 @@ Needs from the Documentation
 
 ### Maja 
 Age: 30 <br/>
-Job: User <br/>
+Job: User / Client <br/>
 Experience: Uses the software regularly in her daily work <br/>
 Technical Knowledge: Basic computer skills, no programming knowledge 
 
@@ -158,7 +158,7 @@ Needs from the Documentation
 **Level 1**: Used for orientation and navigation <br/> 
 **Level 2**: often used for explanations and examples <br/>
 **Level 3**: Sometimes used for more information <br/>
-**Level 4**: Rarely / not used <br/> 
+**Level 4**: Not used / rarely used <br/> 
 
 
 ## Dos and Don'ts
@@ -174,7 +174,7 @@ Needs from the Documentation
 - Don't put too much information into the README, keep it relevant
 - Avoid personal tone (e.g. you, I)
 - It is not a documentation, it is an overview of a project / topic
-- Do not overload the README file with to many technical details 
+- Do not overload the README file with too many technical details 
 - Avoid writing a block of text without paragraphs / spacing 
 
 
