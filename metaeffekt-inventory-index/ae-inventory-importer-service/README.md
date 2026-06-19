@@ -14,7 +14,7 @@ The scheduler uses some properties during the process that can be configured in 
 
 #### Database URL
 
-The database URL describes, which database is used. This URL can be configured via the `II_DATABASE_URL` property in the env.rc file.
+The database URL describes which database is used. This URL can be configured via the `II_DATABASE_URL` property in the env.rc file.
 
 #### User name
 
@@ -27,7 +27,7 @@ The password for the database user can be configured via the `II_DATABASE_USER_P
 
 #### Batch size
 
-The batch size defines, how many inventories will be imported simultaneously and then persisted. By default, the batch size is set to 10.
+The batch size defines how many inventories will be imported simultaneously and then persisted. By default, the batch size is set to 10.
 It can be configured by setting the `II_SCHEDULER_BATCH_SIZE` property in the env.rc file.
 After each inventory batch is persisted, the materialized views are refreshed to ensure data consistency.
 
@@ -35,7 +35,7 @@ After each inventory batch is persisted, the materialized views are refreshed to
 
 The tenant ID property describes who the tenant of the inventories is.
 It can be configured by setting the `II_SCHEDULER_TENANT_ID` property in the env.rc file.
-With this same inventories can be imported if they have different tenants.
+With this, the same inventories can be imported if they have different tenants.
 
 
 #### Path

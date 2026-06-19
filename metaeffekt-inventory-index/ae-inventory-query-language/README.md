@@ -16,7 +16,7 @@ requested data will be filtered and retrieved from the database.
 
 A **filter expression** can be build using expressions.
 
-To summarize, a valid expressions can be built by:
+To summarize, a valid expression can be built by:
 
 * Any valid `clause`
 * Any expression build by a `NOT`, `AND` or `OR`

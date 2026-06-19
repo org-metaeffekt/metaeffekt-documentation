@@ -2,6 +2,9 @@
 
 ## Introduction
 
+
+
+
 One key feature of the Inventory Index is the efficient persistence of datasets. Therefor some technical solutions were considered.
 Those will be explained in more detail below.
 
@@ -37,13 +40,13 @@ When an entity, f.e. an artifact, vulnerability, asset or assessment has to be p
     + During this process, if another identical entity (same hash, same fields) is to be persisted, the new entity will not be stored in the map
       again if it's hash is already present in the map and the fields match.
 
-After all entities are been looped over and stored in the map, at the end of a transaction those are persisted to the database.
+After all entities have been looped over and stored in the map, at the end of a transaction those are persisted to the database.
 
 The persistence process has the following steps:
 
 * The database is checked for entities having the same hash as the entity to be persisted.
-* If their hash values are same, their field values are also compared (because two different entities could have the same hash).
-    * If their hashes and fields equal too, the UID of the first matching entity from the database is attached to the entity that is to be persisted
+* If their hash values are the same, their field values are also compared (because two different entities could have the same hash).
+    * If their hashes and fields are equal too, the UID of the first matching entity from the database is attached to the entity that is to be persisted
       and this entity does not get persisted.
 * In all other cases the entity is persisted.
 

@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-To use the application and its services, first the following prerequirements have to be fulfilled:
+To use the application and its services, first the following requirements have to be fulfilled:
 
 | Requirements | Description                                                                                                                          |
 |:-------------|:-------------------------------------------------------------------------------------------------------------------------------------|
-| **Postgres** | For importing and storing the data the inventory index by default uses a postres database (currently used version is 18.1).          |
+| **Postgres** | For importing and storing the data the inventory index by default uses a postgres database (currently used version is 18.1).          |
 | **Java**     | The application is developed with java 17 and therefor it must be installed to execute the resulting .jar file.                      |
 | **Maven**    | The application is build with Maven 3.9.11 to simplify the process of setting up the initial database schema, roles and permissions. |
 
@@ -32,13 +32,13 @@ If the schema already exists it first will be dropped. With the creation of the 
 
 #### Creating views
 
-All materialized and not materialized views will be created. If a views already exists with the same name, it will be replaced by the new one.
+All materialized and not materialized views will be created. If a view already exists with the same name, it will be replaced by the new one.
 
 #### Creating the user
 
 Creating the user includes the following steps:
 
-* Creating a database user with a name (if it already exists, it will be dropped first with all it's privileges)
+* Creating a database user with a name (if it already exists, it will be dropped first with all its privileges)
 * Granting access to the database
 * Granting privileges on the schema
 * Granting privileges on all tables in the schema
@@ -53,7 +53,7 @@ represents the client) first has to trust the servers certificate to be able to 
 #### Trusting the certificate
 
 To enable the certificate the user initially once has to visit the corresponding url in the browser and trust the certificate. After that the browser
-will trust the servers certificate and the user will be able to build send requests.
+will trust the servers certificate and the user will be able to build and send requests.
 The interaction between browser and backend runs over encrypted data using public/private keys.
 
 ## Configuration
@@ -66,20 +66,20 @@ Those properties are accessed by the importer service and query service as well 
 
 The properties are:
 
-| Property                                | Description                                                                                                       |
-|:----------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| **II_VERSION**                          | Defines the version of the executive jar file and application.                                                    |
-| **II_DATABASE_URL**                     | Defines the database url to connect with.                                                                         |
-| **II_DATABASE_USER_NAME**               | Defines the database user name. This user has limited permissions.                                                |
-| **II_DATABASE_USER_PASSWORD**           | Defines the database user password.                                                                               |
-| **II_DATABASE_ADMIN_NAME**              | Defines the database admin user name. This user has all required permissions.                                     |
-| **II_DATABASE_ADMIN_PASSWORD**          | Defines the database admin user password.                                                                         |
-| **II_TOKEN_ISSUER_TRUSTSTORE_PASSWORD** | Defines the trustore password bcause the token required to authenticate on the Inventory Query Service is signed. |
-| **II_SSL_KEYSTORE_PASSWORD**            | Defines the keystore password bcause the Inventory Query Service is configured to use SSL.                        |
-| **II_SCHEDULER_BATCH_SIZE**             | Defines the inventory batch size for persisting inventories.                                                      |
-| **II_SCHEDULER_INPUT_DIR**              | Defines the directory where the inventories to be persisted are located.                                          |
-| **II_SCHEDULER_TENANT_ID**              | Defines the tenant of the inventories.                                                                            |
-| **II_SCHEDULER_CRON**                   | Defines on which time periods the scheduler runs.                                                                 |
+| Property                                | Description                                                                                                          |
+|:----------------------------------------|:---------------------------------------------------------------------------------------------------------------------|
+| **II_VERSION**                          | Defines the version of the executive jar file and application.                                                       |
+| **II_DATABASE_URL**                     | Defines the database url to connect with.                                                                            |
+| **II_DATABASE_USER_NAME**               | Defines the database user name. This user has limited permissions.                                                   |
+| **II_DATABASE_USER_PASSWORD**           | Defines the database user password.                                                                                  |
+| **II_DATABASE_ADMIN_NAME**              | Defines the database admin user name. This user has all required permissions.                                        |
+| **II_DATABASE_ADMIN_PASSWORD**          | Defines the database admin user password.                                                                            |
+| **II_TOKEN_ISSUER_TRUSTSTORE_PASSWORD** | Defines the truststore password because the token required to authenticate on the Inventory Query Service is signed. |
+| **II_SSL_KEYSTORE_PASSWORD**            | Defines the keystore password because the Inventory Query Service is configured to use SSL.                          |
+| **II_SCHEDULER_BATCH_SIZE**             | Defines the inventory batch size for persisting inventories.                                                         |
+| **II_SCHEDULER_INPUT_DIR**              | Defines the directory where the inventories to be persisted are located.                                             |
+| **II_SCHEDULER_TENANT_ID**              | Defines the tenant of the inventories.                                                                               |
+| **II_SCHEDULER_CRON**                   | Defines on which time periods the scheduler runs.                                                                    |
 
 ### Importer Service
 

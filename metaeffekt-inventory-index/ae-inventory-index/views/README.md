@@ -10,7 +10,7 @@ type of the user to provide the requested data.
 
 The materialized views store the joined table data physically on the disk. In the inventory index they are used as "base views" on which bigger (non
 materialized) views are constructed.
-This concept has the advantage, that the key joins, which can get very large and inefficient depending on the size of the tables, don't have to be
+ ! This concept has the advantage that the key joins, which can get very large and inefficient depending on the size of the tables, don't have to be
 calculated with every access to the views. This increases the speed when querying views.
 
 ### Refresh of materialized views

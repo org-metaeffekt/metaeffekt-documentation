@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Inventory Query Service is responsible for exporting the endpoints from the backend and enabling a secure-client server interaction so that the
+The Inventory Query Service is responsible for exporting the endpoints from the backend and enabling a secure client-server interaction so that the
 client can send requests to the according endpoints and query the data from the database.
 
 ## Interfaces
@@ -10,7 +10,7 @@ client can send requests to the according endpoints and query the data from the 
 ### Endpoints
 
 Currently, the query service exports one endpoint which is the `query` endpoint.
-This endpoint allows the client to query for vulnerabilities and their related artifacts, assessments and assets and also for CPE's and their
+This endpoint allows the client to query for vulnerabilities and their related artifacts, assessments and assets and also for CPEs and their
 associated vulnerabilities and artifacts.
 
 ### Request Schema
@@ -92,14 +92,14 @@ The following JSON object represents an example request:
 }
 ```
 
-In this example `"vulnerabilityId"` is the field name of the view that holds the data for this particular request. In near future, the field names
+In this example `"vulnerabilityId"` is the field name of the view that holds the data for this particular request. In the near future, the field names
 will be adjusted to simplify the request for the user and prevent too technical field names.
 
 Note: The `""` gets escaped when converted from user input to JSON object to correctly parse the filterExpression in the service.
 
 #### Valid Fields To Filter By
 
-By creating a filter expression the database entities can be filtered. The fields to by filtered by are different, depending on which view id is used.
+By creating a filter expression the database entities can be filtered. The fields that can be filtered vary depending on which view id is used.
 Currently, these fields can be filtered by:
 
 `For the view id 'asset-vulnerability-assessment'`:
@@ -140,7 +140,7 @@ Same as for the view id 'asset-vulnerability-assessment' and additionally:
 
 ### Response Schema
 
-As a response of a clients request the server returns a JSON response object that includes the actual result with the inventory data and
+As a response to a clients request the server returns a JSON response object that includes the actual result with the inventory data and
 additional properties for paging purposes.
 The schema for the response object is as follows.
 
@@ -166,7 +166,7 @@ additional fields.
 For example the `ResultDTO` for the `asset-vulnerable-component` view contains all fields from the `asset-vulnerability-assessment` view `ResultDTO`
 and additionally includes fields for the CPE context, like `cpeProduct`, `cpeVendor` and more.
 
-Aside from those view dependant fields, every `ResultDTO` object contains a `detailsRefs` object.
+Aside from those view dependent fields, every `ResultDTO` object contains a `detailsRefs` object.
 This object includes four lists, that store the `details` id references for the resulting row.
 
 Those four lists are:
@@ -179,7 +179,7 @@ Those four lists are:
 | **assessmentDetailRef**    | ASM001     |
 
 This reference tracking is needed to prevent redundant saving of a whole details object in every `ResultDTO` that would lead to a large JSON object.
-Instead, only the id reference are tracked in the list and the real detail object exists only once in the corresponding map in the `details` object.
+Instead, only the id reference is tracked in the list and the real detail object exists only once in the corresponding map in the `details` object.
 
 ###### Details
 
