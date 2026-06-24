@@ -20,8 +20,6 @@ It is important to know for which of the levels a README is written because the 
 - **Level 3: Specialized topics with links to technical details** - see "Overall Structure"; can also include more detailed descriptions and examples 
 - **Level 4: Technical details and backgrounds** - see "Overall Structure" but can include more technical details and examples
 
-
-
 ## Persona Concept
 
 ### Jeff
@@ -177,10 +175,5 @@ Needs from the Documentation
 - Do not overload the README file with too many technical details 
 - Avoid writing a block of text without paragraphs / spacing 
 
-
 ## FAQ
-
-
-
-
 

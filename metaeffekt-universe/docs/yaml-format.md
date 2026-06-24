@@ -11,9 +11,8 @@ If possible, name directly derived from the license text.
 If not possible, try to find official name by searching for original website (or github, etc.) of the project/license
 
 ### *IMPORTANT:* 
-- ##### After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
-
-- ##### If you are choosing to delete a yaml and it has been already pushed to a repository before, make sure to add the canonicalName of the deleted item to the excluded canonical names list located at "src/main/resources/ae-terms-metadata/_external/history" and additionally give reasoning for the deletion in the dedicated documentation file
+-  After changing / adding a new canonicalName add them to the canonical name list. (currently located at: "src/main/resources/ae-terms-metadata/_external/history/all-canonical-names.txt")
+- If you are choosing to delete a yaml and it has been already pushed to a repository before, make sure to add the canonicalName of the deleted item to the excluded canonical names list located at "src/main/resources/ae-terms-metadata/_external/history" and additionally give reasoning for the deletion in the dedicated documentation file
   - this is not required if the yaml is only ignored
 
 - ##### After changing a canonicalName make sure that everything dependent on that name is adjusted as well:
@@ -29,6 +28,12 @@ Currently, the following special characters are not allowed:
 * \+ (is reserved for expressions)
 * , (is reserved for expressions)
 * mutated vowel (these will be supported in the future)
+
+Dates with year and month (and optionally with day) should be handled in the date and time notation of the USA, in brackets (YEAR-MONTH-DAY):
+    
+    Info-ZIP License (1997-10-05)
+    Info-ZIP License (2001-01-27)
+    
 
 Variants of a license include (<modifier>) in the canonical name:
 
@@ -88,7 +93,11 @@ shortName:
 
 
 #### Exceptions / Modifier - naming conventions
-* canonicalName: if the Exception or Modifier refers to a specific license or license group mention that license's shortName in brackets
+* canonicalName: if the Exception or Modifier refers to a specific license or license group mention that license's 
+  shortName in brackets. The license short name should be as precise as possible. Exceptions referring to the GPL must
+  be distinguished from exceptions being combined with a specific license version (only) or any later version.
+  This supports precise license / exception identification and allows more precise expression conclusion and the 
+  identification of combinatoric issues.
 
 * shortName: add the shortName of the license that the Exception or Modifier refers to at the end
 
@@ -607,7 +616,8 @@ The following characters *DO NOT HAVE TO BE ESCAPED*: @
 
 #### Semantics
 
-Indicates whether the license requires copyrights in the notice
+Indicates whether the license requires copyrights in the notice. In case the property is not set, the value is handled
+as implicit false.
 
 #### Example
 
@@ -617,7 +627,8 @@ Indicates whether the license requires copyrights in the notice
 
 DEFAULT: false
 
-If the license text states, that the copyright notice is required to be reproduced, included or published in the documentation, this should be set to true and if not to false.
+If the license text states, that the copyright notice is required to be reproduced, included or published in the 
+documentation, this should be set to true and if not to false.
 
 ---
 
@@ -680,6 +691,51 @@ Indicates whether the license requires a licenseTemplate (provision of the licen
 DEFAULT: null
 
 If the license text states, that any text is required to be reproduced, included or published in the notice, this should be set to true and if not to false.
+
+---
+
+### `standardVariableSet`
+
+#### Semantics
+
+Needs to be specified if `requiresLicenseText=true` and placeholders are used in the license template
+
+#### Example
+
+    requiresCopyright: true
+    requiresLicenseText: true
+    
+    [...]
+    
+    standardVariableSet:
+      copyrightHolderNoLiability: "THE COPYRIGHT HOLDER OR CONTRIBUTORS"
+      variable3rdClause: "the name of the copyright holder nor the names of its contributors"
+    
+    licenseTemplate: "<lq>Redistribution and use in source and binary forms, with or without
+                      modification, are permitted provided that the following conditions are met:
+                      <ol><li>Redistribution of source code must retain the above copyright notice, this
+                      list of conditions and the following disclaimer.</li>
+                      <li>Redistribution in binary form must reproduce the above copyright notice,
+                      this list of conditions and the following disclaimer in the documentation
+                      and/or other materials provided with the distribution.</li>
+                      <li>Neither {{variable3rdClause}} may
+                      be used to endorse or promote products derived from this software without
+                      specific prior written permission.</li></ol>
+                      <codeph>This software is provided \"AS IS,\" without a warranty of any kind. ALL
+                       EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING
+                       ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+                       OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. {{copyrightHolderNoLiability}} SHALL
+                       NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE
+                       AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS
+                       DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST
+                       REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL,
+                       INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY
+                       OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE,
+                       EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</codeph></lq>"
+
+#### Hints
+
+The placeholders are always in double brackets such as `{{variable3rdClause}}` or `{{copyrightHolderNoWarranty}}`.
 
 ---
 
@@ -771,8 +827,8 @@ HTML Tags need to be added:
 
 The licenseTemplate may contain variables. The variables must be filled in noticeParameter.
 
-VariableSyntax:
-licenseTemplate: "CONTENT {{variableName}} CONTENT"
+VariableSyntax: 
+`licenseTemplate: "CONTENT {{variableName}} CONTENT"`
 
 ---
 
