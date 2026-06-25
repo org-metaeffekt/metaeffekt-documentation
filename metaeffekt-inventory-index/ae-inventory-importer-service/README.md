@@ -2,9 +2,9 @@
 
 ## Introduction
 
-The Inventory Importer Service module implements a scheduler that is responsible for scanning the "input-inventories"
+The Inventory Importer Service module implements a scheduler that is responsible for searching files in the "input-inventories"
 directory that holds the inventories to be persisted. If an inventory is already imported, it will be skipped and not persisted in the database again.
-The folder may also have child folders f.e. to group the inventories (f.e. keycloak, openssl, ...).
+The folder may also have child folders f.e. to group the inventories by a specific category (f.e. keycloak, openssl, ...).
 
 ## Interfaces
 
@@ -83,9 +83,43 @@ The refresh of the materialized views happens at two moments during the schedule
 1. Once after a batch of inventories is persisted
 2. Once after all inventory batches are persisted
 
-### Processing approach
+## Processing approach
 
 The diagram below presents a compact and simplified view on the scheduler process:
 
 ![Scheduler process](docs/images/scheduler-process.svg)
 
+### Marker files
+
+During the scheduler process marker files are generated for each inventory file and used to save the import status of the file and some additional
+information about the import status.
+
+`Note`: A marker file is stored in the JSON format and located next to where the inventory file is located and has the same name as the inventory file
+with the additional file ending **.json**
+
+#### Marker data
+
+This data is stored in the marker files:
+
+| Data                       | Value type | Description                                                                                                         |
+|:---------------------------|:-----------|:--------------------------------------------------------------------------------------------------------------------|
+| **fileHash**               | String     | The file hash of the inventory file to check if the file has changed                                                |
+| **lastCheckTimestamp**     | Instant    | The timestamp of the last time the file was checked for import                                                      |
+| **importSuccessTimestamp** | Instant    | The timestamp of the first time the file was successfully imported/persisted                                        |
+| **currentStatus**          | Status     | The current status of the import. Can be either `IMPORTED` if the file was successfully imported otherwise `FAILED` |
+| **errorMessage**           | String     | The error message if the import of the file failed, otherwise if it was successful this will be null                |
+
+#### Checking if inventory import needs to be imported
+
+When the importer finds an inventory file, it first checks if the file is valid and needs to be imported. This is done by checking if a marker file
+for this inventory file exists. The following diagram shows the process of checking if an inventory has to be imported or not:
+
+![Scheduler process](docs/images/inventory-needs-to-be-imported-check.drawio.svg)
+
+`Note`: If an inventory is deleted from the database manually, the corresponding marker file also has to be deleted by hand. If not so, the importer
+will not import the same (unchanged) file because a marker file with the status `IMPORTED` and the same file hash already exists for this file.
+
+#### Updating markers after import
+
+Depending on the import status of the inventories, for each of them the marker file is updated with the new file hash, the import status and
+timestamp. In case the import fails, an error message is additionally saved to the marker file. 
