@@ -8,8 +8,8 @@ The underlying concept is to provide a terms database that enables a scanner to 
 
 ## {metæffekt} Kontinuum
 
-~~The {metæffekt} Kontinuum combines {metæffekt} software and content into a set of modules that enable automation of license compliance management and vulnerability monitoring.
-It features precise scanning, a comprehensive license database, and vulnerability assessment tools.~~
+The {metæffekt} Kontinuum combines {metæffekt} software and content into a set of modules that enable automation of license compliance management and vulnerability monitoring.
+It features precise scanning, a comprehensive license database, and vulnerability assessment tools.
 
 See for more details: [{metæffekt} Kontinuum](metaeffekt-kontinuum/README.md)
 
