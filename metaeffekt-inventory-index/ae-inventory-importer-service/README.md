@@ -37,7 +37,6 @@ The tenant ID property describes who the tenant of the inventories is.
 It can be configured by setting the `II_SCHEDULER_TENANT_ID` property in the env.rc file.
 With this, the same inventories can be imported if they have different tenants.
 
-
 #### Path
 
 The Path property describes where the inventories that have to be persisted are located.
@@ -51,6 +50,31 @@ The scheduler runs with a cron expression that defines the repeated execution ti
 For further information on how to create a cron expression visit https://crontab.cronhub.io/.
 By default, the scheduler runs every minute. Each minute it triggers the scheduler to run. If a scheduler from the minute before is still running, the
 new scheduler is skipped.
+
+#### assetKeyMappings
+
+The import process allows configuring a mapping for three asset keys, that map to the metaeffekt asset keys.
+The following table shows the mappable keys and the corresponding environment variables:
+
+| Metaeffekt asset key | Environment variable           | Description                                            |
+|:---------------------|:-------------------------------|:-------------------------------------------------------|
+| **externalAssetId**  | II_SCHEDULER_EXTERNAL_ASSET_ID | Maps the defined key to the metaeffekt externalAssetId | 
+| **externalViewId**   | II_SCHEDULER_EXTERNAL_VIEW_ID  | Maps the defined key to the metaeffekt externalViewId  | 
+| **pathInGroup**      | II_SCHEDULER_PATH_IN_GROUP     | Maps the defined key to the metaeffekt pathInGroup     |
+
+Each value of those variables can be a list of possible keys separated by comma, f.e. "Key1, Key 2, Key 3". Each comma separated elements will be seen
+as a String.
+In this example there are three Keys: "Key1", "Key 2" and "Key 3".
+The importer will map the first key in the list for that a value is found to the corresponding asset attribute. Here the order is relevant and defines
+the priority
+of the keys to be mapped.
+For the example list "Key1, Key 2, Key 3" for externalAssetId mapping the importer first would try to map Key1 to the externalAssetId.
+If the inventory has a corresponding "Key1" attribute in the asset sheet, the value would be returned and all other keys in the list would be
+ignored (even if those were valid too).
+If the inventory has no "Key1" asset attribute, the importer would try to find a "Key 2" attribute and so on. If the importer does not find any
+mappable element in the list, the value will be null.
+By default, each list of the three mentioned variables has the metaeffekt asset key as the first element. Any other key(s) can be defined by adding
+element(s) to the lists.
 
 ### Refresh of Materialized views
 
