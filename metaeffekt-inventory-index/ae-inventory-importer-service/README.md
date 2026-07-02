@@ -109,7 +109,7 @@ This data is stored in the marker files:
 | **currentStatus**          | Status     | The current status of the import. Can be either `IMPORTED` if the file was successfully imported otherwise `FAILED` |
 | **errorMessage**           | String     | The error message if the import of the file failed, otherwise if it was successful this will be null                |
 
-#### Checking if inventory import needs to be imported
+#### Checking if inventory needs to be imported
 
 When the importer finds an inventory file, it first checks if the file is valid and needs to be imported. This is done by checking if a marker file
 for this inventory file exists. The following diagram shows the process of checking if an inventory has to be imported or not:
