@@ -154,6 +154,12 @@ not:
 
 ![Inventory import check](docs/images/inventory-needs-to-be-imported-check.drawio.svg)
 
+In short: **If an inventory file has no marker yet or the marker has the status FAILED or the file hash changed, it needs to be imported, otherwise
+not.**
+
+This also means that if an inventory was deleted previously by the **delete task** it will not be imported again. (Unless its file hash changes, then
+it considered a new file and will be imported and the marker file will be overwritten.)
+
 `Note`: If an inventory is deleted from the database manually, the corresponding marker file also has to be deleted by hand. If not so, the importer
 will not import the same (unchanged file hash) file because a marker file with the status `IMPORTED` and the same file hash already exists for this
 file.
