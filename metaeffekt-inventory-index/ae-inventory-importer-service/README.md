@@ -15,7 +15,7 @@ openssl, ...).
 The **delete task** on the other hand is responsible for deleting inventories. This can be done by three rules:
 
 1. A maximum age: inventories older than a specified period (2 months, 34 days, 4 years, ...) will be deleted
-2. A list of project ids: inventories that are associated with a list of projects will be deleted
+2. A list of asset group ids: inventories that are associated with a list of asset groups will be deleted
 3. A list of paths: inventories with a specific path will be deleted.
 
 ## Interfaces
@@ -104,11 +104,11 @@ the env.rc file by setting the `II_DELETE_SCHEDULE` property.
 
 As mentioned before, inventories can be deleted depending on three different rules. Those are described in the following table:
 
-| Rule            | Environment variable             | Description                                                                             |
-|:----------------|:---------------------------------|:----------------------------------------------------------------------------------------|
-| **max age**     | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (f.e. older than 2 months) | 
-| **project ids** | II_DELETE_RULE_PROJECT_IDS       | Inventories with the specified (list of) project ids will be deleted                    | 
-| **paths**       | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                          |
+| Rule                | Environment variable             | Description                                                                             |
+|:--------------------|:---------------------------------|:----------------------------------------------------------------------------------------|
+| **max age**         | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (f.e. older than 2 months) | 
+| **asset group ids** | II_DELETE_RULE_ASSET_GROUP_IDS   | Inventories with the specified (list of) asset group ids will be deleted                | 
+| **paths**           | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                          |
 
 ### Refresh of Materialized views
 
