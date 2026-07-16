@@ -110,6 +110,29 @@ As mentioned before, inventories can be deleted depending on three different rul
 | **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted              | 
 | **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                          |
 
+### Query service
+
+The query service is responsible for processing user requests and loading the requested data from the database as a result.
+For better database error and problem handling three properties can be configured externally in the env.rc file that effect for example the timeout or
+the pool size of the database connection.
+
+#### Connection timeout
+
+The database connection timeout determines how long a thread waits when all connections in the pool are acquired and no one is available until one is
+available again.
+The time is specified in milliseconds and can the configured in the env.rc file by setting the `II_DATABASE_CONNECTION_TIMEOUT` property.
+
+#### Validation timeout
+
+The database connection timeout defines the waiting time for checking if a connection is valid. After the defined time (in milliseconds) the
+connection is regarded invalid.
+It can be configured in the env.rc file by setting the `II_DATABASE_VALIDATION_TIMEOUT` property.
+
+#### Max pool size
+
+The database max pool size defines the max number of connections in the pool.
+It can be configured in the env.rc file by setting the `II_DATABASE_MAX_POOL_SIZE` property.
+
 ### Refresh of Materialized views
 
 The refresh of the materialized views happens at two moments during the **import task**:
