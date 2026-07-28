@@ -16,6 +16,16 @@
 
 - [Inventory Scripting Language Reference](metaeffekt-inventory/inventory-scripting-language/README.md)
 
+## [{metæffekt} Inventory Index](metaeffekt-inventory-index/README.md)
+
+- [Inventory Importer Service](metaeffekt-inventory-index/ae-inventory-importer-service/README.md)
+- [Inventory Index Repository](metaeffekt-inventory-index/ae-inventory-index/README.md)
+  - [Persistence](metaeffekt-inventory-index/ae-inventory-index/persistence/README.md)
+  - [Views](metaeffekt-inventory-index/ae-inventory-index/views/README.md)
+- [Inventory Query Language (IQL)](metaeffekt-inventory-index/ae-inventory-query-language/README.md)
+- [Inventory Query Service](metaeffekt-inventory-index/ae-inventory-query-service/README.md)
+- [Installation Guide](metaeffekt-inventory-index/installation/README.md)
+
 ## [{metæffekt} Kontinuum](metaeffekt-kontinuum/README.md)
 
 
@@ -85,10 +95,14 @@
   - Formats
     - [Vulnerability Assessment Format](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/README.md)
       - [Application of Vulnerability Assessments](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-application.md)
+      - [Effective Assessment](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-effective-assessment.md)
+      - [False Positive Assessments](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-false-positive.md)
       - [Vulnerability Assessment (Version 1.0, Generation 3.x)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-3.md)
       - [Vulnerability Assessment (Version 2.0, Generation 4.x)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.0.md)
       - [Vulnerability Assessment (Version 2.1, Generation 4.x)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.1.md)
       - [Vulnerability Assessment (Version 2.2)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.2.md)
+      - [Vulnerability Assessment (Version 2.3)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.3.md)
+      - [Assessment Matching](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-matching.md)
       - [Assessment Format Upgrade Tool](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-upgrade-plugin.md)
     - [Content Identifiers](metaeffekt-vulnerability-management/technical-specifications/formats/content-identifiers.md)
     - [Correlation Transformer](metaeffekt-vulnerability-management/technical-specifications/formats/correlation-transformer.md)
