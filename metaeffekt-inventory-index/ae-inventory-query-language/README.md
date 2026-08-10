@@ -36,8 +36,8 @@ A `clause` can be build in three ways:
 
 | Clause                                  | Explaination                                           |
 |:----------------------------------------|:-------------------------------------------------------|
-| **field `_comparison_operator_` value** | comparing a field value to a given [value](#Value)     |
-| **field `_set_operator_` set**          | the field value is contained in the [set](#Set) or not |
+| **field `_comparison_operator_` value** | comparing a field value to a given [value](#value)     |
+| **field `_set_operator_` set**          | the field value is contained in the [set](#set) or not |
 | **field `_emptiness_operator_`**        | the field value is empty or null                       |
 
 The `field` name is currently written in camel case.
@@ -93,7 +93,7 @@ A `value` can have by of different types. The most common value types are:
 
 ### Set
 
-A `set` if defined as follows: `'(' ( value ( ',' value )* )? ')'` and allows creating a set of items of type [value](#Value) separated by comma (or
+A `set` if defined as follows: `'(' ( value ( ',' value )* )? ')'` and allows creating a set of items of type [value](#value) separated by comma (or
 an empty set).
 
 Examples:

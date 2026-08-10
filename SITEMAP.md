@@ -16,6 +16,16 @@
 
 - [Inventory Scripting Language Reference](metaeffekt-inventory/inventory-scripting-language/README.md)
 
+## [{metæffekt} Inventory Index](metaeffekt-inventory-index/README.md)
+
+- [Inventory Importer Service](metaeffekt-inventory-index/ae-inventory-importer-service/README.md)
+- [Inventory Index Repository](metaeffekt-inventory-index/ae-inventory-index/README.md)
+  - [Persistence](metaeffekt-inventory-index/ae-inventory-index/persistence/README.md)
+  - [Views](metaeffekt-inventory-index/ae-inventory-index/views/README.md)
+- [Inventory Query Language (IQL)](metaeffekt-inventory-index/ae-inventory-query-language/README.md)
+- [Inventory Query Service](metaeffekt-inventory-index/ae-inventory-query-service/README.md)
+- [Installation Guide](metaeffekt-inventory-index/installation/README.md)
+
 ## [{metæffekt} Kontinuum](metaeffekt-kontinuum/README.md)
 
 
@@ -62,6 +72,7 @@
 - [Reports](metaeffekt-vulnerability-management/reports/README.md)
   - [{metæffekt} Inventory Overview Report](metaeffekt-vulnerability-management/reports/inventory-overview-report/README.md)
     - [Inventory Overview Report: Notifications](metaeffekt-vulnerability-management/reports/inventory-overview-report/notifications.md)
+    - [Inventory Overview Report: URL Patterns](metaeffekt-vulnerability-management/reports/inventory-overview-report/url-patterns.md)
   - [{metæffekt} Vulnerability Assessment Dashboard](metaeffekt-vulnerability-management/reports/vulnerability-assessment-dashboard/README.md)
     - Concepts
       - [Concept: Due Review](metaeffekt-vulnerability-management/reports/vulnerability-assessment-dashboard/concepts/due-review.md)
