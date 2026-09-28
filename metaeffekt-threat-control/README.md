@@ -40,6 +40,19 @@ the System Model required to express the relationships between assets, capabilit
 * Enable associating identified vulnerabilities with threats.
 * Prioritize vulnerabilities in the context of the threats they contribute to.
 
+## Documents
+
+* **[Universal Assessment Vector (UAV)](universal-assessment-vector.md)**, the assessment
+  vector itself. Part I defines the three aspects (impacts, protects, demands), the twelve
+  metrics, and how they map onto the source frameworks: CIA, the Parkerian Hexad, BSI
+  IT-Grundschutz, ISO/IEC 27000, CWE/CAPEC, ATT&CK and CVSS. Part II specifies the vector
+  string, the value scale, and the comparison operators that relate one aspect to another.
+* **[Threat-based Prioritization of Vulnerabilities](threat-prioritization.md)**, the
+  evaluation pipeline in eight steps. It defines how the impact statement of each entity on a
+  threat-vulnerability path is converted into a UAV, how those vectors are propagated along
+  the path and aggregated per threat, and how the resulting path scores are reduced to the
+  threat-based contribution to a vulnerability's priority score.
+
 ## Additional Concepts
 
 ### Threat Catalogs
@@ -77,11 +90,16 @@ several ways to navigate from the threat to the vulnerability; each of these is 
 A score can be computed for each threat-vulnerability path, quantifying the assessment along that path. The score may
 also express that, at the level of the impact assessment, the vulnerability does not contribute to the threat.
 
+The computation is specified in
+[Threat-based Prioritization of Vulnerabilities](threat-prioritization.md#evaluation-pipeline).
+
 ### Threat-Based Priority Score Contribution
 
 A vulnerability may contribute to several threats, and each threat-vulnerability pair may be connected by several
 paths in the graph. To reflect the threat-based evaluation in the priority of a vulnerability, the path scores are
-combined into a single threat-based contribution to the overall priority score.
+combined into a single threat-based contribution to the overall priority score. The rules reducing several paths and
+several threats to that single contribution are given under
+[From Paths to `x`](threat-prioritization.md#from-paths-to-x).
 
 See
 also [Priority Score System](../metaeffekt-vulnerability-management/technical-specifications/algorithms-calculations/priority-score/priority-score-system.md).
@@ -94,7 +112,8 @@ version 1.0) to assess aspects of impact, protection, and demand.
 The vector is universal in the sense that its metric set is extensible. It is intended to cover all metrics 
 relevant to an assessment, and new metrics can be added as further aspects need to be assessed.
 
-See XXX.
+The metrics, the vector string and its values are defined in
+[Universal Assessment Vector (UAV)](universal-assessment-vector.md).
 
 The UAV is a fundamental concept in the Four Domain Model and is specifically designed to enable different 
 assessment and evaluation use cases:
@@ -110,4 +129,7 @@ assessment and evaluation use cases:
 * **Quantification** - To what extent does a vulnerability contribute to one or more threats, and to the overall
   priority of the vulnerability?
 
-See YYY.
+The three aspects and the [comparison operators](universal-assessment-vector.md#comparison-operators) behind the
+protection gap analysis are described in
+[Universal Assessment Vector (UAV)](universal-assessment-vector.md#the-three-aspects); the quantification case is
+covered by [Threat-based Prioritization of Vulnerabilities](threat-prioritization.md).
