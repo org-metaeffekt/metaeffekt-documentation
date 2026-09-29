@@ -49,6 +49,10 @@
     - [EOL (endoflife.date)](metaeffekt-vulnerability-management/data-mirror/data-sources/eol/README.md)
       - [EOL Data](metaeffekt-vulnerability-management/data-mirror/data-sources/eol/eol-data-specific-cycles.md)
       - [EOL Date Data](metaeffekt-vulnerability-management/data-mirror/data-sources/eol/understanding-data.md)
+    - [EUVD (European Union Vulnerability Database)](metaeffekt-vulnerability-management/data-mirror/data-sources/euvd/README.md)
+      - [EUVD and EU KEV Issues (Summary)](metaeffekt-vulnerability-management/data-mirror/data-sources/euvd/euvd-issues-summary.md)
+      - [EUVD and EU KEV Issues](metaeffekt-vulnerability-management/data-mirror/data-sources/euvd/euvd-issues.md)
+      - [EUVD](metaeffekt-vulnerability-management/data-mirror/data-sources/euvd/understanding-data.md)
     - [MSRC (Microsoft Security Response Center)](metaeffekt-vulnerability-management/data-mirror/data-sources/msrc/README.md)
       - [Finding Microsoft Product Ids](metaeffekt-vulnerability-management/data-mirror/data-sources/msrc/finding-microsoft-product-ids.md)
       - [Microsoft Product Patches](metaeffekt-vulnerability-management/data-mirror/data-sources/msrc/msrc-product-kbs.md)
@@ -93,6 +97,8 @@
     - [Inventory Merger (flatten vulnerabilities)](metaeffekt-vulnerability-management/technical-specifications/algorithms-calculations/inventory-merger.md)
     - [Introduction](metaeffekt-vulnerability-management/technical-specifications/algorithms-calculations/parsing-effective-cpe.md)
     - [Version Comparator](metaeffekt-vulnerability-management/technical-specifications/algorithms-calculations/version-comparator.md)
+  - Exploitability Label
+    - [Note](metaeffekt-vulnerability-management/technical-specifications/exploitability-label/note.md)
   - Formats
     - [Vulnerability Assessment Format](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/README.md)
       - [Application of Vulnerability Assessments](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-application.md)
