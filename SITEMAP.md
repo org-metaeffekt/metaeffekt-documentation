@@ -32,6 +32,11 @@
 ## [{metæffekt} Portfolio Manager](metaeffekt-portfolio-manager/README.md)
 
 
+## [{metæffekt} Threats & Controls](metaeffekt-threat-control/README.md)
+
+- [Threat-based Prioritization of Vulnerabilities](metaeffekt-threat-control/threat-prioritization.md)
+- [Universal Assessment Vector (UAV)](metaeffekt-threat-control/universal-assessment-vector.md)
+
 ## [{metæffekt} Universe](metaeffekt-universe/README.md)
 
 - Docs

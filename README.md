@@ -52,6 +52,15 @@ The {metæffekt} Inventory Index is an indexer application for persisting invent
 
 For detailed information see: [{metæffekt} Inventory Index](metaeffekt-inventory-index/README.md)
 
+## {metæffekt} Threats & Controls
+
+The {metæffekt} Four Domain Model establishes a formal basis for assessing threats and vulnerabilities across
+vulnerability assessments, threat assessments, the system model and verification activities.
+It associates identified vulnerabilities with the threats they contribute to and prioritizes them in that context,
+using the Universal Assessment Vector as the shared vocabulary for impacts, protection and protection demands.
+
+Find more information on: [{metæffekt} Threats & Controls](metaeffekt-threat-control/README.md).
+
 ## Important Links
 
 - Links to a series of projects and resources containing additional information can be found under [important-links.md](important-links.md).
