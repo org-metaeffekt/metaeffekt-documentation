@@ -49,6 +49,8 @@
   - [Vulnerability Mirror Data Sources](metaeffekt-vulnerability-management/data-mirror/data-sources/README.md)
     - [CSAF (Common Security Advisory Framework)](metaeffekt-vulnerability-management/data-mirror/data-sources/csaf/README.md)
       - [Why no Log4J in CSAF?](metaeffekt-vulnerability-management/data-mirror/data-sources/csaf/missinglog4j.md)
+    - [Custom Vulnerabilities](metaeffekt-vulnerability-management/data-mirror/data-sources/custom-vuln/README.md)
+      - [CycloneDX: Vulnerability Disclosure Report (VDR)](metaeffekt-vulnerability-management/data-mirror/data-sources/custom-vuln/vdr.md)
     - [EOL (endoflife.date)](metaeffekt-vulnerability-management/data-mirror/data-sources/eol/README.md)
       - [EOL Data](metaeffekt-vulnerability-management/data-mirror/data-sources/eol/eol-data-specific-cycles.md)
       - [EOL Date Data](metaeffekt-vulnerability-management/data-mirror/data-sources/eol/understanding-data.md)
