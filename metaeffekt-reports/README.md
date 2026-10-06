@@ -6,30 +6,29 @@ This document describes all fields and parameters that can be configured using a
 
 These are the top-level fields for a document descriptor.
 
-| Field | Type | Default | Description | Example                    |
-| :--- | :--- | :--- | :--- |:---------------------------|
-| `identifier` | String | (Derived from key) | The identifier of the document, used to distinguish between multiple documents when creating bookMaps in the target report directory. | `"ae-example"`             |
-| `documentParts` / `parts` | List/Map | - | Defines the document parts that make up the structure and content of this document. | `[ ... ]`                  |
+| Field | Type | Default | Description                                                                                                                                      | Example                    |
+| :--- | :--- | :--- |:-------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------|
+| `identifier` | String | (Derived from key) | The identifier of the document, used to distinguish between multiple documents when creating bookMaps in the target report directory.            | `"ae-example"`             |
+| `documentParts` / `parts` | List/Map | - | Defines the document parts that make up the structure and content of this document.                                                              | `[ ... ]`                  |
 | `documentType` / `type` | String | - | Representation of the document type (e.g., `VULNERABILITY_REPORT`, `LICENSE_DOCUMENTATION`). Different types trigger different validation rules. | `"VULNERABILITY_REPORT"`   |
-| `params` | Map | `{}` | Document-level parameters to control structure, content, formatting, or feature toggles. See [Parameters Configuration](#parameters-configuration) for the exhaustive list. | `{ reportLanguage: "de" }` |
-| `language` | String | `"en"` | The language in which the document should be produced. | `"de"`                     |
-| `targetDocumentDir` | File path | - | The target directory for the report output. If not provided, it is usually inferred by the generation plugin. | `"target/reports"`         |
-| `basePath` | String | - | The base path specified in the asset descriptor for resolving relative paths of inventories and other files. | `.`                        |
+| `params` | Map | `{}` | Document-level parameters to control structure, content, formatting, or feature toggles. See "Parameters Configuration" for the exhaustive list.   | `{ reportLanguage: "de" }` |
+| `language` | String | `"en"` | The language in which the document should be produced.                                                                                           | `"de"`                     |
+| `targetDocumentDir` | File path | - | The target directory for the report output. If not provided, it is usually inferred by the generation plugin.                                    | `"target/reports"`         |
+| `basePath` | String | - | The base path specified in the asset descriptor for resolving relative paths of inventories and other files.                                     | `.`                        |
 
 ## Document Part Fields (`parts`)
 
 These fields define individual structural parts of a document.
 
-| Field | Type | Default | Description | Example                                              |
-| :--- | :--- | :--- | :--- |:-----------------------------------------------------|
-| `identifier` | String | (Derived from key) | Unique identifier for the part. Must contain only alphanumeric characters, hyphens, and underscores. | `"statistics-report"`                                |
-| `inventoryContexts` / `inventories` | List | - | List of inventory contexts to be processed in this report part. Defines which inventory data is fed into the report. | `[ { inventoryRef: "ae-example" } ]`                 |
-| `documentPartType` / `type` | String | - | The type of the document part (e.g., `VULNERABILITY_STATISTICS_REPORT`, `ANNEX`, `INITIAL_LICENSE_DOCUMENTATION`). | `"VULNERABILITY_STATISTICS_REPORT"`                  |
-| `params` | Map | `{}` | Part-level parameters. Overwrites any conflicting parameters defined at the Document level. See [Parameters Configuration](#parameters-configuration). | `{ includeAssessedColumnInOverviewTables: "false" }` |
+| Field | Type | Default | Description                                                                                                                 | Example                                              |
+| :--- | :--- | :--- |:----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
+| `identifier` | String | (Derived from key) | Unique identifier for the part. Must contain only alphanumeric characters, hyphens, and underscores.                        | `"statistics-report"`                                |
+| `inventoryContexts` / `inventories` | List | - | List of inventory contexts to be processed in this report part. Defines which inventory data is fed into the report.        | `[ { inventoryRef: "ae-example" } ]`                 |
+| `documentPartType` / `type` | String | - | The type of the document part (e.g., `VULNERABILITY_STATISTICS_REPORT`, `ANNEX`, `INITIAL_LICENSE_DOCUMENTATION`).          | `"VULNERABILITY_STATISTICS_REPORT"`                  |
+| `params` | Map | `{}` | Part-level parameters. Overwrites any conflicting parameters defined at the Document level. See "Parameters Configuration". | `{ includeAssessedColumnInOverviewTables: "false" }` |
 
 ---
 
-<a name="parameters-configuration"></a>
 ## Parameters Configuration (`params`)
 
 The following parameters can be set within the `params` section of an asset descriptor (for both `documents` and `parts`). Parameters defined at the `document` level are automatically merged with parameters defined at the `part` level (with part-level parameters taking precedence).
