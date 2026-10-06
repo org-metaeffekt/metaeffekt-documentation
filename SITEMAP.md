@@ -32,6 +32,9 @@
 ## [{metæffekt} Portfolio Manager](metaeffekt-portfolio-manager/README.md)
 
 
+## [Asset Descriptor Report Parameters](metaeffekt-reports/README.md)
+
+
 ## [{metæffekt} Universe](metaeffekt-universe/README.md)
 
 - Docs
