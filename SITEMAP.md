@@ -102,8 +102,6 @@
     - [Inventory Merger (flatten vulnerabilities)](metaeffekt-vulnerability-management/technical-specifications/algorithms-calculations/inventory-merger.md)
     - [Introduction](metaeffekt-vulnerability-management/technical-specifications/algorithms-calculations/parsing-effective-cpe.md)
     - [Version Comparator](metaeffekt-vulnerability-management/technical-specifications/algorithms-calculations/version-comparator.md)
-  - Exploitability Label
-    - [Note](metaeffekt-vulnerability-management/technical-specifications/exploitability-label/note.md)
   - Formats
     - [Vulnerability Assessment Format](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/README.md)
       - [Application of Vulnerability Assessments](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-application.md)
