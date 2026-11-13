@@ -112,6 +112,7 @@
       - [Vulnerability Assessment (Version 2.1, Generation 4.x)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.1.md)
       - [Vulnerability Assessment (Version 2.2)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.2.md)
       - [Vulnerability Assessment (Version 2.3)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.3.md)
+      - [Vulnerability Assessment (Version 2.4)](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-file-gen-4-2.4.md)
       - [Assessment Matching](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-matching.md)
       - [Assessment Format Upgrade Tool](metaeffekt-vulnerability-management/technical-specifications/formats/assessment/vulnerability-assessment-upgrade-plugin.md)
     - [Inventory Format](metaeffekt-vulnerability-management/technical-specifications/formats/inventory/README.md)
