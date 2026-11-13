@@ -64,7 +64,7 @@ This is necessary because with each time a new index is built all data from the 
 As a consequence, existing marker files with the status `IMPORTED` are invalid and thus have to be ignored when the import task
 runs after the index is rebuilt.
 The index timestamp property can be configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
-It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`. 
+It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`.
 
 `Note:`The timestamp must be defined in the UTC time (zulu time).
 
@@ -132,9 +132,16 @@ As mentioned before, inventories can be deleted depending on three different rul
 | **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted              | 
 | **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                          |
 
-`Note:` An empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will by default converted to an empty list. 
-Besides this, currently it is not recommended to modify the rules after the index is build and the index timestamp is defined because this 
-may lead to importing inventories again that are deleted or already imported. This will be fixed in the next version. 
+`Note:` An empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will by default converted to an empty list.
+
+Besides this, currently it is not recommended to modify the deletion rules after the index is build and the **index timestamp** is defined at that
+time.
+The reason for this is that it can lead to ignore importing inventory candidates with existing markers (that now should be imported depending on the
+deletion rule) because any marker having an **import timestamp** laying after the **index timestamp** will be considered to not be imported.
+This is due to the fact that a marker file for that inventory candidate already exists and that inventory is (according to the deletion rule defined
+when the index was build the last time and the **index timestamp** was set) either already imported (marked IMPORTED) or was imported
+and then deleted (marked DELETED).
+This will be fixed in the next version.
 
 ### Query service
 
