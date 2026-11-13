@@ -64,7 +64,9 @@ This is necessary because with each time a new index is built all data from the 
 As a consequence, existing marker files with the status `IMPORTED` are invalid and thus have to be ignored when the import task
 runs after the index is rebuilt.
 The index timestamp property can be configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
-It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`.
+It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`. 
+
+`Note:`The timestamp must be defined in the UTC time (zulu time).
 
 #### Batch size
 
@@ -129,6 +131,10 @@ As mentioned before, inventories can be deleted depending on three different rul
 | **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (f.e. older than 2 months) | 
 | **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted              | 
 | **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                          |
+
+`Note:` An empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will by default converted to an empty list. 
+Besides this, currently it is not recommended to modify the rules after the index is build and the index timestamp is defined because this 
+may lead to importing inventories again that are deleted or already imported. This will be fixed in the next version. 
 
 ### Query service
 
