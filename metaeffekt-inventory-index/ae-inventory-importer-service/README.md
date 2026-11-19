@@ -66,7 +66,8 @@ runs after the index is rebuilt. Those marker files then will be overwritten by 
 The index timestamp property is configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
 It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`.
 
-`Note:`The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur.
+`Note:`The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur. 
+To prevent this, it can be configured with the default “1970-01-01T00:00:00Z”.
 
 #### Batch size
 
