@@ -10,6 +10,8 @@ It consists of four modules having a dedicated focus:
 * the definition of the inventory query language, and
 * the query service REST endpoints.
 
+**This documentation is up to date for the current release 1.0.1**
+
 ## Concept and Focus
 
 The main focus for the {metæffekt} Inventory Index is to efficiently store inventory data into a database and prevent data redundancy.

@@ -60,13 +60,13 @@ The password for the database user can be configured via the `II_DATABASE_USER_P
 
 The index timestamp defines, when the index was build the last time and is used during the import process (when checking if
 the inventory needs to be imported or not) to ignore all marker files having an import timestamp older than the index timestamp.
-This is necessary because with each time a new index is built all data from the database gets cleared, and it is empty again.
+This is necessary because each time a new index is built all data from the database gets cleared, and it is empty again.
 As a consequence, existing marker files with the status `IMPORTED` are invalid and thus have to be ignored when the import task
-runs after the index is rebuilt.
-The index timestamp property can be configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
+runs after the index is rebuilt. Those marker files then will be overwritten by the new ones.
+The index timestamp property is configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
 It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`.
 
-`Note:`The timestamp must be defined in the UTC time (zulu time).
+`Note:`The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur.
 
 #### Batch size
 
@@ -122,17 +122,19 @@ The **delete task** uses properties that are necessary for deleting the inventor
 Like the **import task** the **delete task** also is started by a scheduler that runs with a predefined cron. Its execution time can be configured in
 the env.rc file by setting the `II_DELETE_SCHEDULE` property.
 
-#### Rules
+#### Deletion rules
 
-As mentioned before, inventories can be deleted depending on three different rules. Those are described in the following table:
+As mentioned before, inventories can be deleted by defining three different rules. Those are described in the following table:
 
-| Rule                  | Environment variable             | Description                                                                             |
-|:----------------------|:---------------------------------|:----------------------------------------------------------------------------------------|
-| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (f.e. older than 2 months) | 
-| **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted              | 
-| **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                          |
+| Rule                  | Environment variable             | Description                                                                                                                                                                                              |
+|:----------------------|:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (f.e. older than 2 months)<br/> The max age has to be defined in human readable format, such as f.e. 1 day, 30 minutes, 6 months and so on. | 
+| **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted (currently not fully functional)                                                                                              | 
+| **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                                                                                                                                           |
 
-`Note:` An empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will by default converted to an empty list.
+After the inventory candidates for the specified rules are deleted, the marker files for them will update their status to "DELETED".
+
+`Note:` An empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will by default be converted to an empty list.
 
 Besides this, currently it is not recommended to modify the deletion rules after the index is build and the **index timestamp** is defined at that
 time.
