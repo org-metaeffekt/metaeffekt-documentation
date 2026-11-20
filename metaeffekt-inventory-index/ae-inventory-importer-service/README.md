@@ -9,7 +9,7 @@ The **import task** is responsible for searching inventory files in the `input d
 The inventories are collected in batches with a predefined size and imported in batches.
 If an inventory is already imported or was deleted before by the **delete task** and its file hashes did not change, it will be skipped and not
 persisted in the database again.
-The `input dir` can have subdirectories f.e. to group the inventories by a specific category (f.e. keycloak, openssl, ...).
+The `input dir` can have subdirectories e.g. to group the inventories by a specific category (e.g. keycloak, openssl, ...).
 
 The **delete task** on the other hand is responsible for deleting inventories. This can be done by three rules:
 
@@ -58,17 +58,17 @@ The password for the database user can be configured via the `II_DATABASE_USER_P
 
 #### Index timestamp
 
-The index timestamp defines, when the index was build the last time and is used during the import process (when checking if
+The index timestamp defines when the index was built the last time and is used during the import process (when checking if
 the inventory needs to be imported or not) to ignore all marker files having an import timestamp older than the index timestamp.
 This is necessary because each time a new index is built all data from the database gets cleared, and it is empty again.
 As a consequence, existing marker files with the status `IMPORTED` are invalid and thus have to be ignored when the import task
 runs after the index is rebuilt. Those marker files then will be overwritten by the new ones.
 Therefore, the value for the index timestamp must always be set and represent the time when the index was built the last time. 
-Otherwise, markers could exist that do not respresent the actual status of the inventory file leading to inconsistant information.
+Otherwise, markers could exist that do not represent the actual status of the inventory file, leading to inconsistent information.
 The index timestamp property is configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
-It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`.
+It can be defined using the `ISO-8601` format, e.g. `2026-11-02T11:00:00Z`.
 
-`Note:`The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur.
+`Note:` The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur.
 To prevent this, it can be configured with the default “1970-01-01T00:00:00Z”.
 
 #### Batch size
@@ -102,7 +102,7 @@ The following table shows the mappable keys and the corresponding environment va
 | **externalViewId**   | II_IMPORT_ASSET_KEY_MAPPING_EXTERNAL_VIEW_ID  | Maps the defined key to the metaeffekt externalViewId  | 
 | **pathInGroup**      | II_IMPORT_ASSET_KEY_MAPPING_PATH_IN_GROUP     | Maps the defined key to the metaeffekt pathInGroup     |
 
-Each value of those variables can be a list of possible keys separated by comma, f.e. `"Key1, Key 2, Key 3"`. Each comma separated elements will be
+Each value of those variables can be a list of possible keys separated by comma, e.g. `"Key1, Key 2, Key 3"`. Each comma separated elements will be
 seen
 as a string element in the list (including whitespaces).
 In this example there are three Keys: `"Key1"`, `"Key 2"` and `"Key 3"`.
@@ -131,7 +131,7 @@ As mentioned before, inventories can be deleted by defining three different rule
 
 | Rule                  | Environment variable             | Description                                                                                                                                                                                              |
 |:----------------------|:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (f.e. older than 2 months)<br/> The max age has to be defined in human readable format, such as f.e. 1 day, 30 minutes, 6 months and so on. | 
+| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (e.g. older than 2 months)<br/> The max age has to be defined in human readable format, such as e.g. 1 day, 30 minutes, 6 months and so on. | 
 | **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted (currently not fully functional)                                                                                              | 
 | **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                                                                                                                                           |
 
