@@ -63,10 +63,12 @@ the inventory needs to be imported or not) to ignore all marker files having an 
 This is necessary because each time a new index is built all data from the database gets cleared, and it is empty again.
 As a consequence, existing marker files with the status `IMPORTED` are invalid and thus have to be ignored when the import task
 runs after the index is rebuilt. Those marker files then will be overwritten by the new ones.
+Therefore, the value for the index timestamp must always be set and represent the time when the index was built the last time. 
+Otherwise, markers could exist that do not respresent the actual status of the inventory file leading to inconsistant information.
 The index timestamp property is configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
 It can be defined using the `ISO-8601` format, f.e. `2026-11-02T11:00:00Z`.
 
-`Note:`The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur. 
+`Note:`The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur.
 To prevent this, it can be configured with the default “1970-01-01T00:00:00Z”.
 
 #### Batch size
