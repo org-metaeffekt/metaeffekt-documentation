@@ -5,12 +5,11 @@
 The Inventory Importer Service module implements two schedulers that are responsible for importing (**import task**) and deleting (**delete task**)
 inventories with a specified cron.
 
-The **import task** is responsible for searching inventory files in the "input-inventories" directory and to import and persist them.
+The **import task** is responsible for searching inventory files in the `input dir` directory and importing them.
 The inventories are collected in batches with a predefined size and imported in batches.
 If an inventory is already imported or was deleted before by the **delete task** and its file hashes did not change, it will be skipped and not
 persisted in the database again.
-The folders under the "input-inventories" directory may also have child folders f.e. to group the inventories by a specific category (f.e. keycloak,
-openssl, ...).
+The `input dir` can have subdirectories e.g. to group the inventories by a specific category (e.g. keycloak, openssl, ...).
 
 The **delete task** on the other hand is responsible for deleting inventories. This can be done by three rules:
 
@@ -22,6 +21,23 @@ The **delete task** on the other hand is responsible for deleting inventories. T
 
 Both scheduled tasks use properties during the process that can be configured in the env.rc file. Those are described for both task in the following
 sections.
+
+### Shared Used Properties
+
+The following two properties are used by both, the **import task** and **delete task**.
+
+#### Input Dir
+
+The Input Dir property specifies the directory where the inventories that have to be persisted are located.
+It can be configured by setting the `II_INPUT_DIR` property in the env.rc file.
+The inventories can be located directly under the input dir or under subdirectories. Symlinks are also supported.
+
+`Note:` When working with symlinks, cycles are also detected. If a cycle is detected, the import task will terminate.
+
+#### Marker Dir
+
+The Marker Dir property defines the directory where the marker files for each inventory should be generated and stored.
+It can be configured by setting the `II_MARKER_DIR` property in the env.rc file.
 
 ### Import task
 
@@ -40,6 +56,21 @@ the setup process and has limited permissions.
 
 The password for the database user can be configured via the `II_DATABASE_USER_PASSWORD` property in the env.rc file.
 
+#### Index timestamp
+
+The index timestamp defines when the index was built the last time and is used during the import process (when checking if
+the inventory needs to be imported or not) to ignore all marker files having an import timestamp older than the index timestamp.
+This is necessary because each time a new index is built all data from the database gets cleared, and it is empty again.
+As a consequence, existing marker files with the status `IMPORTED` are invalid and thus have to be ignored when the import task
+runs after the index is rebuilt. Those marker files then will be overwritten by the new ones.
+Therefore, the value for the index timestamp must always be set and represent the time when the index was built the last time. 
+Otherwise, markers could exist that do not represent the actual status of the inventory file, leading to inconsistent information.
+The index timestamp property is configured via the `II_IMPORT_INDEX_TIMESTAMP` property in the env.rc file.
+It can be defined using the `ISO-8601` format, e.g. `2026-11-02T11:00:00Z`.
+
+`Note:` The timestamp must be defined in the UTC time (zulu time). If it is not defined an error will occur.
+To prevent this, it can be configured with the default “1970-01-01T00:00:00Z”.
+
 #### Batch size
 
 The batch size defines how many inventories will be imported simultaneously and then persisted. By default, the batch size is set to 10.
@@ -52,16 +83,10 @@ The tenant ID property describes who the tenant of the inventories is.
 It can be configured by setting the `II_IMPORT_DEFAULT_TENANT_ID` property in the env.rc file.
 With this, the same inventory can be persisted multiple times with different tenants.
 
-#### Path
+#### Schedule
 
-The Path property defines the directory where the inventories that have to be persisted are located.
-It can be configured by setting the `II_IMPORT_INPUT_DIR` property in the env.rc file.
-The inventories can be located directly under the input directory or also under child folders of the input directory.
-
-#### Cron
-
-The scheduler runs with a cron expression that defines the repeated execution time and can be configured in the env.rc file by setting the
-`II_IMPORT_SCHEDULE` property.
+The scheduler used in the **import task** runs with a cron expression that defines the repeated execution time and can be
+configured in the env.rc file by setting the`II_IMPORT_SCHEDULE` property.
 For further information on how to create a cron expression visit https://crontab.cronhub.io/.
 For Example if the scheduler runs every minute, each minute it triggers the **import task** to run. If a scheduler that has started the **import task
 ** from the minute before is still running, the new scheduler is skipped.
@@ -77,7 +102,7 @@ The following table shows the mappable keys and the corresponding environment va
 | **externalViewId**   | II_IMPORT_ASSET_KEY_MAPPING_EXTERNAL_VIEW_ID  | Maps the defined key to the metaeffekt externalViewId  | 
 | **pathInGroup**      | II_IMPORT_ASSET_KEY_MAPPING_PATH_IN_GROUP     | Maps the defined key to the metaeffekt pathInGroup     |
 
-Each value of those variables can be a list of possible keys separated by comma, f.e. `"Key1, Key 2, Key 3"`. Each comma separated elements will be
+Each value of those variables can be a list of possible keys separated by comma, e.g. `"Key1, Key 2, Key 3"`. Each comma separated elements will be
 seen
 as a string element in the list (including whitespaces).
 In this example there are three Keys: `"Key1"`, `"Key 2"` and `"Key 3"`.
@@ -95,20 +120,33 @@ element(s) to the lists.
 
 The **delete task** uses properties that are necessary for deleting the inventories.
 
-#### Cron
+#### Schedule
 
 Like the **import task** the **delete task** also is started by a scheduler that runs with a predefined cron. Its execution time can be configured in
 the env.rc file by setting the `II_DELETE_SCHEDULE` property.
 
-#### Rules
+#### Deletion rules
 
-As mentioned before, inventories can be deleted depending on three different rules. Those are described in the following table:
+As mentioned before, inventories can be deleted by defining three different rules. Those are described in the following table:
 
-| Rule                  | Environment variable             | Description                                                                             |
-|:----------------------|:---------------------------------|:----------------------------------------------------------------------------------------|
-| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (f.e. older than 2 months) | 
-| **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted              | 
-| **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                          |
+| Rule                  | Environment variable             | Description                                                                                                                                                                                              |
+|:----------------------|:---------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories older than the specified max age will be deleted (e.g. older than 2 months)<br/> The max age has to be defined in human readable format, such as e.g. 1 day, 30 minutes, 6 months and so on. | 
+| **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified (list of) asset group names will be deleted (currently not fully functional)                                                                                              | 
+| **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories with the specified (list of) paths will be deleted                                                                                                                                           |
+
+After the inventory candidates for the specified rules are deleted, the marker files for them will update their status to "DELETED".
+
+`Note:` An empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will by default be converted to an empty list.
+
+Besides this, currently it is not recommended to modify the deletion rules after the index is build and the **index timestamp** is defined at that
+time.
+The reason for this is that it can lead to ignore importing inventory candidates with existing markers (that now should be imported depending on the
+deletion rule) because any marker having an **import timestamp** laying after the **index timestamp** will be considered to not be imported.
+This is due to the fact that a marker file for that inventory candidate already exists and that inventory is (according to the deletion rule defined
+when the index was build the last time and the **index timestamp** was set) either already imported (marked IMPORTED) or was imported
+and then deleted (marked DELETED).
+This will be fixed in the next version.
 
 ### Query service
 
@@ -151,47 +189,45 @@ The diagram below presents a compact and simplified view on the **import task**:
 ### Marker files
 
 During both tasks (**import task** and **delete task**) marker files are generated for each inventory file and used to store the status of the file
-and
-some additional information.
+and some additional information.
 
-`Note`: A marker file is stored in the JSON format and located next to where the inventory file is located and has the same name as the inventory file
-with the additional file ending **.json**
+`Note:` A marker file is stored in the JSON format in the specified `marker dir` and has the same name as the inventory file
+with the relative path from the `input dir` to that inventory file as the prefix and with the additional file ending **.json**
 
 #### Marker data
 
 This information is stored in the marker files:
 
-| Data                       | Value type | Description                                                                                                                                                                                                                                                                                                                      |
-|:---------------------------|:-----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **fileHash**               | String     | The file hash of the inventory file to check if the file has changed                                                                                                                                                                                                                                                             |
-| **lastCheckTimestamp**     | Instant    | The timestamp of the last time the file was accessed or modified for the import or delete task                                                                                                                                                                                                                                   |
-| **importSuccessTimestamp** | Instant    | The timestamp of the first time the file was successfully imported and persisted                                                                                                                                                                                                                                                 |
-| **currentStatus**          | Status     | The current status of the import. This can be either: <br/>`IMPORTED` (if the file was successfully imported), <br/>`FAILED` (if the import/persistence faild), <br/>`SKIPPED` (if the inventory with the same file hash already exists in the database) or <br/>`DELETED` (if the inventory was deleted by the **delete task**) |
-| **errorMessage**           | String     | The error message if the import of the file failed, otherwise if it was successful this will be null                                                                                                                                                                                                                             |
+| Data                       | Value type | Description                                                                                                                                                                                                                             |
+|:---------------------------|:-----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **fileHash**               | String     | The file hash of the inventory file to check if the file has changed                                                                                                                                                                    |
+| **lastCheckTimestamp**     | Instant    | The timestamp of the last time the file was accessed or modified for the import or delete task                                                                                                                                          |
+| **importSuccessTimestamp** | Instant    | The timestamp of the first time the file was successfully imported and persisted                                                                                                                                                        |
+| **currentStatus**          | Status     | The current status of the import. This can be either: <br/>`IMPORTED` (if the file was successfully imported), <br/>`FAILED` (if the import/persistence failed) or <br/>`DELETED` (if the inventory was deleted by the **delete task**) |
+| **errorMessage**           | String     | The error message if the import of the file failed, otherwise if it was successful this will be null                                                                                                                                    |
 
 #### Checking if inventory needs to be imported
 
-When the **import task** finds an inventory file, it first checks if the file is valid and needs to be imported. This is done by checking if a marker
-file for this inventory file exists and what status it has. The following diagram shows the process of checking if an inventory has to be imported or
-not:
+When the **import task** finds an inventory file, it first checks if the file is valid and needs to be imported.
+The following diagram shows the process of checking if an inventory needs to be imported or not:
 
 ![Inventory import check](docs/images/inventory-needs-to-be-imported-check.drawio.svg)
 
-In short: **If an inventory file has no marker yet or the marker has the status FAILED or the file hash changed, it needs to be imported, otherwise
-not.**
+Consequently, if an inventory was deleted previously by the **delete task** it will not be imported again, because its marker file has
+the status`DELETED`(Unless its file hash changes, then it is considered a new file and will be imported and
+the old marker file will be overwritten with the new import timestamp and new file hash.)
 
-This also means that if an inventory was deleted previously by the **delete task** it will not be imported again. (Unless its file hash changes, then
-it considered a new file and will be imported and the marker file will be overwritten.)
-
-`Note`: If an inventory is deleted from the database manually, the corresponding marker file also has to be deleted by hand. If not so, the importer
-will not import the same (unchanged file hash) file because a marker file with the status `IMPORTED` and the same file hash already exists for this
-file.
+`Note:` If an inventory is deleted from the database manually, the corresponding marker file has to be removed by hand.
+If the index is build from scratch, the corresponding `II_IMPORT_INDEX_TIMESTAMP`
+property must be refreshed by setting the timestamp of the latest index build, so that marker files older than the latest index timestamp are ignored.
+Otherwise, the importer would not import the same inventory file (with unchanged file hash) again
+because a marker file with the status `IMPORTED` and the same file hash already exists for it.
 
 #### Updating markers after import
 
-Depending on the import status of the inventories, for each of them the marker file is updated with the new file hash, the import status and
-timestamp. In case the import fails, an error message is additionally saved to the marker file.
+Depending on the import status of the imported inventories, for each of them, the marker file is updated with the new file hash, the import status and
+import timestamp. In case the import fails, an error message is additionally appended to the marker file.
 
 #### Updating markers after delete
 
-After the **delete task** also every marker file for the deleted inventory file is updated by setting the `currentStatus` property to `DELETED`.
+After the **delete task** every marker file for the deleted inventory file is updated by setting the `currentStatus` property to `DELETED`.
