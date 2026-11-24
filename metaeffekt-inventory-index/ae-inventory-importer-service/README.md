@@ -123,6 +123,8 @@ The default value for this property is `10`.
 Defines the maximum number of inventory files to be processed in a task run.
 It can be configured by setting the `II_IMPORT_MAX_FILES_PER_RUN` property in the env.rc file.
 
+`Note:` inventories for which the import failed or that are already in the database are not counted.
+
 The default value for this property is `500`.
 
 #### Tenant ID
@@ -150,7 +152,7 @@ The following table shows the mappable keys and their corresponding environment 
 | Metaeffekt asset key | Environment variable                          | Description                                                                                                         |
 |:---------------------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|
 | **externalAssetId**  | II_IMPORT_ASSET_KEY_MAPPING_EXTERNAL_ASSET_ID | Maps the defined key to the metaeffekt externalAssetId. The default value for this property is `External Asset Id`. | 
-| **externalViewId**   | II_IMPORT_ASSET_KEY_MAPPING_EXTERNAL_VIEW_ID  | Maps the defined key to the metaeffekt externalViewId . The default value for this property is `External View Id`.  | 
+| **externalViewId**   | II_IMPORT_ASSET_KEY_MAPPING_EXTERNAL_VIEW_ID  | Maps the defined key to the metaeffekt externalViewId. The default value for this property is `External View Id`.   | 
 | **pathInGroup**      | II_IMPORT_ASSET_KEY_MAPPING_PATH_IN_GROUP     | Maps the defined key to the metaeffekt pathInGroup. The default value for this property is `Path in Group`.         |
 
 Each value of each of these variables can be a list of possible keys separated by commas. For example, the value could be `"Key1, Key 2, Key 3"`. Each
