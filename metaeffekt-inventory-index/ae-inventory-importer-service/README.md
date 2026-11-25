@@ -133,8 +133,6 @@ Describes who the tenant of the inventories is.
 It can be configured by setting the `II_IMPORT_DEFAULT_TENANT_ID` property in the env.rc file.
 this allows the same inventory to be persisted multiple times with different tenants.
 
-The default value for this property is `tenant1`.
-
 #### Schedule
 
 The scheduler that triggers the **import task** to start runs with a cron expression that defines the repeated execution time and can be
