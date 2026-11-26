@@ -45,38 +45,6 @@ This can be configured by setting the `II_MARKER_DIR` property in the env.rc fil
 
 The default value for this property is `markers`.
 
-#### Deletion rules
-
-As previously mentioned, inventories can be deleted (by the **delete task**) or skipped (by the **import task**) by specifying three different rules
-that are evaluated by the **import task** and **delete task**.
-
-These are described in the following table:
-
-| Rule                  | Environment variable             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|:----------------------|:---------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories that are older than the specified max age (type **string**) will be deleted/skipped.<br/> The age of the inventory is represented by the `updatedTimestamp` which is populated using the follwing fallbacks: <br/>1. Enrichment timestamp <br/>2. Inventory derived from Sbom creation timestamp<br/>3. Sbom creation timestamp<br/>4. Inventory last modified timestamp.<br/> The max age has to be defined in human-readable format, for example "1 day", "30 minutes", "6 months", "2 years and 3 months", "2 years, 3 months" and so on.<br/> This string will be converted internally to a matching timestamp of type `Instant`. | 
-| **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified **list of** asset group names will be deleted/skipped (currently not supported).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 
-| **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories that match the specified **list of** path patterns will be deleted/skipped. These patterns are specified using glob patterns (https://www.malikbrowne.com/blog/a-beginners-guide-glob-patterns/).</br> Example: **src/\*\*/\*.xlsx** would match .xlsx files at any depth under src/ (a/inv1.xlsx, a/b/inv2.xlsx, ...).</br> However, ***.xlsx** would match inv1.xlsx and .xlsx, not src/inv1.xlsx.                                                                                                                                                                                                                                  |
-
-All three rules must be defined using `""` in the `env.rc`.
-By default, an empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will be converted to an empty list and for
-II_DELETE_RULE_INVENTORY_AGE_MAX it will be converted to null.
-
-The following examples demonstrate, how to configure these rules and what they describe:
-
-| Configuration                                                     | Description                                                                                          |
-|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------|
-| II_DELETE_RULE_INVENTORY_AGE_MAX=""                               | No max age configured, no inventories will be deleted/skipped for this rule                          | 
-| II_DELETE_RULE_INVENTORY_AGE_MAX="6 months"                       | Inventories older than 6 months will be deleted/skipped                                              | 
-| II_DELETE_RULE_INVENTORY_AGE_MAX="2 years, 4 months"              | Inventories older than 2 years and 4 months will be deleted/skipped                                  |
-| II_DELETE_RULE_INVENTORY_AGE_MAX="1 week, 2 days and 12 hours"    | Inventories older than 1 week, 2 days and 12 hours will be deleted/skipped                           |
-| II_DELETE_RULE_ASSET_GROUP_NAMES=""                               | No asset groups names configured, no inventories will be deleted/skipped for this rule               |
-| II_DELETE_RULE_ASSET_GROUP_NAMES="assetGN1"                       | Inventories containing the asset group name "assetGN1" will be deleted/skipped                       |
-| II_DELETE_RULE_ASSET_GROUP_NAMES="assetGN1, assetGN2"             | Inventories containing any of the asset group names "assetGN1" or "assetGN2" will be deleted/skipped |
-| II_DELETE_RULE_FILE_SYSTEM_PATHS=""                               | No paths configured, no inventories will be deleted/skipped for this rule                            |
-| II_DELETE_RULE_FILE_SYSTEM_PATHS="\*\*mongo\*\*"                  | Inventories with paths containing "mongo" will be deleted/skipped                                    |
-| II_DELETE_RULE_FILE_SYSTEM_PATHS="\*\*mongo\*\*, \*\*openssl\*\*" | Inventories with paths containing "mongo" or "openssl" will be deleted/skipped                       |
-
 ### Import task
 
 The **import task** uses properties that are necessary for importing and persisting the inventories.
@@ -174,6 +142,39 @@ The **delete task** uses properties that are necessary for deleting inventories.
 
 Like the **import task** the **delete task** is also started by a scheduler that runs with a predefined cron. Its execution time can be configured in
 the env.rc file by setting the `II_DELETE_SCHEDULE` property.
+
+#### Deletion rules
+
+As previously mentioned, inventories can be deleted (by the **delete task**) or skipped (by the **import task**) by specifying three different rules
+that are evaluated by the **import task** and **delete task**.
+
+These are described in the following table:
+
+| Rule                  | Environment variable             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|:----------------------|:---------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **max age**           | II_DELETE_RULE_INVENTORY_AGE_MAX | Inventories that are older than the specified max age (type **string**) will be deleted/skipped.<br/> The age of the inventory is represented by the `updatedTimestamp` which is populated using the follwing fallbacks: <br/>1. Enrichment timestamp <br/>2. Inventory derived from Sbom creation timestamp<br/>3. Sbom creation timestamp<br/>4. Inventory last modified timestamp.<br/> The max age has to be defined in human-readable format, for example "1 day", "30 minutes", "6 months", "2 years and 3 months", "2 years, 3 months" and so on.<br/> This string will be converted internally to a matching timestamp of type `Instant`. | 
+| **asset group names** | II_DELETE_RULE_ASSET_GROUP_NAMES | Inventories with the specified **list of** asset group names will be deleted/skipped (currently not supported).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 
+| **paths**             | II_DELETE_RULE_FILE_SYSTEM_PATHS | Inventories that match the specified **list of** path patterns will be deleted/skipped. These patterns are specified using glob patterns (https://www.malikbrowne.com/blog/a-beginners-guide-glob-patterns/).</br> Example: **src/\*\*/\*.xlsx** would match .xlsx files at any depth under src/ (a/inv1.xlsx, a/b/inv2.xlsx, ...).</br> However, ***.xlsx** would match inv1.xlsx and .xlsx, not src/inv1.xlsx.                                                                                                                                                                                                                                  |
+
+All three rules must be defined using `""` in the `env.rc`.
+By default, an empty string value for II_DELETE_RULE_ASSET_GROUP_NAMES and II_DELETE_RULE_FILE_SYSTEM_PATHS will be converted to an empty list and for
+II_DELETE_RULE_INVENTORY_AGE_MAX it will be converted to null.
+
+The following examples demonstrate, how to configure these rules and what they describe:
+
+| Configuration                                                     | Description                                                                                          |
+|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------|
+| II_DELETE_RULE_INVENTORY_AGE_MAX=""                               | No max age configured, no inventories will be deleted/skipped for this rule                          | 
+| II_DELETE_RULE_INVENTORY_AGE_MAX="6 months"                       | Inventories older than 6 months will be deleted/skipped                                              | 
+| II_DELETE_RULE_INVENTORY_AGE_MAX="2 years, 4 months"              | Inventories older than 2 years and 4 months will be deleted/skipped                                  |
+| II_DELETE_RULE_INVENTORY_AGE_MAX="1 week, 2 days and 12 hours"    | Inventories older than 1 week, 2 days and 12 hours will be deleted/skipped                           |
+| II_DELETE_RULE_ASSET_GROUP_NAMES=""                               | No asset groups names configured, no inventories will be deleted/skipped for this rule               |
+| II_DELETE_RULE_ASSET_GROUP_NAMES="assetGN1"                       | Inventories containing the asset group name "assetGN1" will be deleted/skipped                       |
+| II_DELETE_RULE_ASSET_GROUP_NAMES="assetGN1, assetGN2"             | Inventories containing any of the asset group names "assetGN1" or "assetGN2" will be deleted/skipped |
+| II_DELETE_RULE_FILE_SYSTEM_PATHS=""                               | No paths configured, no inventories will be deleted/skipped for this rule                            |
+| II_DELETE_RULE_FILE_SYSTEM_PATHS="\*\*mongo\*\*"                  | Inventories with paths containing "mongo" will be deleted/skipped                                    |
+| II_DELETE_RULE_FILE_SYSTEM_PATHS="\*\*mongo\*\*, \*\*openssl\*\*" | Inventories with paths containing "mongo" or "openssl" will be deleted/skipped                       |
+
 
 ### Query service
 
